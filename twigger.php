@@ -54,7 +54,7 @@ $SiteLocation = 'Lorem | Ipsum | Dolor | Consequeteur';
 
 $SiteCopyright = 'Some other stuff';
 
-$SiteLogo = '/assets/img/logo.png';
+$SiteLogo = '/wp-content/themes/solaris-theme/assets/img/logo.png';
 
 $GoogleMapsURL = '#';
 
