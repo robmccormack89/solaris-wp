@@ -1,0 +1,111 @@
+/* top bar Header */
+#TopBarSection .uk-subnav>*>:first-child {
+    text-transform: capitalize;
+}
+
+/* wraps */
+%cover_wrap_props {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: auto;
+}
+.purple-wrap:after {
+  @extend %cover_wrap_props;
+  background-color: rgba(3, 14, 66, 0.75);
+}
+.purple-wrap-blur:after {
+  @extend %cover_wrap_props;
+  background-color: rgba(3, 14, 66, 0.75);
+  backdrop-filter: blur(5px) contrast(.8);
+}
+.light-wrap:after {
+  @extend %cover_wrap_props;
+  background-color: rgba(3, 14, 66, 0.21);
+}
+
+/* sidebars */
+#RightSidebar, #LeftSidebar {
+  .uk-card-body {
+    .uk-icon {
+      color: $global-secondary-background;
+    }
+  }
+}
+
+/* contact page form */
+#ContactPageForm {
+  .uk-input, .uk-select {
+    border-radius: 3px;
+  }
+  .uk-textarea {
+    border-radius: 3px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .uk-input {
+    height: 45px;
+  }
+}
+
+/* product quick call */
+#QuickCallEnquiryContainer {
+  text-align: center;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  margin: 0 auto;
+  position: fixed;
+  left: 0;
+  z-index: 999;
+  bottom: 0;
+  // display: none;
+  background: #030e42;
+  color: #ffffff;
+  a {
+    color: #ffffff;
+    &.close {
+      position: relative;
+      float: right;
+      top: -15px;
+      right: -7px;
+      z-index: 99;
+      font-weight: bold;
+      font-size: 16px;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      border-radius: 20px;
+      padding: 2px 5px 2px 6px;
+      line-height: 1em;
+      text-align: center;
+      background: #cfbe9c;
+      border: 4px solid #fff;
+      cursor: pointer;
+    }
+  }
+}
+#CallNowButton {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+@media screen and (min-width: 651px) {
+  #QuickCallEnquiryContainer {
+    display: none !important;
+  }
+}
+#ProductEnquiryModalRight.wrap-dark:after {
+  position: absolute;
+  top: 0;
+  height: -webkit-fill-available;
+  content: "";
+  z-index: auto;
+  background-color: rgba(3, 14, 66, 0.87);
+  width: inherit;
+}

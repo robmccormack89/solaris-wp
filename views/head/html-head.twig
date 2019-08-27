@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- styles for document ready transition. requires adding the rmcc-load class to either HTML or some other element -->
+  <style type="text/css">.rmcc-load{visibility:hidden;opacity:0}#SomeDivOrHTML{-webkit-transition:all .7s ease;-moz-transition:all .7s ease;-o-transition:all .7s ease;transition:all .7s ease}</style>
+  <!-- you can also add the load class to the document directly with <script type="text/javascript">document.documentElement.className="rmcc-load";</script> -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Solaris Blinds</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/meta/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/meta/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/meta/favicon-16x16.png">
+  <!-- <link rel="manifest" href="/assets/img/meta/site.webmanifest"> -->
+  <!-- comiled via sass from srcs: uikit, lightgallery, etc -->
+  <link rel="stylesheet" type="text/css" href="assets/css/base.css">
+  <!--  UIKit requires it's JS to be loaded for some layout & styling. Therefore if loaded using async/defer attributes in HEAD or BODY, there is FOUC. When using UIKit components like Modal/Notification in our JS, we will need to async/defer the bundle in HEAD, or load in BODY. The rmcc-load transition above is a solution to this -->
+  <script src="assets/js/bundles/bundle.js"></script>
+</head>

@@ -1,0 +1,90 @@
+/* UIKit based resonsive breakpoints */
+@media only screen and (max-width:479px) {
+  
+  .uk-text-lead {
+    font-size: $font_size_bigger_again;
+  }
+  
+}
+
+@media only screen and (min-device-width:480px) and (max-device-width:767px) {
+  
+}
+
+@media only screen and (min-device-width:768px) and (max-device-width:959px) {
+
+}
+
+@media only screen and (min-device-width:960px) and (max-device-width:1199px) {
+  
+}
+
+@media only screen and (min-width:1200px) {
+  
+}
+
+/* custom breakpoints */
+@media only screen and (min-width:980px) {
+  
+  #HeaderBottom {
+    ul.uk-navbar-nav {
+      li {
+        >a {
+          padding: 0 20px
+        }
+      }
+    }
+    .uk-navbar-nav {
+      >li {
+        >a {
+          font-size: $font_size_bigger_again;
+        }
+      }
+    }
+    .uk-navbar-toggle {
+      svg {
+        width: 25px;
+        height: 25px
+      }
+    }
+  }
+  
+  #RightSidebar.right-sidebar-area {
+    padding-left: 80px
+  }
+
+  #LeftSidebar.left-sidebar-area {
+    padding-right: 40px
+  }
+  
+}
+
+@media only screen and (min-device-width:960px) {
+  
+  .rmcc-content-block-left:before {
+    content: '';
+    position: absolute;
+    top: 7%;
+    width: 60%;
+    height: 86%;
+    left: 0;
+    background-color: #ffffff;
+    box-shadow: -20px 14px 25px rgba(0,0,0,.16);
+  }
+  
+  .rmcc-content-block-right:before {
+    content: '';
+    position: absolute;
+    top: 7%;
+    width: 60%;
+    height: 86%;
+    right: 0;
+    background-color: #ffffff;
+    box-shadow: -20px 14px 25px rgba(0,0,0,.16);
+  }
+  
+  .fabrics-img-pullup {
+    margin-top: -470px;
+  }
+  
+}

@@ -1,0 +1,35 @@
+// 1. Customizing variables from uikit
+$global-primary-background: #030e42;
+$global-secondary-background: #cfbe9c;
+$global-link-color: #030e42;
+$global-link-hover-color: #030e42d1;
+$offcanvas-bar-background: $global-primary-background;
+$global-font-family: 'Lato', sans-serif;
+$navbar-nav-item-text-transform:  none;
+$base-blockquote-font-size: 1.1rem;
+$global-small-font-size: 0.925rem !default;
+$base-heading-font-weight: 900;
+$accordion-title-hover-color: #333;
+$text-bold-font-weight: 700;
+$base-strong-font-weight: 700;
+$global-font-size: 16px;
+$overlay-primary-background: rgba($global-primary-background, 0.8) !default;
+$container-large-max-width: 1500px;
+$offcanvas-bar-width: 310px;
+
+// 2. Import theme variables & mixins froim uikit
+@import "node_modules/uikit/src/scss/variables-theme.scss";
+@import "node_modules/uikit/src/scss/mixins-theme.scss";
+
+// 4. Import mian UIkit (theme)
+@import "node_modules/uikit/src/scss/uikit-theme.scss";
+
+// @import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+// @import "node_modules/@fortawesome/fontawesome-free/scss/brands.scss";
+// @import "node_modules/@fortawesome/fontawesome-free/scss/regular.scss";
+// @import "node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
+
+@import "node_modules/lightgallery/src/sass/lightgallery.scss";
+
+// import custom sass styles
+@import "style.scss";

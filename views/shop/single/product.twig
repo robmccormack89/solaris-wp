@@ -1,0 +1,29 @@
+{% extends "base.twig" %}
+
+{% block html_header %}
+
+{% include 'html-head-lg.twig' %}
+
+{% endblock %}
+
+{% block content %}
+
+{% include 'product-cover.twig' %}
+
+<!-- MAIN CONTENT -->
+<main role="main" id="MainContent" class="uk-section uk-section-xsmall uk-section-muted">
+
+  <div id="SingleProductWrap" class="uk-container">
+    
+    {% include 'product-header.twig' %}
+    
+    {% include 'product-main.twig' %}
+    
+    {% include 'related-products.twig' %}
+
+  </div>
+  
+</main>
+<!-- /MAIN CONTENT -->
+
+{% endblock %}

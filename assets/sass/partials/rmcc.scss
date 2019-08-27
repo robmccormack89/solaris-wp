@@ -1,0 +1,167 @@
+/* general */
+.rmcc-vertical-middle {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.rmcc-load {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* buttons */
+.uk-light {
+    .rmcc-button-primary {
+    background-color: $global-primary-background;
+    color: $white_color
+  } 
+}
+.rmcc-nav-bg {
+    background-color: #030e42ab;
+    padding: 15px;
+}
+.rmcc-play-bg {
+    background-color: #00000047;
+    border-radius: 100px;
+    padding: 10px;
+    transition: 0.3s;
+}
+.rmcc-play-bg:hover {
+    background-color: #00000063;
+}
+
+
+/* img */
+img.rmcc-object-fit { 
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+/* text */
+::selection {
+  background: #cfbe9c;
+  color: #fff;
+  text-shadow: none;
+}
+.rmcc-text-highlight {
+    background: #cfbe9c;
+    color: #fff;
+    text-shadow: none;
+}
+.rmcc-card-fade {
+  background-color: #00082b4d;
+}
+.rmcc-white-text {
+  color: #ffffff;
+}
+.rmcc-big-font {
+  font-size: 2.2rem;
+  line-height: 2.2rem;
+}
+.rmcc-required {
+  color: #ff0000;
+}
+.rmcc-thin-text {
+  font-weight: 100
+}
+.rmcc-light-text {
+  font-weight: 300
+}
+.rmcc-text-underline {
+  text-decoration: underline
+}
+
+/* margins */
+.rmcc-margin-pull15 {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.rmcc-margin-pull-right15 {
+  margin-right: -15px;
+}
+.rmcc-margin-pull-left15 {
+  margin-left: -15px;
+}
+.rmcc-margin-pull-left20 {
+  margin-left: -20px;
+}
+.rmcc-margin-top30, #ProductTitleBlock.rmcc-margin-top30 {
+  margin-top: 30px;
+}
+
+/* paddings */
+.rmcc-padding-top5 {
+  padding-top: 5px;
+}
+.rmcc-padding-top10 {
+  padding-top: 10px;
+}
+.rmcc-padding-bottom30 {
+  padding-bottom: 30px;
+}
+.rmcc-padding-right30 {
+  padding-right: 30px;
+}
+.rmcc-padding10 {
+  padding: 10px 0
+}
+
+/* borders */
+.rmcc-border-top-bottom {
+  border-top: $border_width_1 solid $border_main_color;
+  border-bottom: $border_width_1 solid $border_main_color;
+  border-left: 0;
+  border-right: 0
+}
+.rmcc-offcanvas-border-left {
+  border-left: $border_width_1 solid $border_tran_color
+}
+
+/* shadows */
+.rmcc-box-shadow-left {
+  box-shadow:-20px 0 25px rgba(0,0,0,.36);
+}
+.rmcc-box-shadow-right {
+  box-shadow:20px 0 25px rgba(0,0,0,.36);
+}
+.rmcc-box-shadow-left {
+  box-shadow:-20px 0 25px rgba(0,0,0,.36);
+}
+.rmcc-box-shadow-top {
+  box-shadow:-20px 0 25px rgba(0,0,0,.36);
+}
+.rmcc-box-shadow {
+  box-shadow:0 0 20px rgba(0,0,0,.36);
+}
+.rmcc-box-shadow-small {
+  box-shadow:0 0 10px rgba(0,0,0,.36);
+}
+.rmcc-box-shadow-large {
+  box-shadow:0 0 50px rgba(0,0,0,.36);
+}
+.rmcc-box-shadow-large-light {
+    box-shadow: 0 0 50px rgba(0,0,0,.16);
+}
+.rmcc-box-shadow-top {
+   box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.18);
+}
+
+/* mega menu */
+.rmcc-mega-menu {
+    width: fit-content;
+    padding: 20px;
+}
+.rmcc-mega-menu-img {
+  width: 200px;
+  height: 120px;
+  object-fit: cover;
+}
+.rmcc-mega-menu-item-title-block {
+  padding: 10px 0 0 0;
+}
+.rmcc-mega-menu-item-title {
+  font-size: 19px;
+  line-height: 19px;
+}

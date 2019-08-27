@@ -1,0 +1,131 @@
+#SingleProductWrap {
+  #ProductMain {
+    .uk-card-footer {
+      .uk-icon {
+        color: $global-secondary-background;
+      }
+    }
+  }
+}
+#ArchiveProductWrap, #SingleProductWrap {
+  .uk-card-footer {
+    .uk-icon {
+      font-size: larger;
+    }
+  }
+}
+#SingleProductWrap {
+  #ProductMain {
+    #ProductDescriptionBlock {
+      .uk-card-footer  {
+        .rmcc-circle-share {
+          .uk-icon {
+              background-color: $global-primary-background;
+              border-radius: 100px;
+              padding: 5px;
+              color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+}
+#ProductColoursGalleryBlock {
+  .colour-block {
+    img {
+        border-radius: 100px;
+        border: 2px solid #c3c3c39e;
+        box-shadow: 1px 1px 5px 2px #3333338a;
+    }
+  }
+}
+#ProductContactInfoBlock {
+  .uk-card-body {
+    .uk-icon {
+      color: $global-secondary-background;
+    }
+  }
+}
+#RelatedProductsBlock {
+  nav.nav-scroll {
+    position: relative;
+    z-index: 2;
+    height: 2rem;
+    box-sizing: border-box;
+    overflow-y: hidden;
+    padding: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.075);
+    line-height: 1em;
+  }
+}
+#RelatedProductsBlock {
+  nav.nav-scroll>ul {
+    overflow-x: auto;
+    text-align: center;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1rem;
+  }
+}
+#RelatedProductsBlock {
+  nav.nav-scroll>ul>li>a {
+    font-weight: 500;
+  }
+}
+#RelatedProductsBlock {
+  .news-slide>li>.uk-card {
+    border: 1px solid rgba(0, 0, 0, 0.075);
+  }
+}
+#RelatedProductsBlock {
+  .uk-position-small {
+      margin: 10px;
+  }
+}
+#RelatedProductsBlock {
+  .uk-slidenav {
+      padding: 5px 5px;
+  }
+}
+#ArchiveProductsLeftSidebar form {
+  .uk-checkbox.uk-active {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='14' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23fff' d='M12 1L5 7.5 2 5l-1 .5L5 10l8-8.5z'/%3E%3C/svg%3E");
+  }
+  .uk-radio.uk-active {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='16' height='16' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle fill='%23fff' cx='8' cy='8' r='2'/%3E%3C/svg%3E");
+  }
+  .uk-checkbox.uk-active, .uk-radio.uk-active {
+    background-color: #030e42;
+    border-color: transparent;
+  }
+}
+#ModalFullSplit .map-responsive{
+    overflow:hidden;
+    position:relative;
+    height:0;
+}
+#ModalFullSplit .map-responsive iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}
+#ModalFullSplit .uk-modal-close-full {
+  color: #fff;
+  background: #030e42;
+}
+#ModalFullSplit .blah {
+  width: 100%
+}
+#ModalForm {
+  .uk-input, .uk-select:not([multiple]):not([size]) {
+    height: 50px;
+  }
+  .uk-input, .uk-select, .uk-textarea {
+    padding: 15px;
+  }
+  .uk-button {
+    line-height: 50px;
+  }
+}

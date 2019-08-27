@@ -1,0 +1,39 @@
+{% extends "base.twig" %}
+
+{% block html_header %}
+
+{% include 'html-head-lg.twig' %}
+
+{% endblock %}
+
+{% block content %}
+
+{% include 'cons-cover.twig' %}
+
+<!-- MAIN CONTENT -->
+<main role="main" id="MainContent" data-uk-lightbox="toggle:a.uk-position-cover">
+
+  {% include 'pleat-cons.twig' %}
+  
+  {% include 'duette.twig' %}
+  
+  {% include 'pinoleum.twig' %}
+  
+  {% include 'roof.twig' %}
+  
+  {% include 'shaped.twig' %}
+  
+  {% include 'colours-fabrics.twig' %}
+  
+  {% include 'remote.twig' %}
+  
+  {% include 'case-studies.twig' %}
+  
+  {% include 'free-quotation.twig' %}
+  
+  {% include 'reviews.twig' %}
+  
+</main>
+<!-- /MAIN CONTENT -->
+
+{% endblock %}

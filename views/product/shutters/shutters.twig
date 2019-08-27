@@ -1,0 +1,31 @@
+{% extends "base.twig" %}
+
+{% block html_header %}
+
+{% include 'html-head-lg.twig' %}
+
+{% endblock %}
+
+{% block content %}
+
+{% include 'shutters-cover.twig' %}
+
+<!-- MAIN CONTENT -->
+<main role="main" id="MainContent">
+  
+  {% include 'wooden.twig' %}
+  
+  {% include 'laminate.twig' %}
+  
+  {% include 'metal.twig' %}
+  
+  {% include 'pvc.twig' %}
+  
+  {% include 'free-quotation.twig' %}
+  
+  {% include 'reviews.twig' %}
+  
+</main>
+<!-- /MAIN CONTENT -->
+
+{% endblock %}

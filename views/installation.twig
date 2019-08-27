@@ -1,0 +1,19 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<!-- MAIN CONTENT -->
+<main role="main" id="MainContent" class="uk-section uk-section-muted">
+  <div class="uk-container uk-container-large">
+    <div uk-grid>
+      {% include 'left-sidebar.twig' %}
+      <article class="uk-article uk-width-3-4@s">
+        <h1 class="uk-article-title uk-text-uppercase"><span>About our Installation Services</span></h1>
+        {% include 'sample-content.twig' %}
+      </article>
+    </div>
+  </div>
+</main>
+<!-- /MAIN CONTENT -->
+
+{% endblock %}
