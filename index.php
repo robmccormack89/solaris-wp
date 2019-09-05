@@ -1,6 +1,20 @@
 <?php
+/**
+ * The main template file
+ *
+ * @package Solaris_Theme
+ */
 
-require_once __DIR__.'/twigger.php';
+$context = Timber::get_context();
 
-// Render our view
-echo $twig->render('index.twig');
+$context['posts'] = Timber::get_posts();
+$post = new TimberPost();
+$context['title'] =  get_the_title( $post->ID );
+$context['pagination'] = Timber::get_pagination();
+$context['paged'] = $paged;
+
+$templates = array( 'index.twig' );
+if ( is_home() ) {
+	array_unshift( $templates, 'home.twig' );
+}
+Timber::render( $templates, $context );
