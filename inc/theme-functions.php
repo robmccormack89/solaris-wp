@@ -157,6 +157,24 @@ function rmcc_custom_admin_styles() {
   echo '<style> #whyohwhy { display: none; } </style>';
 }
 
+
+/**
+ * Limit max menu depth in admin panel to 2
+ */
+function main_menu_limit_depth( $hook ) {
+  
+  if ( $hook != 'nav-menus.php' ) return;
+  
+  wp_add_inline_script( 'nav-menu', '
+  var selected_menu_id = jQuery("#select-menu-to-edit option:selected").prop("value");
+  if(jQuery(selected_menu_id).is("2")) { wpNavMenu.options.globalMaxDepth = 0; }
+  ', 'after' );
+    
+}
+add_action( 'admin_enqueue_scripts', 'main_menu_limit_depth' );
+
+
+
 // stuff to say we need timber activated!! see TGM Plugin activation library for php
 require_once get_template_directory() . '/inc/class-tgm-plugin-activation.php';
 add_action('tgmpa_register', 'solaris_theme_register_required_plugins');

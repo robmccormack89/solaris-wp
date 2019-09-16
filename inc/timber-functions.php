@@ -181,7 +181,9 @@ class SolarisTheme extends TimberSite
     {
       $theme_logo_id = get_theme_mod( 'custom_logo' );
       $theme_logo_url = wp_get_attachment_image_url( $theme_logo_id , 'full' );
-      $context['menu'] = new \Timber\Menu('main');
+      $context['menu_main'] = new \Timber\Menu('main');
+      $context['menu_mobile'] = new \Timber\Menu('mobile');
+      $context['menu_top'] = new \Timber\Menu('top');
       $context['site']            = $this;
       $context['sidebar_left']  = Timber::get_widgets('Left Sidebar Area');
       $context['sidebar_right'] = Timber::get_widgets('Right Sidebar Area');

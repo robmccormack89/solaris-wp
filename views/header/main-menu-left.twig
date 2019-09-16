@@ -1,32 +1,13 @@
 <div class="uk-navbar-left nav-overlay">
+  
   <ul class="uk-navbar-nav" style="margin-left:-15px;">
-    <li>
-      <a class="uk-text-bold" href="/wp-content/themes/solaris-theme/blinds">Blinds</a>
+    
+    {% for item in menu_main.get_items %}
+    
+    <li class="{{ item.classes | join(' ') }}"><a class="uk-text-bold" href="{{ item.get_link }}">{{ item.title }}</a>{{ item.mega_menu }}</li>
       
-      {% include 'blinds-mega-menu.twig' %}
-
-    </li>
-    <li>
-      <a class="uk-text-bold" href="/wp-content/themes/solaris-theme/curtains">Curtains</a>
-      
-      {% include 'curtains-mega-menu.twig' %}
+    {% endfor %}
     
-    </li>
-    <li>
-      <a class="uk-text-bold" href="/wp-content/themes/solaris-theme/shutters">Shutters</a>
-    
-      {% include 'shutters-mega-menu.twig' %}
-    
-    </li>
-    <li>
-      <a class="uk-text-bold" href="/wp-content/themes/solaris-theme/electric-blinds">Electric Blinds</a>
-    
-    </li>
-    <li>
-      <a class="uk-text-bold" href="/about">About us</a>
-    
-      {% include 'about-mega-menu.twig' %}
-    
-    </li>
   </ul>
+  
 </div>
