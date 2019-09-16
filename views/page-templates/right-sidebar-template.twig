@@ -8,9 +8,9 @@
     <div uk-grid>
       <article id="post-{{post.ID}}" class="uk-article uk-width-3-4@s {{post.class}}">
         <h1 class="uk-article-title uk-text-uppercase"><span>{{ post.title }}</span></h1>
-        {% include 'sample-content.twig' %}
+        {{post.content}}
       </article>
-      {% include 'right-sidebar.twig' %}
+      {% include "sidebar.twig" %}
     </div>
   </div>
 </main>

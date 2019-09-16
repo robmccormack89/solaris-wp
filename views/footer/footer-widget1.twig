@@ -1,22 +1,9 @@
 <div id="FooterMainWidgetOne" class="uk-width-1-4@m">
-  <h4 class="">Main Menu</h4>
-  <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav>
-    <li><a href="/">Home</a></li>
-    <li class="uk-nav-divider"></li>
-    <li><a href="/wp-content/themes/solaris-theme/about">About us</a></li>
-    <li class="uk-nav-divider"></li>
-    <li class="uk-parent">
-      <a href="#">Have a look at our...</a>
-      <ul class="uk-nav-sub">
-        <li><a href="/wp-content/themes/solaris-theme/blinds">Blinds</a></li>
-        <li><a href="/wp-content/themes/solaris-theme/curtains">Curtains</a></li>
-        <li><a href="/wp-content/themes/solaris-theme/shutters">Shutters</a></li>
-      </ul>
-    </li>
-    <li class="uk-nav-divider"></li>
-    <li><a href="/wp-content/themes/solaris-theme/gallery">Gallery</a></li>
-    <li class="uk-nav-divider"></li>
-    <li><a href="/wp-content/themes/solaris-theme/contact">Contact us</a></li>
-    <li class="uk-nav-divider"></li>
-  </ul>
+{%- spaceless -%}
+{% if sidebar_footer1 %}
+	{{sidebar_footer1}}
+{% else %}
+	Sidebar Widget Area.
+{% endif %}
+{%- endspaceless -%}
 </div>

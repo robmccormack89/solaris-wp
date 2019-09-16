@@ -39,8 +39,8 @@ function solaris_theme_setup()
 
   // Add support for core custom logo.
   add_theme_support('custom-logo', array(
-      'height' => 250,
-      'width' => 250,
+      'height' => 79,
+      'width' => 258,
       'flex-width' => true,
       'flex-height' => true
   ));

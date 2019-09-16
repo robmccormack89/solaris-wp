@@ -1,4 +1,9 @@
 <div id="FooterMainWidgetTwo" class="uk-width-1-4@m">
-  <h4 class="">Quality Service</h4>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</p>
+{%- spaceless -%}
+{% if sidebar_footer2 %}
+	{{sidebar_footer2}}
+{% else %}
+	Sidebar Widget Area.
+{% endif %}
+{%- endspaceless -%}
 </div>

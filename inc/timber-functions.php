@@ -72,32 +72,95 @@ class SolarisTheme extends TimberSite
     {
         // Register widget areas
         if (function_exists('register_sidebar')) {
+          register_sidebar(array(
+              'name' => esc_html__('Left Sidebar Area', 'solaris-theme'),
+              'id' => 'sidebar-left',
+              'description' => esc_html__('Sidebar Area for Left Sidebar Templates, you can add multiple widgets here.', 'solaris-theme'),
+              'before_widget' => '',
+              'after_widget' => '',
+              'before_title' => '<h3 class="uk-text-bold widget-title"><span>',
+              'after_title' => '</span></h3>'
+          ));
             register_sidebar(array(
-                'name' => esc_html__('Right Sidebar', 'solaris-theme'),
+                'name' => esc_html__('Right Sidebar Area', 'solaris-theme'),
                 'id' => 'sidebar-right',
-                'description' => esc_html__('Add widgets here.', 'solaris-theme'),
+                'description' => esc_html__('Sidebar Area for Right Sidebar Templates, you can add multiple widgets here.', 'solaris-theme'),
                 'before_widget' => '',
                 'after_widget' => '',
-                'before_title' => '<h3 class="uk-heading-line uk-text-bold widget-title"><span>',
+                'before_title' => '<h3 class="uk-text-bold widget-title"><span>',
                 'after_title' => '</span></h3>'
             ));
             register_sidebar(array(
-                'name' => esc_html__('Left Sidebar', 'solaris-theme'),
-                'id' => 'sidebar-left',
-                'description' => esc_html__('Add widgets here.', 'solaris-theme'),
+                'name' => esc_html__('Top Bar Left', 'solaris-theme'),
+                'id' => 'top-bar-left',
+                'description' => esc_html__('Top Bar Left Sidebar Area; works best with the current widget only, with Social Media links.', 'solaris-theme'),
                 'before_widget' => '',
                 'after_widget' => '',
-                'before_title' => '<h3 class="uk-heading-line uk-text-bold widget-title"><span>',
-                'after_title' => '</span></h3>'
+                'before_title' => '<h4 class="widget-title">',
+                'after_title' => '</h4>'
             ));
             register_sidebar(array(
-                'name' => esc_html__('Footer', 'solaris-theme'),
-                'id' => 'sidebar-footer',
-                'description' => esc_html__('Add widgets here.', 'solaris-theme'),
+                'name' => esc_html__('Top Bar Right', 'solaris-theme'),
+                'id' => 'top-bar-right',
+                'description' => esc_html__('Top Bar Right Sidebar Area; works best with the current widget only, with extra Navigation links.', 'solaris-theme'),
                 'before_widget' => '',
                 'after_widget' => '',
-                'before_title' => '<h2 class="widget-title">',
-                'after_title' => '</h2>'
+                'before_title' => '<h4 class="widget-title">',
+                'after_title' => '</h4>'
+            ));
+            register_sidebar(array(
+                'name' => esc_html__('Main Footer Area 1', 'solaris-theme'),
+                'id' => 'sidebar-footer1',
+                'description' => esc_html__('Main Footer Widget Area 1; works best with the current widget only.', 'solaris-theme'),
+                'before_widget' => '',
+                'after_widget' => '',
+                'before_title' => '<h4 class="widget-title">',
+                'after_title' => '</h4>'
+            ));
+            register_sidebar(array(
+                'name' => esc_html__('Main Footer Area 2', 'solaris-theme'),
+                'id' => 'sidebar-footer2',
+                'description' => esc_html__('Main Footer Widget Area 2; works best with the current widget only', 'solaris-theme'),
+                'before_widget' => '',
+                'after_widget' => '',
+                'before_title' => '<h4 class="widget-title">',
+                'after_title' => '</h4>'
+            ));
+            register_sidebar(array(
+                'name' => esc_html__('Main Footer Area 3', 'solaris-theme'),
+                'id' => 'sidebar-footer3',
+                'description' => esc_html__('Main Footer Widget Area 3; works best with the current widget only', 'solaris-theme'),
+                'before_widget' => '',
+                'after_widget' => '',
+                'before_title' => '<h4 class="widget-title">',
+                'after_title' => '</h4>'
+            ));
+            register_sidebar(array(
+                'name' => esc_html__('Main Footer Area 4', 'solaris-theme'),
+                'id' => 'sidebar-footer4',
+                'description' => esc_html__('Main Footer Widget Area 4; works best with the current widget only', 'solaris-theme'),
+                'before_widget' => '',
+                'after_widget' => '',
+                'before_title' => '<h4 class="widget-title">',
+                'after_title' => '</h4>'
+            ));
+            register_sidebar(array(
+                'name' => esc_html__('Footer Bottom Left', 'solaris-theme'),
+                'id' => 'footer-bottom-left',
+                'description' => esc_html__('Footer Bottom Left widget area; works best with the current widget only', 'solaris-theme'),
+                'before_widget' => '',
+                'after_widget' => '',
+                'before_title' => '<h4 class="widget-title">',
+                'after_title' => '</h4>'
+            ));
+            register_sidebar(array(
+                'name' => esc_html__('Footer Bottom Right', 'solaris-theme'),
+                'id' => 'footer-bottom-right',
+                'description' => esc_html__('Footer Bottom Right widget area; works best with the current widget only', 'solaris-theme'),
+                'before_widget' => '',
+                'after_widget' => '',
+                'before_title' => '<h4 class="widget-title">',
+                'after_title' => '</h4>'
             ));
         }
     }
@@ -107,6 +170,8 @@ class SolarisTheme extends TimberSite
         // This theme uses wp_nav_menu() in one locations.
         register_nav_menus(array(
             'main' => __('Main Menu', 'solaris-theme'),
+            'mobile' => __('Mobile Menu', 'solaris-theme'),
+            'top' => __('Top Menu', 'solaris-theme'),
         ));
     }
 
@@ -114,18 +179,28 @@ class SolarisTheme extends TimberSite
     // register custom context variables
     public function add_to_context($context)
     {
-        $context['menu'] = new \Timber\Menu('main');
-        $context['site']            = $this;
-        $context['sidebar_right'] = Timber::get_widgets('Right Sidebar');
-        $context['sidebar_left']  = Timber::get_widgets('Left Sidebar');
-        $context['sidebar_footer']   = Timber::get_widgets('Footer');
-        $context['freenumber'] = '1800 111 2222';
-        $context['email'] = '1info@solarisblinds.ie';
-        $context['address1'] = 'Street / Road';
-        $context['address2'] = 'City / Town';
-        $context['address3'] = 'State / County';
-        $context['logo'] = '/wp-content/themes/solaris-theme/assets/img/logo.png';
-        return $context;
+      $theme_logo_id = get_theme_mod( 'custom_logo' );
+      $theme_logo_url = wp_get_attachment_image_url( $theme_logo_id , 'full' );
+      $context['menu'] = new \Timber\Menu('main');
+      $context['site']            = $this;
+      $context['sidebar_left']  = Timber::get_widgets('Left Sidebar Area');
+      $context['sidebar_right'] = Timber::get_widgets('Right Sidebar Area');
+      $context['top_bar_left']  = Timber::get_widgets('Top Bar Left');
+      $context['top_bar_right'] = Timber::get_widgets('Top Bar Right');
+      $context['sidebar_footer1']   = Timber::get_widgets('Main Footer Area 1');
+      $context['sidebar_footer2']   = Timber::get_widgets('Main Footer Area 2');
+      $context['sidebar_footer3']   = Timber::get_widgets('Main Footer Area 3');
+      $context['sidebar_footer4']   = Timber::get_widgets('Main Footer Area 4');
+      $context['footer_bottom_left']   = Timber::get_widgets('Footer Bottom Left');
+      $context['footer_bottom_right']   = Timber::get_widgets('Footer Bottom Right');
+      $context['freenumber'] = '1800 111 2222';
+      $context['email'] = '1info@solarisblinds.ie';
+      $context['address1'] = 'Street / Road';
+      $context['address2'] = 'City / Town';
+      $context['address3'] = 'State / County';
+      $context['logo'] = '/wp-content/themes/solaris-theme/assets/img/logo.png';
+      $context['themelogo'] = $theme_logo_url;
+      return $context;
     }
 
     public function add_to_twig($twig)

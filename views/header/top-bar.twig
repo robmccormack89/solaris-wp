@@ -1,22 +1,23 @@
 <section id="TopBarSection" class="uk-section uk-section-primary uk-section-xsmall rmcc-padding10 uk-light uk-visible@s">
   <div class="uk-container uk-container-large">
     <div class="">
-      <div class="uk-float-left rmcc-margin-pull-left15">
-        <ul class="uk-subnav  uk-margin-remove">
-          <li><a href="" uk-icon="icon: facebook"></a></li>
-          <li><a href="" uk-icon="icon: twitter"></a></li>
-          <li><a href="" uk-icon="icon: google"></a></li>
-          <li><a href="" uk-icon="icon: location"></a></li>
-        </ul>
+      <div id="TopBarLeft" class="uk-float-left rmcc-margin-pull-left15">
+        {%- spaceless -%}
+        {% if top_bar_left %}
+        	{{top_bar_left}}
+        {% else %}
+        	TopBar Left Widget Area.
+        {% endif %}
+        {%- endspaceless -%}
       </div>
-      <div class="uk-float-right">
-        <ul class="uk-subnav uk-subnav-divider uk-margin-remove">
-          <li><a href="/">Home</a></li>
-          <li><a href="/wp-content/themes/solaris-theme/gallery">Gallery</a></li>
-          <li><a href="/wp-content/themes/solaris-theme/video">Video</a></li>
-          <li><a href="/wp-content/themes/solaris-theme/contact">Contact</a></li>
-          <li><a href="/wp-content/themes/solaris-theme/shop">Shop</a></li>
-        </ul>
+      <div id="TopBarRight" class="uk-float-right">
+        {%- spaceless -%}
+        {% if top_bar_right %}
+        	{{top_bar_right}}
+        {% else %}
+        	TopBar Right Widget Area.
+        {% endif %}
+        {%- endspaceless -%}
       </div>
     </div>
   </div>

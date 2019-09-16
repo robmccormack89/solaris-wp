@@ -2,10 +2,22 @@
   <div class="uk-container uk-container-large">
     <div class="uk-grid-collapse" uk-grid>
       <div id="FooterBottomLeft" class="uk-width-1-2@m uk-text-small uk-text-center uk-text-left@s">
-        <p>© Copyright 2019 - <span class="uk-text-bold uk-text-emphasis">{{ SiteTitle }}</span></p>
+        {%- spaceless -%}
+        {% if footer_bottom_left %}
+        	{{footer_bottom_left}}
+        {% else %}
+        	Footer Bottom Left Widget Area.
+        {% endif %}
+        {%- endspaceless -%}
       </div>
       <div id="FooterBottomRight" class="uk-width-1-2@m uk-text-small uk-text-center uk-text-right@s">
-        <p>{{ SiteCopyright|raw }}</p>
+        {%- spaceless -%}
+        {% if footer_bottom_right %}
+        	{{footer_bottom_right}}
+        {% else %}
+        	Footer Bottom Right Widget Area.
+        {% endif %}
+        {%- endspaceless -%}
       </div>
     </div>
   </div>
