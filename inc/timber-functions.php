@@ -8,13 +8,13 @@
 // Define paths to Twig templates
 Timber::$dirname = array(
   'views/',
+  'views/blocks',
   'views/contact',
   'views/footer',
   'views/gallery',
   'views/head',
   'views/header',
   'views/page-templates',
-  'views/parts',
   'views/product',
   'views/product/blinds',
   'views/product/blinds/conservatory',

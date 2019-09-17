@@ -1,10 +1,42 @@
 <section id="FooterMain" class="uk-section uk-section-default rmcc-border-top-bottom">
   <div class="uk-container uk-container-large">
     <div uk-grid>
-      {% include 'footer-widget1.twig' %}
-      {% include 'footer-widget2.twig' %}
-      {% include 'footer-widget3.twig' %}
-      {% include 'footer-widget4.twig' %}
+      <div id="FooterMainWidgetOne" class="uk-width-1-4@m">
+      {%- spaceless -%}
+      {% if sidebar_footer1 %}
+      	{{sidebar_footer1}}
+      {% else %}
+      	Sidebar Widget Area.
+      {% endif %}
+      {%- endspaceless -%}
+      </div>
+      <div id="FooterMainWidgetTwo" class="uk-width-1-4@m">
+      {%- spaceless -%}
+      {% if sidebar_footer2 %}
+      	{{sidebar_footer2}}
+      {% else %}
+      	Sidebar Widget Area.
+      {% endif %}
+      {%- endspaceless -%}
+      </div>
+      <div id="FooterMainWidgetThree" class="uk-width-1-4@m">
+      {%- spaceless -%}
+      {% if sidebar_footer3 %}
+      	{{sidebar_footer3}}
+      {% else %}
+      	Sidebar Widget Area.
+      {% endif %}
+      {%- endspaceless -%}
+      </div>
+      <div id="FooterMainWidgetFour" class="uk-width-1-4@m">
+      {%- spaceless -%}
+      {% if sidebar_footer4 %}
+      	{{sidebar_footer4}}
+      {% else %}
+      	Sidebar Widget Area.
+      {% endif %}
+      {%- endspaceless -%}
+      </div>
     </div>
   </div>
 </section>

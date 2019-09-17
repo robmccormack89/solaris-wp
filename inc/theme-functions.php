@@ -151,11 +151,12 @@ function remove_dashboard_widgets() {
   unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary']);
 }
 add_action('wp_dashboard_setup', 'remove_dashboard_widgets');
+
 // custom admin css
-add_action('admin_head', 'rmcc_custom_admin_styles');
-function rmcc_custom_admin_styles() {
-  echo '<style> #whyohwhy { display: none; } </style>';
-}
+// add_action('admin_head', 'rmcc_custom_admin_styles');
+// function rmcc_custom_admin_styles() {
+//   echo '<style> .edit-post-layout__metaboxes:not(:empty) { border-top: 1px solid #e2e4e7; bottom: 0; position: fixed; width: calc(100vw - 280px - 180px); padding: 10px 0; clear: both; } .block-editor-block-list__layout { padding-bottom: 100px; } </style>';
+// }
 
 
 /**
@@ -194,6 +195,51 @@ if( function_exists('acf_add_options_page') ) {
 	));
 	
 }
+
+
+add_action( 'acf/init', 'my_acf_init' );
+
+function my_acf_init() {
+    // Bail out if function doesn’t exist.
+    if ( ! function_exists( 'acf_register_block' ) ) {
+        return;
+    }
+
+    // Register a new block.
+    acf_register_block( array(
+        'name'            => 'cover_block',
+        'title'           => __( 'Cover Block', 'solaris-theme' ),
+        'description'     => __( 'A Cover block for Blank Wide Template.', 'solaris-theme' ),
+        'render_callback' => 'my_acf_block_render_callback',
+        'category'        => 'formatting',
+        'icon'            => 'admin-comments',
+        'keywords'        => array( 'cover' ),
+    ) );
+}
+
+/**
+ *  This is the callback that displays the block.
+ *
+ * @param   array  $block      The block settings and attributes.
+ * @param   string $content    The block content (emtpy string).
+ * @param   bool   $is_preview True during AJAX preview.
+ */
+function my_acf_block_render_callback( $block, $content = '', $is_preview = false ) {
+    $context = Timber::context();
+
+    // Store block values.
+    $context['block'] = $block;
+
+    // Store field values.
+    $context['fields'] = get_fields();
+
+    // Store $is_preview value.
+    $context['is_preview'] = $is_preview;
+
+    // Render the block.
+    Timber::render( 'cover-block.twig', $context );
+}
+
 
 
 // stuff to say we need timber activated!! see TGM Plugin activation library for php

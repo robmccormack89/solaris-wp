@@ -1,0 +1,34 @@
+{#
+/**
+ * Block Name: Cover block
+ *
+ * This is the template that displays the example block.
+ */
+#}
+
+{% if is_preview %}
+    <p>I will only appear in the editor.</p>
+{% endif %}
+
+<div id="cover-{{ block.id }}">
+
+  <!-- HERO -->
+  <div class="uk-section uk-section-small uk-background-center-center uk-position-relative uk-background-cover uk-light uk-background-fixed purple-wrap-blur" style="background-image: url({{ fields.cover_background_image }});">
+    <div class="uk-position-z-index uk-position-relative uk-container uk-text-center">
+      <h1 class="uk-h1 uk-text-uppercase">{{ fields.cover_title }}</h1>
+      
+      <hr class="uk-divider-small">
+
+      <p class="uk-text-lead uk-margin-medium-bottom">{{ fields.cover_description }}</p>
+      
+      {{ fields.cover_button }}
+      
+    </div>
+    
+    {{ fields.cover_nav }}
+
+    
+  </div>
+  <!-- /HERO -->
+
+</div>

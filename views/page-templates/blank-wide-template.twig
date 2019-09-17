@@ -1,0 +1,15 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<!-- MAIN CONTENT -->
+<main role="main" id="MainContent">
+
+  <article id="post-{{post.ID}}" class="{{post.class}}">
+    {{post.content}}
+  </article>
+
+</main>
+<!-- /MAIN CONTENT -->
+
+{% endblock %}
