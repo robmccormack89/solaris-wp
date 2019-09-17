@@ -11,13 +11,11 @@
         {%- endspaceless -%}
       </div>
       <div id="TopBarRight" class="uk-float-right">
-        {%- spaceless -%}
-        {% if top_bar_right %}
-        	{{top_bar_right}}
-        {% else %}
-        	TopBar Right Widget Area.
-        {% endif %}
-        {%- endspaceless -%}
+        <ul class="uk-subnav uk-subnav-divider uk-margin-remove">
+          {% for item in menu_top.get_items %}
+          <li class="{{ item.classes | join(' ') }}"><a href="{{ item.get_link }}">{{ item.title }}</a></li>
+          {% endfor %}
+        </ul>
       </div>
     </div>
   </div>

@@ -14,17 +14,26 @@
 <div id="offcanvas-nav" data-uk-offcanvas="flip: true; overlay: false">
   <div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide rmcc-offcanvas-border-left">
     <button class="uk-offcanvas-close uk-close uk-icon" type="button" data-uk-close></button>
-    <ul class="uk-nav uk-nav-default">
+    <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="multiple: true">
       <li class="uk-nav-header">Menu</li>
-      <li><a href="/">Home</a></li>
-      <li><a href="/wp-content/themes/solaris-theme/wp-content/themes/solaris-theme/about">About us</a></li>
-      <li><a href="/wp-content/themes/solaris-theme/blinds">Blinds</a></li>
-      <li><a href="/wp-content/themes/solaris-theme/curtains">Curtains</a></li>
-      <li><a href="/wp-content/themes/solaris-theme/shutters">Shutters</a></li>
-      <li><a href="/wp-content/themes/solaris-theme/gallery">Gallery</a></li>
-      <li><a href="/wp-content/themes/solaris-theme/video">Video</a></li>
-      <li><a href="/wp-content/themes/solaris-theme/shop">Shop</a></li>
-      <li><a href="/wp-content/themes/solaris-theme/contact">Contact us</a></li>
+      {% for item in menu_mobile.get_items %}
+        {% if item.get_children %}
+          <li class="uk-parent {{ item.classes | join(' ') }}">
+            <a href="#">{{ item.title }}</a>
+            <ul class="uk-nav-sub">
+              {% for child in item.get_children %}
+                <li>
+                  <a href="{{ child.get_link }}">{{ child.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </li>
+        {% else %}
+          <li class="{{ item.classes | join(' ') }}">
+            <a href="{{ item.get_link }}">{{ item.title }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
       <li class="uk-nav-divider"></li>
     </ul>
     <div class="uk-margin">

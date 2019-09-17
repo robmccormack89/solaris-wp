@@ -159,20 +159,41 @@ function rmcc_custom_admin_styles() {
 
 
 /**
- * Limit max menu depth in admin panel to 2
+ * Limit max menu depth in admin panel to 1 on certain menus on edit menu screen using js
  */
 function main_menu_limit_depth( $hook ) {
-  
+
   if ( $hook != 'nav-menus.php' ) return;
-  
-  wp_add_inline_script( 'nav-menu', '
-  var selected_menu_id = jQuery("#select-menu-to-edit option:selected").prop("value");
-  if(jQuery(selected_menu_id).is("2")) { wpNavMenu.options.globalMaxDepth = 0; }
-  ', 'after' );
-    
+
+  wp_add_inline_script( 'nav-menu', 'jQuery(document).ready(function(){ var selected_menu_id = jQuery("#select-menu-to-edit option:selected").prop("value"); if ("2" === selected_menu_id || "5" === selected_menu_id) { wpNavMenu.options.globalMaxDepth = 0; } });', 'after' );
+
 }
 add_action( 'admin_enqueue_scripts', 'main_menu_limit_depth' );
 
+
+if( function_exists('acf_add_options_page') ) {
+	
+	acf_add_options_page(array(
+		'page_title' 	=> 'Theme General Settings',
+		'menu_title'	=> 'Theme Settings',
+		'menu_slug' 	=> 'theme-general-settings',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false
+	));
+	
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Theme Header Settings',
+		'menu_title'	=> 'Header',
+		'parent_slug'	=> 'theme-general-settings',
+	));
+	
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Theme Footer Settings',
+		'menu_title'	=> 'Footer',
+		'parent_slug'	=> 'theme-general-settings',
+	));
+	
+}
 
 
 // stuff to say we need timber activated!! see TGM Plugin activation library for php
