@@ -226,6 +226,8 @@ function my_acf_init() {
  */
 function my_acf_block_render_callback( $block, $content = '', $is_preview = false ) {
     $context = Timber::context();
+    $post = Timber::query_post();
+    $context['post'] = $post;
 
     // Store block values.
     $context['block'] = $block;
@@ -239,8 +241,6 @@ function my_acf_block_render_callback( $block, $content = '', $is_preview = fals
     // Render the block.
     Timber::render( 'cover-block.twig', $context );
 }
-
-
 
 // stuff to say we need timber activated!! see TGM Plugin activation library for php
 require_once get_template_directory() . '/inc/class-tgm-plugin-activation.php';

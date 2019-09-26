@@ -4,10 +4,10 @@ require('jquery');
 // import lightgallery
 require('lightgallery');
 require('lg-thumbnail');
-require('lg-fullscreen');
-require('lg-zoom');
-require('lg-share');
-require('lg-hash');
+// require('lg-fullscreen');
+// require('lg-zoom');
+// require('lg-share');
+// require('lg-hash');
 
 // import uikit
 import UIkit from 'uikit';
