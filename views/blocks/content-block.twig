@@ -1,0 +1,98 @@
+{#
+/**
+ * Block Name: Cover block
+ *
+ * This is the template that displays the cover block.
+ */
+#}
+
+{% if is_preview %}
+<link rel='stylesheet' id='uikit-css'  href='http://solarisblinds.wp/wp-content/themes/solaris-theme/assets/css/base.css' type='text/css' media='all' />
+<script type='text/javascript' src='http://solarisblinds.wp/wp-content/themes/solaris-theme/assets/js/bundles/bundle.js'></script>
+{% endif %}
+
+<div id="content-{{ block.id }}" class="uk-background-muted" {% if fields.if_content == 'Image' %}data-uk-lightbox="toggle:a.uk-position-cover"{% endif %}>
+
+  <!-- BLOCK1 -->
+  <div class="uk-section uk-section-muted uk-padding-remove-top">
+    <div class="{% if fields.content_alignment == 'Left' %}rmcc-content-block-left{% elseif fields.content_alignment == 'Right' %}rmcc-content-block-right{% endif %} uk-position-relative">
+      <div class="uk-container uk-container-large">
+          <div class="uk-child-width-1-2@m uk-flex-middle uk-grid-large" uk-grid>
+            
+            {% if fields.if_content == 'Image' %}
+            <div>
+              <div class="uk-inline-clip uk-transition-toggle uk-light">
+                <img class="uk-position-z-index rmcc-box-shadow-right uk-height-max-large rmcc-object-fit" src="{{ fields.content_image.url }}" alt="{{ fields.content_image.alt }}" uk-img>
+                <div class="uk-transition-fade uk-position-cover uk-overlay uk-overlay-primary uk-flex uk-flex-center uk-flex-middle">
+                  <div data-uk-margin class="uk-transition-slide-bottom-small">
+                    <span data-uk-icon="icon: search; ratio: 1.3"></span>
+                  </div>
+                </div>
+                <a data-caption="{{ fields.content_title }}" href="{{ fields.content_image.url }}" class="uk-position-cover"></a>
+              </div>      
+            </div>
+            {% elseif fields.if_content == 'Video' %}
+            <div>
+              
+              <div class="uk-inline-clip  uk-light">
+                <a href="#modal-media-youtube" uk-toggle>
+                <img class="uk-position-z-index rmcc-box-shadow-right uk-height-max-large rmcc-object-fit" src="{{ fields.content_video_image.url }}" alt="{{ fields.content_video_image.alt }}" uk-img>
+                <div class="uk-position-cover  uk-flex uk-flex-center uk-flex-middle">
+                  <div data-uk-margin>
+                    <span class="rmcc-play-bg" data-uk-icon="icon: play; ratio: 3"></span>
+                  </div>
+                </div>
+                </a>
+              </div> 
+              
+              <div id="modal-media-youtube" class="uk-flex-top" uk-modal>
+                <div class="uk-modal-dialog uk-width-auto uk-margin-auto-vertical">
+                  <button class="uk-modal-close-outside" type="button" uk-close></button>
+                  <iframe src="{{ fields.content_video_link }}" width="1200" height="800" frameborder="0" uk-video></iframe>
+                </div>
+              </div>    
+              
+            </div>
+            {% elseif fields.if_content == 'Gallery' %}
+            
+            <div>
+              <div class="uk-position-relative uk-visible-toggle uk-light rmcc-box-shadow-right" tabindex="-1" uk-slider>
+              
+                <ul class="uk-slider-items uk-child-width-1-2">
+                  
+                  {% for image in fields.content_gallery %}
+                  
+                    <li>
+                        <div class="uk-panel">
+                            <img class="uk-height-max-large rmcc-object-fit" src="{{ image.url }}" alt="{{ image.alt }}" uk-img>
+                        </div>
+                    </li>
+                    
+                  {% endfor %}
+                
+                </ul>
+              
+                  <a class="uk-position-center-left uk-position-small rmcc-nav-bg uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+                  <a class="uk-position-center-right uk-position-small rmcc-nav-bg uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+                  
+              </div>
+            </div>
+            
+            {% endif %}
+
+            
+            <div class="{% if fields.content_alignment == 'Left' %}uk-flex-first@s{% endif %}">
+              <div id="ConservatoryBlinds" class="content uk-position-relative uk-position-z-index">
+                <h2 class="uk-text-uppercase"><span>{{ fields.content_title }}</span></h2>
+                <hr class="uk-divider-small">
+                {{ fields.content_description }}
+              </div>
+            </div>
+            
+          </div>
+      </div>
+    </div>
+  </div>
+  <!-- /BLOCK1 -->
+  
+</div>

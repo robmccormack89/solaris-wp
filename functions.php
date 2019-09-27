@@ -16,6 +16,11 @@
   if( class_exists( 'Timber' ) ) {
   	require get_template_directory() . '/inc/timber-functions.php';
   }
+  
+  /**
+   * Custom Widget
+   */
+   require get_template_directory() . '/inc/blocks.php';
 
  /**
   * Woo functions
