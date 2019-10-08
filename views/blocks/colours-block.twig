@@ -11,7 +11,7 @@
 <script type='text/javascript' src='http://solarisblinds.wp/wp-content/themes/solaris-theme/assets/js/bundles/bundle.js'></script>
 {% endif %}
 
-<div id="colours-{{ block.id }}" class="">
+<div id="{% if fields.if_colours_block_id == 'Yes' %}{{ fields.colours_block_id }}{% else %}colours-{{ block.id }}{% endif %}" class="{{ block.className }}">
 
   <!-- COLOURS -->
   <div class="uk-section uk-section-muted uk-padding-remove-top">
@@ -19,16 +19,16 @@
       <div class="uk-container uk-container-large">
         <div class="uk-card uk-card-default">
           <div class="uk-card-body">
-            <h2 class="uk-text-uppercase">Fabrics & Colours</h2>
+            <h2 class="uk-text-uppercase">{{ fields.colours_title }}</h2>
             <hr class="uk-divider-small">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>{{ fields.colours_description }}</p>
             <div class="uk-visible@m">
               <div class="uk-height-medium">
               </div>
             </div>
           </div>
           <div class="uk-card-footer">
-            <a href="#" class="uk-button uk-button-text uk-text-uppercase">View More <span uk-icon="chevron-right"></span></a>
+            <a href="{{ fields.colours_link.colours_link_url }}" class="uk-button uk-button-text uk-text-uppercase">{{ fields.colours_link.colours_link_title }} <span uk-icon="chevron-right"></span></a>
           </div>
         </div>
       </div>

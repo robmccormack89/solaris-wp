@@ -11,7 +11,7 @@
 <script type='text/javascript' src='http://solarisblinds.wp/wp-content/themes/solaris-theme/assets/js/bundles/bundle.js'></script>
 {% endif %}
 
-<div id="content-{{ block.id }}" class="uk-background-muted" {% if fields.if_content == 'Image' %}data-uk-lightbox="toggle:a.uk-position-cover"{% endif %}>
+<div id="{% if fields.if_block_id == 'Yes' %}{{ fields.block_id }}{% else %}content-{{ block.id }}{% endif %}" class="uk-background-muted {{ block.className }}" {% if fields.if_content == 'Image' %}data-uk-lightbox="toggle:a.uk-position-cover"{% endif %}>
 
   <!-- BLOCK1 -->
   <div class="uk-section uk-section-muted uk-padding-remove-top">

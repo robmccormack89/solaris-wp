@@ -23,7 +23,7 @@
 .purple-wrap-blur:after {
   @extend %cover_wrap_props;
   background-color: rgba(3, 14, 66, 0.75);
-  backdrop-filter: blur(5px) contrast(.8);
+  // backdrop-filter: blur(5px) contrast(.8);
 }
 .light-wrap:after {
   @extend %cover_wrap_props;

@@ -119,6 +119,22 @@ img.rmcc-object-fit {
   border-left: $border_width_1 solid $border_tran_color
 }
 
+.rmcc-border-top{
+   border-top:$border_width_1 solid $border_main_color
+}
+.rmcc-border-right{
+   border-right:$border_width_1 solid $border_main_color
+}
+.rmcc-border-bottom{
+   border-bottom:$border_width_1 solid $border_main_color
+}
+.rmcc-border-left{
+   border-left:$border_width_1 solid $border_main_color
+}
+.rmcc-border{
+   border:$border_width_1 solid $border_main_color
+}
+
 /* shadows */
 .rmcc-box-shadow-left {
   box-shadow:-20px 0 25px rgba(0,0,0,.36);

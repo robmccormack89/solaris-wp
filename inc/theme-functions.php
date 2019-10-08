@@ -47,12 +47,12 @@ function solaris_theme_setup()
 
   // add custom thumbs sizes
   add_image_size('solaris-theme-featured-image', 2000, 1200, true);
-  add_image_size('solaris-theme-archive-featured-image', 800, 300, true);
+  add_image_size('solaris-theme-archive-featured-image', 1115, 300, true);
   add_image_size('solaris-theme-more-stories-image', 620, 350, true);
   add_image_size('solaris-theme-home-hero-image', 1300, 500, true);
   add_image_size('solaris-theme-home-slider', 500, 500, true);
   add_image_size('solaris-theme-thumbnail-avatar', 100, 100, true);
-  add_image_size('solaris-theme-header-image', 1920, 800, true);
+  add_image_size('solaris-theme-header-image', 1920, 400, true);
   add_image_size('solaris-theme-tiny-thumb', 80, 80, true);
   add_image_size('solaris-theme-block-image', 500, 500, true);
   add_image_size('solaris-theme-portfolio-block-thumb-2cols', 560);

@@ -57,6 +57,39 @@ function my_acf_init() {
         'icon'            => 'admin-comments',
         'keywords'        => array( 'cta' ),
     ) );
+    
+    // Register a new block.
+    acf_register_block( array(
+        'name'            => 'case_studies_block',
+        'title'           => __( 'Case Studies Block', 'solaris-theme' ),
+        'description'     => __( 'A Case Studies block for Blank Wide Template.', 'solaris-theme' ),
+        'render_callback' => 'case_studies_block_render_callback',
+        'category'        => 'formatting',
+        'icon'            => 'admin-comments',
+        'keywords'        => array( 'case-studies' ),
+    ) );
+    
+    // Register a new block.
+    acf_register_block( array(
+        'name'            => 'quotation_block',
+        'title'           => __( 'Quotation Block', 'solaris-theme' ),
+        'description'     => __( 'A Quotation block for Blank Wide Template.', 'solaris-theme' ),
+        'render_callback' => 'quotation_block_render_callback',
+        'category'        => 'formatting',
+        'icon'            => 'admin-comments',
+        'keywords'        => array( 'quotation' ),
+    ) );
+    
+    // Register a new block.
+    acf_register_block( array(
+        'name'            => 'testimonials_block',
+        'title'           => __( 'Testimonials Block', 'solaris-theme' ),
+        'description'     => __( 'A Testimonials block for Blank Wide Template.', 'solaris-theme' ),
+        'render_callback' => 'testimonials_block_render_callback',
+        'category'        => 'formatting',
+        'icon'            => 'admin-comments',
+        'keywords'        => array( 'testimonials' ),
+    ) );
 }
 
 function cover_block_render_callback( $block, $content = '', $is_preview = false ) {
@@ -120,4 +153,67 @@ function cta_block_render_callback( $block, $cta = '', $is_preview = false ) {
 
     // Render the block.
     Timber::render( 'cta-block.twig', $context );
+}
+
+
+
+
+function case_studies_block_render_callback( $block, $content = '', $is_preview = false ) {
+  
+  $case_studies_post_args = array(
+     'post_type' => 'case_studies',
+     'posts_per_page'=>  3,
+  );
+
+  $context['case_studies'] = Timber::get_posts( $case_studies_post_args );
+
+    // Store block values.
+    $context['block'] = $block;
+
+    // Store field values.
+    $context['fields'] = get_fields();
+
+    // Store $is_preview value.
+    $context['is_preview'] = $is_preview;
+
+    // Render the block.
+    Timber::render( 'case-studies-block.twig', $context );
+}
+
+function quotation_block_render_callback( $block, $colours = '', $is_preview = false ) {
+
+    // Store block values.
+    $context['block'] = $block;
+
+    // Store field values.
+    $context['fields'] = get_fields();
+
+    // Store $is_preview value.
+    $context['is_preview'] = $is_preview;
+
+    // Render the block.
+    Timber::render( 'quotation-block.twig', $context );
+}
+
+function testimonials_block_render_callback( $block, $cta = '', $is_preview = false ) {
+  
+  $testimonials_post_args = array(
+     'post_type' => 'testimonials',
+     'posts_per_page'=>  3,
+  );
+
+  $context['testimonials'] = Timber::get_posts( $testimonials_post_args );
+
+    // Store block values.
+    $context['block'] = $block;
+
+    // Store field values.
+    $context['fields'] = get_fields();
+
+    // Store $is_preview value.
+    $context['is_preview'] = $is_preview;
+
+    // Render the block.
+    Timber::render( 'testimonials-block.twig', $context );
+    
 }

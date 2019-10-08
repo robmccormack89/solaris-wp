@@ -1,0 +1,75 @@
+{#
+/**
+ * Block Name: Case Studies block
+ *
+ * This is the template that displays the case studies block.
+ */
+#}
+
+{% if is_preview %}
+<link rel='stylesheet' id='uikit-css'  href='http://solarisblinds.wp/wp-content/themes/solaris-theme/assets/css/base.css' type='text/css' media='all' />
+<script type='text/javascript' src='http://solarisblinds.wp/wp-content/themes/solaris-theme/assets/js/bundles/bundle.js'></script>
+{% endif %}
+
+<div id="{{ block.id }}" class="{{ block.className }}">
+
+  <!-- CASE STUDIES -->
+  <div class="uk-section uk-section-muted">
+    <div class="uk-container uk-container-large">
+      <h2 class="uk-h1 uk-text-uppercase">Case Studies</h2>
+      <hr class="uk-divider-small">
+
+      <div data-uk-slider="velocity: 5">
+        <div class="uk-position-relative">
+          <div class="uk-slider-container uk-padding-small rmcc-margin-pull">
+            <ul class="uk-slider-items uk-child-width-1-2@s uk-child-width-1-3@m uk-grid uk-grid-medium">      
+              
+              {% for post in case_studies %}
+              
+              <li>
+                <!-- card -->
+                <div>
+                  <div class="uk-card uk-card-default uk-card-small">
+                    <div class="uk-card-media-top">
+                      <a href="{{ post.link }}"><img class="uk-height-max-small rmcc-object-fit" data-src="{{ post.thumbnail.src('solaris-theme-more-stories-image') }}" width="620" height="350" data-uk-img="target: !.uk-slideshow-items" alt=""></a>
+                    </div>
+                    <div class="uk-card-header">
+                      <h4 class="uk-margin-remove-bottom">{{ post.title }}</h4>
+                      <p class="uk-text-meta uk-margin-remove-top uk-text-small">{{ post.terms('location')|join(', ') }}</p>
+                    </div>
+                    <div class="uk-card-body">
+                      <p class="">{{ post.content }}</p>
+                    </div>
+                    <div class="uk-card-footer">
+                      <a href="{{ post.link }}" class="uk-button uk-button-text">View Case Study</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- /card -->
+              </li>
+              
+              {% endfor %}
+              
+            </ul>
+          </div>
+          <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin">
+            
+          </ul>
+          <div class="uk-hidden@m uk-light">
+            <a class="uk-position-center-left uk-position-small" href="#" data-uk-slidenav-previous data-uk-slider-item="previous"></a>
+            <a class="uk-position-center-right uk-position-small" href="#" data-uk-slidenav-next data-uk-slider-item="next"></a>
+          </div>
+          <div class="uk-visible@m">
+            <a class="uk-position-center-left-out uk-position-small" href="#" data-uk-slidenav-previous data-uk-slider-item="previous"></a>
+            <a class="uk-position-center-right-out uk-position-small" href="#" data-uk-slidenav-next data-uk-slider-item="next"></a>
+          </div>
+        </div>
+        
+      </div>
+
+
+    </div>
+  </div>
+  <!-- /CASE STUDIES -->
+
+</div>
