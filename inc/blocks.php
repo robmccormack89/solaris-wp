@@ -161,7 +161,7 @@ function cta_block_render_callback( $block, $cta = '', $is_preview = false ) {
 function case_studies_block_render_callback( $block, $content = '', $is_preview = false ) {
   
   $case_studies_post_args = array(
-     'post_type' => 'case_studies',
+     'post_type' => 'case-study',
      'posts_per_page'=>  3,
   );
 
@@ -181,6 +181,11 @@ function case_studies_block_render_callback( $block, $content = '', $is_preview 
 }
 
 function quotation_block_render_callback( $block, $colours = '', $is_preview = false ) {
+  
+    $context['options'] = get_fields('option');
+    
+    $custom_logo_url = wp_get_attachment_image_url( get_theme_mod( 'custom_logo' ), 'full' );
+    $context['custom_logo_url'] = $custom_logo_url;  
 
     // Store block values.
     $context['block'] = $block;
@@ -198,7 +203,7 @@ function quotation_block_render_callback( $block, $colours = '', $is_preview = f
 function testimonials_block_render_callback( $block, $cta = '', $is_preview = false ) {
   
   $testimonials_post_args = array(
-     'post_type' => 'testimonials',
+     'post_type' => 'testimonial',
      'posts_per_page'=>  3,
   );
 

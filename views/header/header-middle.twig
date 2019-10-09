@@ -3,14 +3,14 @@
     <div class="uk-grid-item-match" uk-grid>
       <div class="uk-width-auto">
         <div>
-          <a class="uk-logo" title="Logo" href="{{ site.url }}"><img src="{{ themelogo }}" alt="Logo"></a>
+          <a class="uk-logo" title="Logo" href="{{ site.url }}"><img src="{{ custom_logo_url }}" alt="Logo"></a>
         </div>
       </div>
 
       <div class="uk-width-expand uk-position-relative">  
         
         <div class="uk-float-right rmcc-vertical-middle">
-          <a href="tel:+353872311300" class="uk-button uk-button-danger uk-button-large"><span uk-icon="icon: receiver"></span> Freephone us on {{freenumber}}</a>
+          <a href="tel:{{ options.company_number }}" class="uk-button uk-button-danger uk-button-large"><span uk-icon="icon: receiver"></span> Freephone us on {{ options.company_number }}</a>
         </div>
       </div>
       

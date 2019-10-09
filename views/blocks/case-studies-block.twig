@@ -38,7 +38,7 @@
                       <p class="uk-text-meta uk-margin-remove-top uk-text-small">{{ post.terms('location')|join(', ') }}</p>
                     </div>
                     <div class="uk-card-body">
-                      <p class="">{{ post.content }}</p>
+                      <p class="">{{ post.content|truncate(16) }}</p>
                     </div>
                     <div class="uk-card-footer">
                       <a href="{{ post.link }}" class="uk-button uk-button-text">View Case Study</a>

@@ -14,7 +14,7 @@
 <div id="{% if fields.if_block_id == 'Yes' %}{{ fields.block_id }}{% else %}content-{{ block.id }}{% endif %}" class="uk-background-muted {{ block.className }}" {% if fields.if_content == 'Image' %}data-uk-lightbox="toggle:a.uk-position-cover"{% endif %}>
 
   <!-- BLOCK1 -->
-  <div class="uk-section uk-section-muted uk-padding-remove-top">
+  <div class="uk-section uk-section-muted">
     <div class="{% if fields.content_alignment == 'Left' %}rmcc-content-block-left{% elseif fields.content_alignment == 'Right' %}rmcc-content-block-right{% endif %} uk-position-relative">
       <div class="uk-container uk-container-large">
           <div class="uk-child-width-1-2@m uk-flex-middle uk-grid-large" uk-grid>

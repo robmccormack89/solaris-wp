@@ -16,25 +16,93 @@
   <!-- FREE QUOTATION -->
   <div class="rmcc-box-shadow-large-light uk-position-relative uk-position-z-index uk-background-default">
     <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" uk-grid>
-      <div class="uk-background-cover uk-position-relative uk-light purple-wrap uk-visible@s uk-light" style="background-image: url('/wp-content/themes/solaris-theme/assets/img/blinds-chairs.jpg');height:65vh;">
+      <div class="uk-background-cover uk-position-relative uk-light purple-wrap uk-visible@s uk-light" style="background-image: url('{{ options.site_default_image.url }}');height:65vh;">
         <div class="uk-position-z-index uk-position-relative uk-position-center uk-text-center">
           <div class="uk-card uk-card-body rmcc-card-fade">
-              <h2 class="uk-h1">1800 111 2222</h2>
-              <p class="uk-text-lead">Freephone us today for a Free quotation or just a chat!</p>
+              <h2 class="uk-h1">{{ options.company_number }}</h2>
+              <p class="uk-text-lead">{{ options.cta_small_copy }}</p>
           </div>
         </div>
       </div>
       <div class="uk-padding-large uk-visible@s">
           <h2 class="uk-h1 uk-text-uppercase">Free Quotation</h2>
           <hr class="uk-divider-small">
-          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+          <p>{{ options.site_call_to_action_default_copy }}</p>
           <a href="#ModalFullSplit" class="uk-button uk-button-primary uk-button-large" uk-toggle>Arrange a Quotation</a>
-          {% include 'product-modal.twig' %}{% include 'product-modal.twig' %}
+          <div id="ModalFullSplit" class="uk-modal-full" uk-modal>
+
+            <div class="uk-modal-dialog">
+              <button class="uk-modal-close-full" type="button" uk-close></button>
+              <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" uk-grid>
+                
+                <div id="ProductEnquiryModalLeft" class="uk-background-cover uk-padding-large" style="background-image: url('/wp-content/themes/solaris-theme/assets/img/map.jpg');" uk-height-viewport>
+                  <a class="uk-logo uk-float-right" title="Logo" href="{{ site.url }}"><img src="{{ custom_logo_url }}" alt="Logo"></a>
+                  <h1 class="uk-text-primary uk-margin-remove-top">We're Open</h1>
+                  <p class="uk-text-lead">{{ options.open_hours }}</p>
+                  <div class="uk-margin-medium-top" uk-grid>
+                    <div class="uk-width-auto@m">
+                      <h3 class="uk-text-primary">Our Store:</h3>
+                      <ul class="uk-list">
+                        <li>{{ options.company_address_line_1 }}</li>
+                        <li>{{ options.company_address_line_2 }}</li>
+                        <li>{{ options.company_address_line_3 }}</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                
+                <div id="ProductEnquiryModalRight" class="wrap-dark">
+                  <div class="uk-section uk-flex uk-flex-center uk-flex-middle uk-padding-large uk-padding-remove-vertical uk-light" style="background-image: url('/wp-content/themes/solaris-theme/assets/img/blinds-chairs.jpg');background-position:center;background-size:cover;background-repeat:no-repeat;" uk-height-viewport>
+                    <div class="blah uk-position-z-index">
+                      <h1>Contact us</h1>
+                      <p>Send us your queries at</p>
+                      <a href="">{{ options.company_email }}</a>
+                      <p>You can also Freephone us on:</p>
+                      <a href="">{{ options.company_number }}</a>
+                      <form id="ModalForm" class="uk-grid-small uk-margin-medium-top" uk-grid>
+                        <div class="uk-width-1-1@s">
+                          <h3 class="uk-heading-line"><span>Make an Enquiry</span></h3>
+                        </div>
+                        <div class="uk-width-1-2@s">
+                          <label class="uk-form-label" for="form-s-text">Name<span class="rmcc-required">*</span></label>
+                          <input class="uk-input uk-box-shadow-small" id="form-s-text" type="text" placeholder="Your Name..." required>
+                        </div>
+                        <div class="uk-width-1-2@s">
+                          <label class="uk-form-label" for="form-s-text">Email<span class="rmcc-required">*</span></label>
+                          <input class="uk-input uk-box-shadow-small" id="form-s-email" type="email" placeholder="Your email address..." required>
+                        </div>
+                        <div class="uk-width-1-1">
+                          <label class="uk-form-label" for="form-s-text">Phone<span class="rmcc-required">*</span></label>
+                          <input class="uk-input uk-box-shadow-small" id="form-s-tel" type="tel" placeholder="Your phone number..." required>
+                        </div>
+                        <div class="uk-width-1-1">
+                          <label class="uk-form-label" for="form-s-text">The Product<span class="rmcc-required">*</span></label>
+                          <script>window.onload = document.getElementById('box');</script>
+                          <input class="uk-input uk-box-shadow-small" id="box" value="Solaris Blinds & Curtains Product" required>
+                        </div>
+                        <div class="uk-width-1-1">
+                          <label class="uk-form-label uk-text-bold" for="form-s-text">Your Message<span class="rmcc-required">*</span></label>
+                          <textarea class="uk-textarea uk-box-shadow-small" id="form-s-textarea" rows="8" placeholder="Your Message or Enquiry..." required></textarea>
+                        </div>
+                        <div class="uk-width-1-1">
+                          <button class="uk-button uk-button-primary uk-margin-small-right">Submit</button>
+                          <button class="uk-button uk-button-default" type="reset" value="Reset">Clear</button>
+                          <button class="uk-button uk-button-danger uk-float-right">Required</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            
+          </div>
       </div>
       <div class="uk-padding-large uk-hidden@s">
           <h2 class="uk-h1 uk-text-uppercase">Free Quotation</h2>
           <hr class="uk-divider-small">
-          <p>For a Free Quotation or Consultation, Freephone us using the Quick Call button below. You can also fill out the form on our <a href="/contact#ContactPageForm">Contact page.</a> </p>
+          <p>For a Free Quotation or Consultation, Freephone us using the Quick Call button below. You can also fill out the form on our <a href="/contact">Contact page.</a> </p>
       </div>
     </div>
   </div>
