@@ -1,0 +1,13 @@
+<div class="uk-navbar-left nav-overlay">
+  
+  <ul class="uk-navbar-nav" style="margin-left:-15px;">
+    
+    {% for item in menu_main.get_items %}
+    
+    <li class="{{ item.classes | join(' ') }}"><a class="uk-text-bold" title="{{ item.title }}" href="{{ item.get_link }}">{{ item.title }}</a>{{ item.mega_menu }}</li>
+      
+    {% endfor %}
+    
+  </ul>
+  
+</div>

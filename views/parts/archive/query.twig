@@ -1,0 +1,12 @@
+<h4 class="uk-card-title uk-text-bold">Results</h4>
+
+<ul class="uk-list">
+{% for post in posts %}
+  {% include 'tease-query.twig' %}
+{% endfor %}
+</ul>
+
+{% if posts is empty %}
+  <p>Sorry, we couldn’t find any matches.</p>
+  <a href="#">View all</a>
+{% endif %}

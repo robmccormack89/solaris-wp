@@ -4,7 +4,7 @@
  *
  */
 
-$templates = array( 'index.twig' );
+$templates = array( 'archive.twig', 'index.twig' );
 
 $context = Timber::get_context();
 $context['pagination'] = Timber::get_pagination();

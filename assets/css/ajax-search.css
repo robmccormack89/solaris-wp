@@ -1,0 +1,12 @@
+#content {
+  /* display: none; */
+}
+
+/* #content.loading {
+    display: block!important;
+} */
+
+#content.loading > * {
+    opacity:0.3;
+    filter: blur(2px);
+}

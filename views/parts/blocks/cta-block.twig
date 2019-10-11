@@ -1,0 +1,32 @@
+{#
+/**
+ * Block Name: Cover block
+ *
+ * This is the template that displays the cover block.
+ */
+#}
+
+{% if is_preview %}
+<link rel='stylesheet' id='uikit-css'  href='http://solarisblinds.wp/wp-content/themes/solaris-theme/assets/css/base.css' type='text/css' media='all' />
+<script type='text/javascript' src='http://solarisblinds.wp/wp-content/themes/solaris-theme/assets/js/bundles/bundle.js'></script>
+{% endif %}
+
+<div id="{% if fields.if_cta_block_id == 'Yes' %}{{ fields.cta_block_id }}{% else %}cta-{{ block.id }}{% endif %}" class="uk-background-muted rmcc-padding-topbottom8040 {{ block.className }}">
+
+  <!-- REMOTE / MOTORISATION CTA -->
+  <div class="uk-section uk-section-primary uk-background-center-center uk-position-relative uk-background-cover uk-background-fixed uk-light purple-wrap-blur rmcc-box-shadow-large" style="background-image: url({% if fields.cta_background_image %}{{ fields.cta_background_image }}{% else %}/wp-content/themes/solaris-theme/assets/img/blinds-chairs.jpg{% endif %});">
+      <div class="uk-container uk-position-z-index uk-position-relative uk-text-center">
+
+        <h2 class="uk-h1 uk-text-uppercase">{{ fields.cta_title }}</h2>
+        
+        <hr class="uk-divider-small">
+
+        <p class="uk-text-lead uk-margin-medium-bottom">{{ fields.cta_description }}</p>
+        
+        <a href="{{ fields.cta_button.cta_button_url }}" title="{{ fields.cta_title }}" class="uk-button uk-button-primary uk-button-large">{{ fields.cta_button.cta_button_title }}</a>
+
+      </div>
+  </div>
+  <!-- /REMOTE / MOTORISATION CTA -->
+
+</div>

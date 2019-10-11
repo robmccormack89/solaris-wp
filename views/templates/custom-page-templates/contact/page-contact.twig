@@ -1,0 +1,21 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<!-- MAIN CONTENT -->
+<main role="main" id="MainContent" class="uk-section uk-section-xsmall uk-section-muted rmcc-padding-bottom80">
+  <div class="uk-container uk-container-large">
+    {% include 'breads.twig' %}
+    <section class="uk-width-1-1">
+      <h1 class="uk-article-title"><span>{{ post.title }}</span></h1>
+    </section>
+    <div class="rmcc-margin-top30" uk-grid>
+      {% include 'contact-map.twig' %}
+      {% include 'contact-info.twig' %}
+      {% include 'contact-form.twig' %}
+    </div>
+  </div>
+</main>
+<!-- /MAIN CONTENT -->
+
+{% endblock %}

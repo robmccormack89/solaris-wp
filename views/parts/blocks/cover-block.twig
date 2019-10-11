@@ -1,0 +1,109 @@
+{#
+/**
+ * Block Name: Cover block
+ *
+ * This is the template that displays the cover block.
+ */
+#}
+
+{% if is_preview %}
+<link rel='stylesheet' id='uikit-css'  href='http://solarisblinds.wp/wp-content/themes/solaris-theme/assets/css/base.css' type='text/css' media='all' />
+<script type='text/javascript' src='http://solarisblinds.wp/wp-content/themes/solaris-theme/assets/js/bundles/bundle.js'></script>
+{% endif %}
+
+<div id="cover-{{ block.id }}" class="uk-background-muted {{ block.className }}">
+
+  <!-- COVER BLOCK -->
+  
+  <div class="uk-section uk-section-small uk-background-center-center uk-position-relative uk-background-cover uk-light uk-background-fixed purple-wrap-blur" style="background-image: url({{ post.thumbnail.src('solaris-theme-featured-image') }});">
+    
+    <div class="uk-position-z-index uk-position-relative uk-container uk-text-center">
+      
+    {% if fields.cover_title %}
+      <h1 class="uk-h1 uk-text-uppercase">{{ fields.cover_title }}</h1>
+    {% else %}
+      <h1 class="uk-h1 uk-text-uppercase">{{ post.title }}</h1>
+    {% endif %}
+      
+      <hr class="uk-divider-small">
+
+      <p class="uk-text-lead uk-margin-medium-bottom">{{ fields.cover_description }}</p>
+      
+    {% if fields.if_button == 'Standard' %}
+
+      <a type="button" href="{{ fields.standard_button_link }}" title="Scroll to Content" class="uk-button uk-button-primary uk-button-large {% if fields.if_cover_nav == 'Yes' %}uk-margin-medium-bottom{% endif %}">{{ fields.standard_button_text }}</a>
+    
+    {% elseif fields.if_button == 'Gallery' %}
+      
+      <script type="text/javascript">
+
+        jQuery(document).ready(function() {
+          jQuery('#lightGallery').lightGallery();
+          thumbnail:true;
+          subHtmlSelectorRelative: true;
+              hash: true;
+          jQuery('#launchGallery').click(function(){
+              jQuery('#firstImage').trigger('click');
+          })
+        });
+        
+      </script>
+
+      <button id="launchGallery" type="button" title="Launch Gallery" class="uk-button uk-button-primary uk-button-large {% if fields.if_cover_nav == 'Yes' %}uk-margin-medium-bottom{% endif %}">View Gallery</button>
+      
+      <div id="lightGallery" hidden>
+      
+      {% for image in fields.gallery_images %}
+      
+      {% if loop.first %}
+      
+        <a id="firstImage" href="{{ image.url }}" data-sub-html=".caption-{{ image.id }}">
+          <img src="{{ image.url }}" alt="{{ image.alt }}" />
+          <div class="caption-{{ image.id }}">
+            <h3 class="uk-light rmcc-white-text uk-margin-remove-bottom">{{ image.title }}</h3>
+            <p>{{ image.caption }}</p>
+          </div>
+        </a>
+      
+      {% else %}
+        
+        <a href="{{ image.url }}" data-sub-html=".caption-{{ image.id }}">
+          <img src="{{ image.url }}" />
+          <div class="caption-{{ image.id }}">
+            <h3 class="uk-light rmcc-white-text uk-margin-remove-bottom">{{ image.title }}</h3>
+            <p>{{ image.caption }}</p>
+          </div>
+        </a>
+      
+      {% endif %}
+      
+      {% endfor %}
+      
+      </div>
+      
+    {% endif %}
+      
+    </div>
+    
+    {% if fields.if_cover_nav == 'Yes' %}
+    
+    <div class="uk-position-z-index uk-container uk-position-bottom-center uk-margin-small-bottom uk-visible@m">
+    
+      <ul class="uk-subnav uk-subnav-divider" uk-margin>
+        
+      {% for item in fields.cover_nav_links %}
+      
+        <li><a href="{{ item.cover_nav_link_url }}" title="Scroll to: {{ item.cover_nav_link_title }}" class="uk-text-uppercase" uk-scroll="offset:200">{{ item.cover_nav_link_title }}</a></li>
+      
+      {% endfor %}
+    
+      </ul>
+    
+    </div>
+    
+    {% endif %}
+    
+  </div>
+  <!-- /HERO -->
+
+</div>

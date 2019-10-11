@@ -1,0 +1,20 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<!-- MAIN CONTENT -->
+<main role="main" id="MainContent" class="uk-section uk-section-xsmall uk-section-muted rmcc-padding-bottom80">
+  <div class="uk-container uk-container-large">
+    {% include 'breads.twig' %}
+    <div uk-grid>
+      {% include 'sidebar-left.twig' %}
+      <article id="post-{{post.ID}}" class="post-type-{{post.post_type}} uk-article uk-width-3-4@s {{post.class}}">
+        <h1 class="uk-article-title">{{ post.title }}</h1>
+        {{post.content}}
+      </article>
+    </div>
+  </div>
+</main>
+<!-- /MAIN CONTENT -->
+
+{% endblock %}

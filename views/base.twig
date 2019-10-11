@@ -1,19 +1,36 @@
-{% block html_header %}
-{% include 'html-head.twig' %}
-{% endblock %}
+<!DOCTYPE html>
+<html {{site.language_attributes}}>
+  <head>
+  <!-- styles for document ready transition. requires adding the rmcc-load class to either HTML or some other element -->
+  <!-- <style type="text/css">.rmcc-load{visibility:hidden;opacity:0}'#SomeDiv{-webkit-transition:all .3s ease;-moz-transition:all .3s ease;-o-transition:all .3s ease;transition:all .3s ease}</style> -->
+  <!-- you can also add the load class to the document directly with <script type="text/javascript">document.documentElement.className="rmcc-load";</script> -->
+  <meta charset="{{site.charset}}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{ function('wp_head') -}}
+  </head>
+  <body class="{{ body_class }}" data-template="base.twig">
 
-{% include 'site-wrapper-start.twig' %}
+    <div class="rmcc-wrapper" id="site-wrapper">
 
-{% block header_block %}
-{% include 'header.twig' %}
-{% endblock %}
-  
-{% block content %}
-  Sorry, Nothing to Display!!
-{% endblock %}
+    {% block header_block %}
+      {% include 'header.twig' %}
+    {% endblock %}
+      
+    {% block content %}
+      Sorry, Nothing to Display!!
+    {% endblock %}
 
-{% block footer_block %}
-{% include 'footer.twig' %}
-{% endblock %}
+    {% block footer_block %}
+      {% include 'footer.twig' %}
+    {% endblock %}
 
-{% include 'site-wrapper-end.twig' %}
+    </div>
+    
+    {% if fields.if_quick_call_enquiry == 'Yes' %}
+      {% include 'quick-call.twig' %}
+    {% endif %}
+    
+    {{ function('wp_footer') }}
+    
+  </body>
+</html>

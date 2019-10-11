@@ -8,13 +8,19 @@
 // Define paths to Twig templates
 Timber::$dirname = array(
   'views/',
-  'views/blocks',
-  'views/footer',
-  'views/head',
-  'views/header',
-  'views/page-templates',
-  'views/partials',
-  'views/sidebars',
+  'views/parts',
+  'views/parts/archive',
+  'views/parts/blocks',
+  'views/parts/footer',
+  'views/parts/header',
+  'views/parts/sidebars',
+  'views/parts/singular',
+  'views/templates',
+  'views/templates/archive',
+  'views/templates/custom-page-templates',
+  'views/templates/custom-page-templates/contact',
+  'views/templates/page-templates',
+  'views/templates/singular',
 );
 
 // function timber_set_product( $post ) {

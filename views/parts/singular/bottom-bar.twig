@@ -1,0 +1,23 @@
+<!-- bottom bar, next post & share section, this section uses twig's spaceless tag to compress output -->
+<div id="bottom-bar" class="uk-section uk-section-xsmall uk-section-default uk-position-bottom uk-position-fixed rmcc-border-top">
+  <div class="uk-container uk-text-small">
+    <div class="uk-grid" data-uk-grid>
+      <div class="uk-width-auto">
+        {% if post.next %}
+        <a href="{{ post.next.link }}" class="uk-link-reset"><span data-uk-icon="icon: arrow-left"></span> <strong>Previous</strong></a>
+        {% endif %}
+      </div>
+      <div class="uk-width-expand">
+        {% if post.prev %}
+        <a href="{{ post.prev.link }}" class="uk-link-reset"><strong>Next</strong> <span data-uk-icon="icon: arrow-right"></span><span class="uk-visible@s"> {{ post.prev.title }}</span></a>
+        {% endif %}
+      </div>
+      <div class="uk-width-auto uk-text-right">
+        <a href="https://facebook.com/sharer/sharer.php?u={{post.link}}" target="_blank" class="uk-icon-link" data-uk-icon="icon: facebook" style="padding-right: 5px;" Title="Sharing for Facebook"><span class="uk-hidden">Share to Facebook</span></a>
+        <a href="https://twitter.com/home?status={{post.link}}" class="uk-icon-link" data-uk-icon="icon: twitter" style="padding-right: 5px;" Title="Sharing for Twitter"><span class="uk-hidden">Share to Twitter</span></a>
+        <a href="mailto:?" class="uk-icon-link" data-uk-icon="icon: mail" Title="Sharing for Email"><span class="uk-hidden">Share via Email</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /bottom bar, next post & share section -->

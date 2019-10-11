@@ -162,7 +162,7 @@ function case_studies_block_render_callback( $block, $content = '', $is_preview 
   
   $case_studies_post_args = array(
      'post_type' => 'case-study',
-     'posts_per_page'=>  3,
+     'posts_per_page'=>  7,
   );
 
   $context['case_studies'] = Timber::get_posts( $case_studies_post_args );
@@ -204,7 +204,7 @@ function testimonials_block_render_callback( $block, $cta = '', $is_preview = fa
   
   $testimonials_post_args = array(
      'post_type' => 'testimonial',
-     'posts_per_page'=>  3,
+     'posts_per_page'=>  5,
   );
 
   $context['testimonials'] = Timber::get_posts( $testimonials_post_args );

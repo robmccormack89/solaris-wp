@@ -1,0 +1,18 @@
+<section class="uk-width-1-2@s">
+  <div class="uk-card uk-card-small uk-card-default">
+    <div class="uk-card-header">
+      <h3>Contact Information</h3>
+    </div>
+    <div class="uk-card-body">
+      {{ post.content }}
+      <p><span class="uk-text-bold uk-text-emphasis">{{ site.title }}</span></p>
+      <p>
+        {{ options.company_address_line_1 }},<br>
+        {{ options.company_address_line_2 }},<br>
+        {{ options.company_address_line_3 }}
+      </p>
+      <p><span class="uk-text-bold uk-text-emphasis">Freephone:</span> <a href="#" title="Freephone us on {{ options.company_number }}" class="uk-link-text">{{ options.company_number }}</a></p>
+      <p><span class="uk-text-bold uk-text-emphasis">Email:</span> <a href="#" title="Email us on {{ options.company_email }}" class="uk-link-text">{{ options.company_email }}</a></p>
+    </div>
+  </div>
+</section>
