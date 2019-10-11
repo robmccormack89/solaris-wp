@@ -61,9 +61,9 @@ window.UIkit = UIkit;
 // });
 
 jQuery(document).on( 'keyup', '#AjaxSearchForm form', function() {
-  
+
   function checkWhitespace(inputString){
-  
+
       let stringArray = inputString.split(' ');
       let output = true;
       for (let el of stringArray){
@@ -73,7 +73,7 @@ jQuery(document).on( 'keyup', '#AjaxSearchForm form', function() {
       }
       return output;
   }
-  
+
   var $form = jQuery(this);
   var $input = $form.find('input[name="s"]');
   var query = jQuery('#Search').val();
@@ -81,7 +81,7 @@ jQuery(document).on( 'keyup', '#AjaxSearchForm form', function() {
   var $content = jQuery('#content')
   var $results = jQuery('#results')
   var $quicklinks = jQuery('#quicklinks')
-  
+
   jQuery.ajax({
       type : 'post',
       url : myAjax.ajaxurl,
@@ -102,21 +102,21 @@ jQuery(document).on( 'keyup', '#AjaxSearchForm form', function() {
 
       }
   });
-  
+
   if ( checkWhitespace( query ) ) {
-    
+
     $results.addClass('uk-hidden');
-    
+
     $quicklinks.removeClass('uk-hidden');
-    
+
   } else {
-    
+
     $quicklinks.addClass('uk-hidden');
-    
+
     $results.removeClass('uk-hidden');
-    
+
   }
-  
+
   return false;
-  
+
 });

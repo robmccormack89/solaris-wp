@@ -283,7 +283,7 @@ function solaris_theme_register_required_plugins()
 
 function ajax_search_enqueues() {
 
-    	wp_enqueue_script( 'ajax-search', get_stylesheet_directory_uri() . '/assets/js/ajax-search.js', array( 'jquery' ), '1.0.0', true );
+    	wp_enqueue_script( 'ajax-search', get_stylesheet_directory_uri() . '/assets/js/ajax-search.js', '', '1.0.0', true );
         wp_localize_script( 'ajax-search', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
 
     	wp_enqueue_style( 'ajax-search', get_stylesheet_directory_uri() . '/assets/css/ajax-search.css' );
