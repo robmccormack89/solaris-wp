@@ -1,10 +1,13 @@
-<h4 class="uk-card-title uk-text-bold">Results</h4>
+<h4 class="uk-card-title uk-text-bold">Search Results</h4>
 
 <ul class="uk-list">
 {% for post in posts %}
   {% include 'tease-query.twig' %}
 {% endfor %}
 </ul>
+<div>
+  <a class="uk-position-bottom-center uk-padding-small" href="{{ site.link }}/?s={{ query_string }}">View all Results</a>
+</div>
 
 {% if posts is empty %}
   <p>Sorry, we couldn’t find any matches.</p>

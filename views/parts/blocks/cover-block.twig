@@ -20,9 +20,9 @@
     <div class="uk-position-z-index uk-position-relative uk-container uk-text-center">
       
     {% if fields.cover_title %}
-      <h1 class="uk-h1 uk-text-uppercase">{{ fields.cover_title }}</h1>
+      <h1 class="uk-h1">{{ fields.cover_title }}</h1>
     {% else %}
-      <h1 class="uk-h1 uk-text-uppercase">{{ post.title }}</h1>
+      <h1 class="uk-h1">{{ post.title }}</h1>
     {% endif %}
       
       <hr class="uk-divider-small">
@@ -93,7 +93,7 @@
         
       {% for item in fields.cover_nav_links %}
       
-        <li><a href="{{ item.cover_nav_link_url }}" title="Scroll to: {{ item.cover_nav_link_title }}" class="uk-text-uppercase" uk-scroll="offset:200">{{ item.cover_nav_link_title }}</a></li>
+        <li><a href="{{ item.cover_nav_link_url }}" title="Scroll to: {{ item.cover_nav_link_title }}" uk-scroll="offset:200">{{ item.cover_nav_link_title }}</a></li>
       
       {% endfor %}
     

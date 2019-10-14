@@ -60,63 +60,60 @@ window.UIkit = UIkit;
 // 
 // });
 
-jQuery(document).on( 'keyup', '#AjaxSearchForm form', function() {
+jQuery(document).on('submit', '#AjaxSearchForm form', function() {
 
-  function checkWhitespace(inputString){
+    function checkWhitespace(inputString) {
 
-      let stringArray = inputString.split(' ');
-      let output = true;
-      for (let el of stringArray){
-          if (el!=''){
-              output=false;
-          }
-      }
-      return output;
-  }
+        let stringArray = inputString.split(' ');
+        let output = true;
+        for (let el of stringArray) {
+            if (el != '') {
+                output = false;
+            }
+        }
+        return output;
+    }
 
-  var $form = jQuery(this);
-  var $input = $form.find('input[name="s"]');
-  var query = jQuery('#Search').val();
-  // var query = $input.val();
-  var $content = jQuery('#content')
-  var $results = jQuery('#results')
-  var $quicklinks = jQuery('#quicklinks')
+    var query = jQuery('#Search').val();
+    var len = query.length;
+    var $content = jQuery('#content')
+    var $results = jQuery('#results')
+    var $quicklinks = jQuery('#quicklinks')
 
-  jQuery.ajax({
-      type : 'post',
-      url : myAjax.ajaxurl,
-      data : {
-          action : 'load_search_results',
-          query : query
-      },
-      beforeSend: function() {
-          // $input.prop('disabled', true);
-          $content.addClass('loading');
-          // $content.addClass('loaded');
-      },
-      success : function( response ) {
-          // $input.prop('disabled', false);
-          $content.removeClass('loading');
-          $content.addClass('loaded');
-          $results.html( response );
+    jQuery.ajax({
+        type: 'post',
+        url: myAjax.ajaxurl,
+        data: {
+            action: 'load_search_results',
+            query: query
+        },
+        beforeSend: function() {
+            // $input.prop('disabled', true);
+            $content.addClass('loading');
+            // $content.addClass('loaded');
+        },
+        success: function(response) {
+            // $input.prop('disabled', false);
+            $content.removeClass('loading');
+            $results.html(response);
 
-      }
-  });
+        }
+    });
 
-  if ( checkWhitespace( query ) ) {
+    if (checkWhitespace(query)) {
 
-    $results.addClass('uk-hidden');
+        $results.addClass('uk-hidden');
 
-    $quicklinks.removeClass('uk-hidden');
+        $quicklinks.removeClass('uk-hidden');
 
-  } else {
+    } else {
 
-    $quicklinks.addClass('uk-hidden');
+        $quicklinks.addClass('uk-hidden');
 
-    $results.removeClass('uk-hidden');
+        $results.removeClass('uk-hidden');
 
-  }
+    }
 
-  return false;
+    return false;
 
 });

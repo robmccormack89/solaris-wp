@@ -115,8 +115,10 @@ function solaris_theme_setup()
 
   // add custom thumbs sizes.
   add_image_size('solaris-theme-featured-image', 1920, 1200, true);
+  add_image_size('solaris-theme-archive-featured-image-list', 1150, 400, true);
+  add_image_size('solaris-theme-archive-featured-image-grid', 540, 0, true);
+  add_image_size('solaris-theme-archive-featured-image-chess', 540, 0, true);
   add_image_size('solaris-theme-case-studies-image', 470, 200, true);
-  add_image_size('solaris-theme-archive-featured-image', 1115, 300, true);
   add_image_size('solaris-theme-more-stories-image', 620, 350, true);
   add_image_size('solaris-theme-header-image', 1920, 400, true);
   add_image_size('solaris-theme-tiny-thumb', 80, 80, true);
@@ -301,12 +303,19 @@ add_action( 'wp_ajax_nopriv_load_search_results', 'load_search_results' );
 function load_search_results() {
     
     $query = $_POST['query'];
-    $posts = Timber::get_posts( array(
+    $context['posts'] = Timber::get_posts( array(
+        'posts_per_page' => 5,
         'post_status' => 'publish',
         's' => $query
   	) );
     
-    Timber::render( 'query.twig', array( 'posts' => $posts ) );
+    $template = 'query.twig';
+    
+    $context['site'] = new Timber\Site();
+    
+    $context['query_string'] = $query;
+    
+    Timber::render( $template, $context );
 	   
     die();
 		

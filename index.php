@@ -12,6 +12,7 @@ $post = new TimberPost();
 $context['title'] =  get_the_title( $post->ID );
 $context['pagination'] = Timber::get_pagination();
 $context['paged'] = $paged;
+$context['what_post_type'] = get_post_type( get_the_ID() );
 
 $templates = array( 'index.twig' );
 if ( is_home() ) {
