@@ -147,6 +147,8 @@ function cta_block_render_callback( $block, $cta = '', $is_preview = false ) {
 
     // Store field values.
     $context['fields'] = get_fields();
+    
+    $context['options'] = get_fields('option');
 
     // Store $is_preview value.
     $context['is_preview'] = $is_preview;
@@ -160,12 +162,15 @@ function cta_block_render_callback( $block, $cta = '', $is_preview = false ) {
 
 function case_studies_block_render_callback( $block, $content = '', $is_preview = false ) {
   
-  $case_studies_post_args = array(
-     'post_type' => 'case-study',
-     'posts_per_page'=>  7,
-  );
+    $posts_to_show = get_field('select_posts');
+  
+    $case_studies_post_args = array(
+       'post_type' => 'case-study',
+       'posts_per_page'=>  7,
+       'post__in' => $posts_to_show,
+    );
 
-  $context['case_studies'] = Timber::get_posts( $case_studies_post_args );
+    $context['case_studies'] = Timber::get_posts( $case_studies_post_args );
 
     // Store block values.
     $context['block'] = $block;
@@ -202,9 +207,12 @@ function quotation_block_render_callback( $block, $colours = '', $is_preview = f
 
 function testimonials_block_render_callback( $block, $cta = '', $is_preview = false ) {
   
+  $reviews_to_show = get_field('select_testimonials');
+  
   $testimonials_post_args = array(
      'post_type' => 'testimonial',
      'posts_per_page'=>  5,
+     'post__in' => $reviews_to_show,
   );
 
   $context['testimonials'] = Timber::get_posts( $testimonials_post_args );

@@ -13,7 +13,7 @@
 
 <div id="{% if fields.if_block_id == 'Yes' %}{{ fields.block_id }}{% else %}content-{{ block.id }}{% endif %}" class="uk-background-muted {{ block.className }}" {% if fields.if_content == 'Image' %}data-uk-lightbox="toggle:a.uk-position-cover"{% endif %}>
 
-  <!-- BLOCK1 -->
+  <!-- {{ block.title }} -->
   <div class="uk-section uk-section-muted">
     <div class="{% if fields.content_alignment == 'Left' %}rmcc-content-block-left{% elseif fields.content_alignment == 'Right' %}rmcc-content-block-right{% endif %} uk-position-relative">
       <div class="uk-container uk-container-large">
@@ -22,7 +22,7 @@
             {% if fields.if_content == 'Image' %}
             <div>
               <div class="uk-inline-clip uk-transition-toggle uk-light">
-                <img class="uk-position-z-index rmcc-box-shadow-right uk-height-max-large rmcc-object-fit" src="{{ fields.content_image.url| resize(716, 450) }}" alt="{{ fields.content_image.alt }}" uk-img>
+                <img class="uk-position-z-index rmcc-box-shadow-right uk-height-max-large rmcc-object-fit" src="{{ Image(fields.content_image).src('solaris-theme-content-block') }}" alt="{{ Image(fields.content_image).alt }}" uk-img>
                 <div class="uk-transition-fade uk-position-cover uk-overlay uk-overlay-primary uk-flex uk-flex-center uk-flex-middle">
                   <div data-uk-margin class="uk-transition-slide-bottom-small">
                     <span data-uk-icon="icon: search; ratio: 1.3"></span>
@@ -36,7 +36,7 @@
               
               <div class="uk-inline-clip  uk-light">
                 <a href="#modal-media-youtube" title="Video: {{ fields.content_title }}" uk-toggle>
-                <img class="uk-position-z-index rmcc-box-shadow-right uk-height-max-large rmcc-object-fit" src="{{ fields.content_video_image.url| resize(716, 450) }}" alt="{{ fields.content_video_image.alt }}" uk-img>
+                <img class="uk-position-z-index rmcc-box-shadow-right uk-height-max-large rmcc-object-fit" src="{{ Image(fields.content_video_image).src('solaris-theme-content-block') }}" alt="{{ Image(fields.content_video_image).alt }}" uk-img>
                 <div class="uk-position-cover  uk-flex uk-flex-center uk-flex-middle">
                   <div data-uk-margin>
                     <span class="rmcc-play-bg" data-uk-icon="icon: play; ratio: 3"></span>
@@ -54,7 +54,6 @@
               
             </div>
             {% elseif fields.if_content == 'Gallery' %}
-            
             <div>
               <div class="uk-position-relative uk-visible-toggle uk-light rmcc-box-shadow-right" tabindex="-1" uk-slider>
               
@@ -64,7 +63,7 @@
                   
                     <li>
                         <div class="uk-panel">
-                            <img class="uk-height-max-large rmcc-object-fit" src="{{ image.url }}" alt="{{ image.alt }}" uk-img>
+                            <img class="uk-height-max-large rmcc-object-fit" src="{{ Image(image).src('solaris-theme-content-block-gallery-image') }}" alt="{{ Image(image).alt }}" uk-img>
                         </div>
                     </li>
                     
@@ -77,7 +76,6 @@
                   
               </div>
             </div>
-            
             {% endif %}
 
             
@@ -93,6 +91,6 @@
       </div>
     </div>
   </div>
-  <!-- /BLOCK1 -->
+  <!-- /{{ block.title }} -->
   
 </div>

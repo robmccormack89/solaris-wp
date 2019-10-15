@@ -18,15 +18,14 @@
         <h1 class="uk-article-title">{{ title }}</h1>
 
         <!-- archive grid  -->
-        <div class="uk-child-width-1-2@s" uk-grid="masonry: true">
+        <div class="uk-child-width-1-2@s archive-posts" uk-grid="masonry: true">
         {% for post in posts %}
           {% include ['tease-grid-'~post.post_type~'.twig', 'tease-grid.twig'] %}
         {% endfor %}
         </div>
         <!-- end archive grid -->
-
         {% if posts > 4 %}
-          {% include 'pagination.twig' %}
+          <a class="button uk-button uk-width-1-4 uk-button-large uk-align-center uk-button-primary avaz_loadmore">load more posts</a>
         {% endif %}
 
         {% if posts is empty %}
@@ -58,14 +57,15 @@
       <div class="uk-width-3-4@s">
         <h1 class="uk-article-title">{{ title }}</h1>
 
+        <div class="archive-posts">
         <!-- archive list -->
         {% for post in posts %}
           {% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}
         {% endfor %}
         <!-- end archive list -->
-        
+        </div>
         {% if posts > 4 %}
-          {% include 'pagination.twig' %}
+          <a class="button uk-button uk-width-1-4 uk-button-large uk-align-center uk-button-primary avaz_loadmore">load more posts</a>
         {% endif %}
 
         {% if posts is empty %}
@@ -260,7 +260,7 @@
      .blog-listing.chess-layout .post.post.type-post:hover {
          opacity: 1;
     }
-     .blog-listing.chess-layout .item:nth-child(5n+5) .post.type-post .outer, .blog-listing.chess-layout .item:nth-child(2) .post.type-post .outer {
+     .blog-listing.chess-layout .item:nth-child(5n+5) .post.type-post .outer, .blog-listing.chess-layout .item:nth-child(2) .post.type-post .outer, .blog-listing.chess-layout .item:nth-child(8) .post.type-post .outer {
          display: -webkit-box;
          display: -ms-flexbox;
          display: flex;
@@ -269,20 +269,20 @@
          -ms-flex-direction: column;
          flex-direction: column;
     }
-     .blog-listing.chess-layout .item:nth-child(5n+5) .post.type-post .outer .inner .category, .blog-listing.chess-layout .item:nth-child(2) .post.type-post .outer .inner .category {
+     .blog-listing.chess-layout .item:nth-child(5n+5) .post.type-post .outer .inner .category, .blog-listing.chess-layout .item:nth-child(2) .post.type-post .outer .inner .category, .blog-listing.chess-layout .item:nth-child(8) .post.type-post .outer .inner .category {
          margin: 0;
     }
     /* Blog Listing */
      .blog-listing.chess-layout:hover .post.type-post {
          opacity: .4;
     }
-     .blog-listing.chess-layout .item:nth-child(5n+5) .post.type-post .outer .featured-image:after, .blog-listing.chess-layout .item:nth-child(2) .post.type-post .outer .featured-image:after {
+     .blog-listing.chess-layout .item:nth-child(5n+5) .post.type-post .outer .featured-image:after, .blog-listing.chess-layout .item:nth-child(2) .post.type-post .outer .featured-image:after, .blog-listing.chess-layout .item:nth-child(8) .post.type-post .outer .featured-image:after {
          top: 0;
          bottom: auto;
          border-top: 18px solid #ffffff;
          border-bottom: 0 solid transparent;
     }
-     .blog-listing.chess-layout .item:nth-child(5n+5) .post.type-post .outer .inner, .blog-listing.chess-layout .item:nth-child(2) .post.type-post .outer .inner {
+     .blog-listing.chess-layout .item:nth-child(5n+5) .post.type-post .outer .inner, .blog-listing.chess-layout .item:nth-child(2) .post.type-post .outer .inner, .blog-listing.chess-layout .item:nth-child(8) .post.type-post .outer .inner {
          -webkit-box-ordinal-group: 0;
          -ms-flex-order: -1;
          order: -1;
@@ -298,18 +298,17 @@
 
         <!-- archive chess -->
         <section class="blog-listing chess-layout outer" id="avaz__blog__chess">
-          <div class="inner uk-grid uk-grid-collapse uk-child-width-1-3@l" data-uk-grid="">
+          <div class="inner uk-grid uk-grid-collapse uk-child-width-1-3@l archive-posts" data-uk-grid="">
             
-            {% for post in posts|slice(0, 3) %}
+            {% for post in posts %}
               {% include ['tease-chess.twig'] %}
             {% endfor %}
           
           </div>
         </section>
         <!-- end archive chess -->
-        
         {% if posts > 4 %}
-          {% include 'pagination.twig' %}
+          <a class="button uk-button uk-width-1-4 uk-button-large uk-align-center uk-button-primary avaz_loadmore">load more posts</a>
         {% endif %}
 
         {% if posts is empty %}

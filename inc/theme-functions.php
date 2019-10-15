@@ -118,6 +118,10 @@ function solaris_theme_setup()
   add_image_size('solaris-theme-archive-featured-image-list', 1150, 400, true);
   add_image_size('solaris-theme-archive-featured-image-grid', 540, 0, true);
   add_image_size('solaris-theme-archive-featured-image-chess', 540, 0, true);
+  add_image_size('solaris-theme-content-block', 716, 450, true);
+  add_image_size('solaris-theme-content-block-gallery-image', 378, 450, true);
+  add_image_size('solaris-theme-quotations-block-image', 952, 634, true);
+  add_image_size('solaris-theme-quotations-block-half-image', 960, 975, true);
   add_image_size('solaris-theme-case-studies-image', 470, 200, true);
   add_image_size('solaris-theme-more-stories-image', 620, 350, true);
   add_image_size('solaris-theme-header-image', 1920, 400, true);
@@ -174,11 +178,23 @@ function solaris_theme_enqueue_assets() {
     wp_enqueue_style('uikit', '/wp-content/themes/solaris-theme/assets/css/base_lg.css');
     wp_enqueue_style('solaris-theme', get_stylesheet_uri());
     wp_enqueue_script('solaris-theme-js', '/wp-content/themes/solaris-theme/assets/js/bundles/bundle_lg.js', '', '3.1.5', false);
+    wp_localize_script( 'solaris-theme-js', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
   // 
   // }
   
 }
 add_action('wp_enqueue_scripts', 'solaris_theme_enqueue_assets'); 
+
+// function ajax_search_enqueues() {
+// 
+//     	wp_enqueue_script( 'ajax-search', get_stylesheet_directory_uri() . '/assets/js/ajax-search.js', '', '1.0.0', true );
+//         wp_localize_script( 'ajax-search', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+// 
+//     	wp_enqueue_style( 'ajax-search', get_stylesheet_directory_uri() . '/assets/css/ajax-search.css' );
+// 
+// }
+// 
+// add_action( 'wp_enqueue_scripts', 'ajax_search_enqueues' );
 
 
 //* Adding DNS Prefetching
@@ -283,16 +299,7 @@ function solaris_theme_register_required_plugins()
 
 
 
-function ajax_search_enqueues() {
 
-    	wp_enqueue_script( 'ajax-search', get_stylesheet_directory_uri() . '/assets/js/ajax-search.js', '', '1.0.0', true );
-        wp_localize_script( 'ajax-search', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
-
-    	wp_enqueue_style( 'ajax-search', get_stylesheet_directory_uri() . '/assets/css/ajax-search.css' );
-
-}
-
-add_action( 'wp_enqueue_scripts', 'ajax_search_enqueues' );
 
 
 
@@ -320,3 +327,115 @@ function load_search_results() {
     die();
 		
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function avaz_load_more_scripts() {
+	
+	if ( is_home() ) {
+ 
+	global $wp_query; 
+ 
+	// register our main script but do not enqueue it yet
+	wp_register_script( 'avaz_loadmore', get_stylesheet_directory_uri() . '/assets/js/avazloadmore.js', array('jquery') );
+ 
+	// now the most interesting part
+	// we have to pass parameters to myloadmore.js script but we can get the parameters values only in PHP
+	// you can define variables directly in your HTML but I decided that the most proper way is wp_localize_script()
+	wp_localize_script( 'avaz_loadmore', 'avaz_loadmore_params', array(
+		'ajaxurl' => admin_url( 'admin-ajax.php' ),
+		'posts' => json_encode( $wp_query->query_vars ), // everything about your loop is here
+		'current_page' => get_query_var( 'paged' ) ? get_query_var('paged') : 1,
+		'max_page' => $wp_query->max_num_pages
+	) );
+ 
+ 	wp_enqueue_script( 'avaz_loadmore' ); }
+}
+ 
+add_action( 'wp_enqueue_scripts', 'avaz_load_more_scripts' );
+
+
+
+
+
+
+
+// function avaz_loadmore_ajax_handler(){
+// 
+// 	get_template_part( 'template-parts/post/post', 'upper' );
+// 
+// 	// prepare our arguments for the query
+// 	$args = json_decode( stripslashes( $_POST['query'] ), true );
+// 	$args['paged'] = $_POST['page'] + 1; // we need next page to be loaded
+// 	$args['post_status'] = 'publish';
+// 
+// 
+// 	// it is always better to use WP_Query but not here
+// 	query_posts( $args );
+// 
+// 	if( have_posts() ) :
+// 
+// 		// run the loop
+// 		while( have_posts() ): the_post();
+// 
+// 		get_template_part( 'template-parts/post/post', 'block' );
+// 
+// 
+// 		endwhile;
+// 
+// 	endif;
+// 	die; // here we exit the script and even no wp_reset_query() required!
+// 
+// 	get_template_part( 'template-parts/post/post', 'lower' );
+// }
+
+function avaz_loadmore_ajax_handler() {
+    
+    $query = json_decode( stripslashes( $_POST['query'] ), true );
+    $context['options'] = get_fields('options');
+    $context['posts'] = Timber::get_posts( array(
+        'paged' => $_POST['page'] + 1,
+        'post_status' => 'publish',
+        // 's' => $query
+  	) );
+    
+    $template1 = 'load.twig';
+    
+    $template2 = 'hello.twig';
+    
+    Timber::render( $template1, $context );
+	   
+    die();
+		
+}
+
+add_action('wp_ajax_loadmore', 'avaz_loadmore_ajax_handler'); // wp_ajax_{action}
+add_action('wp_ajax_nopriv_loadmore', 'avaz_loadmore_ajax_handler'); // wp_ajax_nopriv_{action}
+
+
+
+
+
+
+
+
+
+
+
+

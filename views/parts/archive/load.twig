@@ -1,0 +1,19 @@
+{% if options.archive_layout == 'Grid' %}
+
+{% for post in posts %}
+  {% include ['tease-grid-'~post.post_type~'.twig', 'tease-grid.twig'] %}
+{% endfor %}
+
+{% elseif options.archive_layout == 'List' %}
+
+{% for post in posts %}
+  {% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}
+{% endfor %}
+
+{% elseif options.archive_layout == 'Chess' %}
+
+{% for post in posts %}
+  {% include ['tease-chess.twig'] %}
+{% endfor %}
+
+{% endif %}
