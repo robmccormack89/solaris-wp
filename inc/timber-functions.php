@@ -23,18 +23,6 @@ Timber::$dirname = array(
   'views/templates/singular',
 );
 
-// function timber_set_product( $post ) {
-// 
-//    global $product;
-// 
-//    if ( is_woocommerce() ) {
-// 
-//        $product = wc_get_product( $post->ID );
-// 
-//    }
-// 
-// }
-
 // Define RMcC Site Child Class
 class SolarisTheme extends TimberSite
 {
@@ -306,8 +294,6 @@ class SolarisTheme extends TimberSite
     // register custom context variables
     public function add_to_context($context)
     {
-      $theme_logo_id = get_theme_mod( 'custom_logo' );
-      $theme_logo_url = wp_get_attachment_image_url( $theme_logo_id , 'full' );
       $main_menu_args = array(
           'depth' => 1,
       );
@@ -318,6 +304,9 @@ class SolarisTheme extends TimberSite
       $context['options'] = get_fields('option');
       $custom_logo_url = wp_get_attachment_image_url( get_theme_mod( 'custom_logo' ), 'full' );
       $context['custom_logo_url'] = $custom_logo_url;  
+      $theme_logo_id = get_theme_mod( 'custom_logo' );
+      $theme_logo_url = wp_get_attachment_image_url( $theme_logo_id , 'full' );
+      $context['themelogo'] = $theme_logo_url;
       $context['sidebar_left']  = Timber::get_widgets('Left Sidebar Area');
       $context['sidebar_right'] = Timber::get_widgets('Right Sidebar Area');
       $context['top_bar_left']  = Timber::get_widgets('Top Bar Left');
@@ -328,13 +317,6 @@ class SolarisTheme extends TimberSite
       $context['sidebar_footer4']   = Timber::get_widgets('Main Footer Area 4');
       $context['footer_bottom_left']   = Timber::get_widgets('Footer Bottom Left');
       $context['footer_bottom_right']   = Timber::get_widgets('Footer Bottom Right');
-      $context['freenumber'] = '1800 111 2222';
-      $context['email'] = 'info@solarisblinds.ie';
-      $context['address1'] = 'Street / Road';
-      $context['address2'] = 'City / Town';
-      $context['address3'] = 'State / County';
-      $context['logo'] = '/wp-content/themes/solaris-theme/assets/img/logo.png';
-      $context['themelogo'] = $theme_logo_url;
       return $context;
     }
 

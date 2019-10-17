@@ -6,7 +6,8 @@
 {% endfor %}
 </ul>
 <div>
-  <a class="uk-position-bottom-center uk-padding-small" href="{{ site.link }}/?s={{ query_string }}">View all Results</a>
+  <p>{{ query_string }}</p>
+  <a class="" href="{{ site.link }}/?s={{ query_string }}">View all Results</a>
 </div>
 
 {% if posts is empty %}

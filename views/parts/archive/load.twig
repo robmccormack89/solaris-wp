@@ -1,19 +1,26 @@
-{% if options.archive_layout == 'Grid' %}
+{% for post in posts if options.archive_layout == 'Grid' and post.post_type == 'case-study' %}
+  {% include ['tease-case-study.twig'] %}
+{% endfor %}
 
-{% for post in posts %}
+{% for post in posts if options.archive_layout == 'Grid' and post.post_type == 'post' %}
   {% include ['tease-grid-'~post.post_type~'.twig', 'tease-grid.twig'] %}
 {% endfor %}
 
-{% elseif options.archive_layout == 'List' %}
+{% for post in posts if options.archive_layout == 'List' and post.post_type == 'case-study' %}
+  {% include ['tease-case-study.twig'] %}
+{% endfor %}
 
-{% for post in posts %}
+{% for post in posts if options.archive_layout == 'List' and post.post_type == 'post' %}
   {% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}
 {% endfor %}
 
-{% elseif options.archive_layout == 'Chess' %}
+{% for post in posts if options.archive_layout == 'Chess' and post.post_type == 'case-study' %}
+  {% include ['tease-case-study.twig'] %}
+{% endfor %}
 
-{% for post in posts %}
+{% for post in posts if options.archive_layout == 'Chess' and post.post_type == 'post' %}
   {% include ['tease-chess.twig'] %}
 {% endfor %}
 
-{% endif %}
+
+

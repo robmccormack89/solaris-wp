@@ -4,79 +4,6 @@
  *
  * @package Solaris_Theme
  */
- 
-// function rmcc_paginate_class() {
-//   $return = paginate_links( $arg );
-//   echo str_replace( "<ul class='page-numbers'>", '<ul class="pagination">', $return );
-// }
-
-function the_breadcrumb() {	
-
-  if ( function_exists('yoast_breadcrumb') ) {
-    yoast_breadcrumb( '<p class="rmcc-breadcrumbs uk-breadcrumb">','</p>' );
-  }
-
-}
-
-add_filter( 'wpseo_breadcrumb_separator', function( $separator ) {
-     return '<span uk-icon="icon: chevron-right">' . $separator . '</span>';
-} );
-
-//  to include in functions.php
-// function the_breadcrumb() {
-//     $sep = ' <span uk-icon="icon: chevron-right"></span> ';
-//     if (!is_front_page()) {
-// 
-// 	// Start the breadcrumb with a link to your homepage
-//         echo '<ul class="uk-breadcrumb">';
-//         echo '<li><a href="';
-//         echo get_option('home');
-//         echo '">Home</a>';
-//         echo '</li>';
-// 
-// 	// Check if the current page is a category, an archive or a single page. If so show the category or archive name.
-//         if (is_category() || is_single() ){
-//             the_category('title_li=');
-//         } elseif (is_archive() || is_single()){
-//             if ( is_day() ) {
-//                 printf( __( '%s', 'text_domain' ), get_the_date() );
-//             } elseif ( is_month() ) {
-//                 printf( __( '%s', 'text_domain' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'text_domain' ) ) );
-//             } elseif ( is_year() ) {
-//                 printf( __( '%s', 'text_domain' ), get_the_date( _x( 'Y', 'yearly archives date format', 'text_domain' ) ) );
-//             } else {
-//                 _e( 'Blog Archives', 'text_domain' );
-//             }
-//         }
-// 
-// 	// If the current page is a single post, show its title with the separator
-//         if (is_single()) {
-//             echo '<li>';
-//             the_title();
-//             echo '</li>';
-//         }
-// 
-// 	// If the current page is a static page, show its title.
-//         if (is_page()) {
-//             echo '<li>';
-//             echo the_title();
-//             echo '</li>';
-//         }
-// 
-// 	// if you have a static page assigned to be you posts list page. It will find the title of the static page and display it. i.e Home >> Blog
-//         if (is_home()){
-//             global $post;
-//             $page_for_posts_id = get_option('page_for_posts');
-//             if ( $page_for_posts_id ) { 
-//                 $post = get_page($page_for_posts_id);
-//                 setup_postdata($post);
-//                 the_title();
-//                 rewind_posts();
-//             }
-//         }
-//         echo '</ul>';
-//     }
-// }
 
 function solaris_theme_setup()
 {
@@ -158,43 +85,183 @@ function solaris_theme_setup()
 }
 add_action('after_setup_theme', 'solaris_theme_setup');
 
+function solaris_theme_enqueue_assets() {
+  
+  if ( is_post_type_archive( 'case-study' ) && get_field('pagination_type', 'option') == 'Ajax'  ) { 
+  
+    global $wp_query; 
+  
+    wp_enqueue_style('uikit', '/wp-content/themes/solaris-theme/assets/css/base_lg.css');
+    wp_enqueue_style('solaris-theme', get_stylesheet_uri());
+    wp_enqueue_script('solaris-theme-js', '/wp-content/themes/solaris-theme/assets/js/globals/global_lg_load.js', '', '3.1.5', false);
+    wp_localize_script( 'solaris-theme-js', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+  	wp_localize_script( 'solaris-theme-js', 'solaris_loadmore_params', array(
+  		'ajaxurl' => admin_url( 'admin-ajax.php' ),
+  		'posts' => json_encode( $wp_query->query_vars ), // everything about your loop is here
+  		'current_page' => get_query_var( 'paged' ) ? get_query_var('paged') : 1,
+  		'max_page' => $wp_query->max_num_pages
+  	) );
+  
+  }
+  
+  elseif ( is_post_type_archive( 'case-study' ) && get_field('pagination_type', 'option') == 'Default'  ) { 
+  
+    wp_enqueue_style('uikit', '/wp-content/themes/solaris-theme/assets/css/base_lg.css');
+    wp_enqueue_style('solaris-theme', get_stylesheet_uri());
+    wp_enqueue_script('solaris-theme-js', '/wp-content/themes/solaris-theme/assets/js/globals/global_lg.js', '', '3.1.5', false);
+    wp_localize_script( 'solaris-theme-js', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+    
+  }
+  
+  elseif ( is_page_template('page-templates/blank-wide-template.php') ) {
+  
+    wp_enqueue_style('uikit', '/wp-content/themes/solaris-theme/assets/css/base_lg.css');
+    wp_enqueue_style('solaris-theme', get_stylesheet_uri() );
+    wp_enqueue_script('solaris-theme-js', '/wp-content/themes/solaris-theme/assets/js/globals/global_lg.js', '', '3.1.5', false);
+    wp_localize_script( 'solaris-theme-js', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+  
+  }
+  
+  elseif ( is_home() || is_archive() || is_search() && get_field('pagination_type', 'option') == 'Ajax'  ) {
+    
+    global $wp_query; 
+  
+    wp_enqueue_style('uikit', '/wp-content/themes/solaris-theme/assets/css/base_lg.css');
+    wp_enqueue_style('solaris-theme', get_stylesheet_uri());
+    wp_enqueue_script('solaris-theme-js', '/wp-content/themes/solaris-theme/assets/js/globals/global_load.js', '', '3.1.5', false);
+    wp_localize_script( 'solaris-theme-js', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+  	wp_localize_script( 'solaris-theme-js', 'solaris_loadmore_params', array(
+  		'ajaxurl' => admin_url( 'admin-ajax.php' ),
+  		'posts' => json_encode( $wp_query->query_vars ), // everything about your loop is here
+  		'current_page' => get_query_var( 'paged' ) ? get_query_var('paged') : 1,
+  		'max_page' => $wp_query->max_num_pages
+  	) );
+    
+  }
+  
+  elseif ( is_home() || is_archive() || is_search() && get_field('pagination_type', 'option') == 'Default'  ) { 
+  
+    wp_enqueue_style('uikit', '/wp-content/themes/solaris-theme/assets/css/base_lg.css');
+    wp_enqueue_style('solaris-theme', get_stylesheet_uri());
+    wp_enqueue_script('solaris-theme-js', '/wp-content/themes/solaris-theme/assets/js/globals/global.js', '', '3.1.5', false);
+    wp_localize_script( 'solaris-theme-js', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+  
+  }
+  
+  else {
+  
+    wp_enqueue_style('uikit', '/wp-content/themes/solaris-theme/assets/css/base_lg.css');
+    wp_enqueue_style('solaris-theme', get_stylesheet_uri());
+    wp_enqueue_script('solaris-theme-js', '/wp-content/themes/solaris-theme/assets/js/globals/global.js', '', '3.1.5', false);
+    wp_localize_script( 'solaris-theme-js', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+    
+  }
+  
+}
+add_action('wp_enqueue_scripts', 'solaris_theme_enqueue_assets'); 
+
+
+
+/* add options page in backend via acf */;
+if( function_exists('acf_add_options_page') ) {
+	
+	acf_add_options_page(array(
+		'page_title' 	=> 'Theme General Settings',
+		'menu_title'	=> 'Theme Settings',
+		'menu_slug' 	=> 'theme-general-settings',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false
+	));
+	
+}
+
+
+
+function the_breadcrumb() {	
+
+  if ( function_exists('yoast_breadcrumb') ) {
+    yoast_breadcrumb( '<p class="rmcc-breadcrumbs uk-breadcrumb">','</p>' );
+  }
+
+}
+
+add_filter( 'wpseo_breadcrumb_separator', function( $separator ) {
+     return '<span uk-icon="icon: chevron-right">' . $separator . '</span>';
+} );
+
+
+
+
 // regisers custom widget
 add_action("widgets_init", "rmcc_custom_uikit_widgets_init");
 function rmcc_custom_uikit_widgets_init() {
   register_widget("RMcC_Custom_UIKIT_Widget_Class");
 }
 
-// enqueue styles and scripts */
-function solaris_theme_enqueue_assets() {
-  
-  // if ( is_home() || is_front_page() ) {
-  // 
-  //   wp_enqueue_style('uikit', '/wp-content/themes/solaris-theme/assets/css/base.css');
-  //   wp_enqueue_style('solaris-theme', get_stylesheet_uri());
-  //   wp_enqueue_script('solaris-theme-js', '/wp-content/themes/solaris-theme/assets/js/bundles/bundle.js', '', '3.1.5', false);
-  // 
-  // } else {
-    
-    wp_enqueue_style('uikit', '/wp-content/themes/solaris-theme/assets/css/base_lg.css');
-    wp_enqueue_style('solaris-theme', get_stylesheet_uri());
-    wp_enqueue_script('solaris-theme-js', '/wp-content/themes/solaris-theme/assets/js/bundles/bundle_lg.js', '', '3.1.5', false);
-    wp_localize_script( 'solaris-theme-js', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
-  // 
-  // }
-  
-}
-add_action('wp_enqueue_scripts', 'solaris_theme_enqueue_assets'); 
 
-// function ajax_search_enqueues() {
-// 
-//     	wp_enqueue_script( 'ajax-search', get_stylesheet_directory_uri() . '/assets/js/ajax-search.js', '', '1.0.0', true );
-//         wp_localize_script( 'ajax-search', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
-// 
-//     	wp_enqueue_style( 'ajax-search', get_stylesheet_directory_uri() . '/assets/css/ajax-search.css' );
-// 
-// }
-// 
-// add_action( 'wp_enqueue_scripts', 'ajax_search_enqueues' );
+
+
+function solaris_load_search_results() {
+    
+    $query = $_POST['query'];
+    $context['posts'] = Timber::get_posts( array(
+        'posts_per_page' => 5,
+        'post_status' => 'publish',
+        's' => $query
+  	) );
+    
+    $template = 'query.twig';
+    
+    $context['site'] = new Timber\Site();
+    
+    $context['query_string'] = $query;
+    
+    Timber::render( $template, $context );
+	   
+    die();
+		
+}
+add_action( 'wp_ajax_solaris_load_search_results', 'solaris_load_search_results' );
+add_action( 'wp_ajax_nopriv_solaris_load_search_results', 'solaris_load_search_results' );
+
+function solaris_loadmore_ajax_handler() {
+  
+    $context = Timber::get_context();
+    $postargs = json_decode( stripslashes( $_POST['query'] ), true );
+  	$postargs['paged'] = $_POST['page'] + 1; // we need next page to be loaded
+  	$postargs['post_status'] = 'publish';
+    $context['posts'] = Timber::get_posts( $postargs );
+    $context['options'] = get_fields('options');
+    $template = 'load.twig';
+
+    Timber::render( $template, $context );
+
+    die();
+
+}
+add_action('wp_ajax_loadmore', 'solaris_loadmore_ajax_handler'); // wp_ajax_{action}
+add_action('wp_ajax_nopriv_loadmore', 'solaris_loadmore_ajax_handler'); // wp_ajax_nopriv_{action}
+
+
+// posts per page based on CPT. blog obeys wp settings
+function solaris_posts_per_page($query)
+{
+    switch ( $query->query_vars['post_type'] )
+    {
+        case 'case-study':
+            $query->query_vars['posts_per_page'] = 8;
+            break;
+
+        default:
+            break;
+    }
+    return $query;
+}
+
+if( !is_admin() )
+{
+    add_filter( 'pre_get_posts', 'solaris_posts_per_page' );
+}
 
 
 //* Adding DNS Prefetching
@@ -205,6 +272,10 @@ echo '<link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
 ';
 }
 add_action('wp_head', 'stb_dns_prefetch', 0);
+
+
+
+
 // remove more stuff from head
 add_action('init', function() {
   remove_action('rest_api_init', 'wp_oembed_register_route');
@@ -212,33 +283,49 @@ add_action('init', function() {
   remove_action('wp_head', 'wp_oembed_add_discovery_links');
   remove_action('wp_head', 'wp_oembed_add_host_js');
 }, PHP_INT_MAX - 1);
+
+
+
 // remove_action( 'wp_head', 'wp_resource_hints', 2 );
+
+
+
 function solaris_theme_cleanup_query_string($src) {
   $parts = explode('?', $src);
   return $parts[0];
 }
 add_filter('script_loader_src', 'solaris_theme_cleanup_query_string', 15, 1);
 add_filter('style_loader_src', 'solaris_theme_cleanup_query_string', 15, 1);
+
+
+
 // clean up dashboard
-// function remove_dashboard_widgets() {
-//   global $wp_meta_boxes;
-//   unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_quick_press']);
-//   unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_incoming_links']);
-//   unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_activity']);
-//   unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_right_now']);
-//   unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_plugins']);
-//   unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_recent_drafts']);
-//   unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_recent_comments']);
-//   unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_primary']);
-//   unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary']);
-// }
-// add_action('wp_dashboard_setup', 'remove_dashboard_widgets');
+function remove_dashboard_widgets() {
+  global $wp_meta_boxes;
+  unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_quick_press']);
+  unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_incoming_links']);
+  unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_activity']);
+  unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_right_now']);
+  unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_plugins']);
+  unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_recent_drafts']);
+  unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_recent_comments']);
+  unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_primary']);
+  unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary']);
+}
+add_action('wp_dashboard_setup', 'remove_dashboard_widgets');
+
+
+
 
 // custom admin css
-// add_action('admin_head', 'rmcc_custom_admin_styles');
-// function rmcc_custom_admin_styles() {
-//   echo '<style> .edit-post-layout__metaboxes:not(:empty) { border-top: 1px solid #e2e4e7; bottom: 0; position: fixed; width: calc(100vw - 280px - 180px); padding: 10px 0; clear: both; } .block-editor-block-list__layout { padding-bottom: 100px; } </style>';
-// }
+add_action('admin_head', 'rmcc_custom_admin_styles');
+function rmcc_custom_admin_styles() {
+  echo '<style> .edit-post-layout__metaboxes:not(:empty) { border-top: 1px solid #e2e4e7; bottom: 0; position: fixed; width: calc(100vw - 280px - 180px); padding: 10px 0; clear: both; } .block-editor-block-list__layout { padding-bottom: 100px; } </style>';
+}
+
+
+
+
 
 
 /**
@@ -254,17 +341,9 @@ function main_menu_limit_depth( $hook ) {
 add_action( 'admin_enqueue_scripts', 'main_menu_limit_depth' );
 
 
-if( function_exists('acf_add_options_page') ) {
-	
-	acf_add_options_page(array(
-		'page_title' 	=> 'Theme General Settings',
-		'menu_title'	=> 'Theme Settings',
-		'menu_slug' 	=> 'theme-general-settings',
-		'capability'	=> 'edit_posts',
-		'redirect'		=> false
-	));
-	
-}
+
+
+
 
 
 
@@ -295,147 +374,3 @@ function solaris_theme_register_required_plugins()
     );
     tgmpa($plugins, $config);
 }
-
-
-
-
-
-
-
-
-
-add_action( 'wp_ajax_load_search_results', 'load_search_results' );
-add_action( 'wp_ajax_nopriv_load_search_results', 'load_search_results' );
-
-function load_search_results() {
-    
-    $query = $_POST['query'];
-    $context['posts'] = Timber::get_posts( array(
-        'posts_per_page' => 5,
-        'post_status' => 'publish',
-        's' => $query
-  	) );
-    
-    $template = 'query.twig';
-    
-    $context['site'] = new Timber\Site();
-    
-    $context['query_string'] = $query;
-    
-    Timber::render( $template, $context );
-	   
-    die();
-		
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function avaz_load_more_scripts() {
-	
-	if ( is_home() ) {
- 
-	global $wp_query; 
- 
-	// register our main script but do not enqueue it yet
-	wp_register_script( 'avaz_loadmore', get_stylesheet_directory_uri() . '/assets/js/avazloadmore.js', array('jquery') );
- 
-	// now the most interesting part
-	// we have to pass parameters to myloadmore.js script but we can get the parameters values only in PHP
-	// you can define variables directly in your HTML but I decided that the most proper way is wp_localize_script()
-	wp_localize_script( 'avaz_loadmore', 'avaz_loadmore_params', array(
-		'ajaxurl' => admin_url( 'admin-ajax.php' ),
-		'posts' => json_encode( $wp_query->query_vars ), // everything about your loop is here
-		'current_page' => get_query_var( 'paged' ) ? get_query_var('paged') : 1,
-		'max_page' => $wp_query->max_num_pages
-	) );
- 
- 	wp_enqueue_script( 'avaz_loadmore' ); }
-}
- 
-add_action( 'wp_enqueue_scripts', 'avaz_load_more_scripts' );
-
-
-
-
-
-
-
-// function avaz_loadmore_ajax_handler(){
-// 
-// 	get_template_part( 'template-parts/post/post', 'upper' );
-// 
-// 	// prepare our arguments for the query
-// 	$args = json_decode( stripslashes( $_POST['query'] ), true );
-// 	$args['paged'] = $_POST['page'] + 1; // we need next page to be loaded
-// 	$args['post_status'] = 'publish';
-// 
-// 
-// 	// it is always better to use WP_Query but not here
-// 	query_posts( $args );
-// 
-// 	if( have_posts() ) :
-// 
-// 		// run the loop
-// 		while( have_posts() ): the_post();
-// 
-// 		get_template_part( 'template-parts/post/post', 'block' );
-// 
-// 
-// 		endwhile;
-// 
-// 	endif;
-// 	die; // here we exit the script and even no wp_reset_query() required!
-// 
-// 	get_template_part( 'template-parts/post/post', 'lower' );
-// }
-
-function avaz_loadmore_ajax_handler() {
-    
-    $query = json_decode( stripslashes( $_POST['query'] ), true );
-    $context['options'] = get_fields('options');
-    $context['posts'] = Timber::get_posts( array(
-        'paged' => $_POST['page'] + 1,
-        'post_status' => 'publish',
-        // 's' => $query
-  	) );
-    
-    $template1 = 'load.twig';
-    
-    $template2 = 'hello.twig';
-    
-    Timber::render( $template1, $context );
-	   
-    die();
-		
-}
-
-add_action('wp_ajax_loadmore', 'avaz_loadmore_ajax_handler'); // wp_ajax_{action}
-add_action('wp_ajax_nopriv_loadmore', 'avaz_loadmore_ajax_handler'); // wp_ajax_nopriv_{action}
-
-
-
-
-
-
-
-
-
-
-
-

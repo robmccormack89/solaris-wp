@@ -1,5 +1,5 @@
 // require jquery, jquery is made available globally in webpack.config using expose-loader under jQuery
-// require('jquery');
+require('jquery');
 
 // import uikit
 import UIkit from 'uikit';
@@ -12,3 +12,5 @@ UIkit.use(Icons);
 window.UIkit = UIkit;
 
 // require ('./ajax-search.js');
+
+require ('./load-more.js');

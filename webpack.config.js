@@ -12,12 +12,14 @@ module.exports = {
     // sets mode to miniied production output, the entry file and the path & filename to output file
     mode: "production",
     entry: {
-      bundle: './assets/js/srcs/index.js',
-      bundle_lg: './assets/js/srcs/index-lg.js',
+      global: './assets/js/srcs/index.js',
+      global_lg: './assets/js/srcs/index-lg.js',
+      global_load: './assets/js/srcs/index-load.js',
+      global_lg_load: './assets/js/srcs/index-lg-load.js',
     },
     output: {
       filename: '[name].js',
-      path: __dirname + '/assets/js/bundles',
+      path: __dirname + '/assets/js/globals',
     },
 
     // mode: "production",

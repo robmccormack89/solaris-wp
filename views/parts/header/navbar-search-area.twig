@@ -1,7 +1,7 @@
 <div class="nav-overlay uk-navbar-right uk-flex-1" hidden>
   <div id="AjaxSearchForm" class="uk-navbar-item uk-width-expand">
-    <form class="uk-search uk-search-navbar uk-width-1-1" role="search" method="get" action="{{site.url}}">
-      <input class="uk-search-input" type="search" placeholder="Search for anything..." id="Search" name="s" autocomplete="off">
+    <form class="uk-search uk-search-navbar uk-width-1-1" role="search" method="post" action="{{site.url}}">
+      <input class="uk-search-input" type="text" placeholder="Search for anything..." id="Search" name="s" autocomplete="off">
       <div uk-drop="mode: click;offset: -2;pos: bottom-justify">
         <div class="uk-card uk-card-body uk-card-default uk-card-small">
           <div id="content">

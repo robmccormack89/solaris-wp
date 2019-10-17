@@ -2,17 +2,17 @@
   <article id="post-{{post.ID}}" class="uk-article {{post.post_type}} {{ post.class }} post-type-{{post.post_type}}">
     <div class="outer uk-card">
       <div class="featured-image uk-card-media-right uk-cover-container">
-        <div class="image avaz__image__cover avaz__ratio__square" data-src="{{ post.thumbnail.src('solaris-theme-block-image') }}" data-uk-img></div>
-        <a href="#" class="link"></a>
+        <div class="image solaris__image__cover solaris__ratio__square" data-src="{{ post.thumbnail.src('solaris-theme-block-image') }}" data-uk-img></div>
+        <a title="{{post.title}}" href="{{post.link}}" class="link"></a>
       </div>
       <div class="inner uk-card-body">
         <div class="top">
-          <h3 class="title uk-h4"><a href="#">GDPR: What is it & is it needed?</a></h3>
-          <p class="description">Knowledge of the GDPR and these rules can prevent a business from losing data or facing fines and legal action</p>
+          <h3 class="title uk-h4"><a title="{{post.title}}" href="{{post.link}}">{{post.title}}</a></h3>
+          <p class="description">{{ post.preview.length(18).read_more('') }}</p>
         </div>
         <div class="bottom">
           <ul class="meta">
-            <li class="meta-date">5th March 2019</li>
+            <li class="meta-date">{{post.date | date}}</li>
           </ul>
         </div>
       </div>

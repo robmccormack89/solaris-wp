@@ -18,9 +18,6 @@ $more_stories_args = array(
 );
 $context['more_stories'] = Timber::get_posts( $more_stories_args );
 
-$cover_image_id = $post->cover_image;
-$context['cover_image'] = new Timber\Image($cover_image_id);
-
 if ( post_password_required( $post->ID ) ) {
 	Timber::render( 'single-password.twig', $context );
 } else {

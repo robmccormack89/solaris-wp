@@ -1,15 +1,15 @@
 jQuery(function($){ // use jQuery code inside this to avoid "$ is not defined" error
-	$('.avaz_loadmore').click(function(){
+	$('.solaris_loadmore').click(function(){
  
 		var button = $(this),
 		    data = {
 			'action': 'loadmore',
-			'query': avaz_loadmore_params.posts, // that's how we get params from wp_localize_script() function
-			'page' : avaz_loadmore_params.current_page
+			'query': solaris_loadmore_params.posts, // that's how we get params from wp_localize_script() function
+			'page' : solaris_loadmore_params.current_page
 		};
  
 		$.ajax({ // you can also use $.post here
-			url : avaz_loadmore_params.ajaxurl, // AJAX handler
+			url : solaris_loadmore_params.ajaxurl, // AJAX handler
 			data : data,
 			type : 'POST',
 			beforeSend : function ( xhr ) {
@@ -20,9 +20,9 @@ jQuery(function($){ // use jQuery code inside this to avoid "$ is not defined" e
 					button.text( 'load more posts' );
 					$( ".archive-posts" ).append(data);
 					// $( ".archive-posts" ).before(data);
-					avaz_loadmore_params.current_page++;
+					solaris_loadmore_params.current_page++;
  
-					if ( avaz_loadmore_params.current_page == avaz_loadmore_params.max_page ) 
+					if ( solaris_loadmore_params.current_page == solaris_loadmore_params.max_page ) 
 						button.remove(); // if last page, remove the button
  
 					// you can also fire the "post-load" event here if you use a plugin that requires it
