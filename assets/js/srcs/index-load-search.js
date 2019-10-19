@@ -15,4 +15,4 @@ window.UIkit = UIkit;
 
 require ('./ajax-search.js');
 
-require ('./load-more.js');
+require ('./load-more-search.js');

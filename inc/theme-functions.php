@@ -46,6 +46,8 @@ function solaris_theme_setup()
   add_image_size('solaris-theme-archive-featured-image-grid', 540, 0, true);
   add_image_size('solaris-theme-archive-featured-image-chess', 540, 0, true);
   add_image_size('solaris-theme-content-block', 716, 450, true);
+  add_image_size('solaris-theme-lg-thumb', 96, 76, true);
+  add_image_size('solaris-theme-lg-img', 800, 0, true);
   add_image_size('solaris-theme-content-block-gallery-image', 378, 450, true);
   add_image_size('solaris-theme-quotations-block-image', 952, 634, true);
   add_image_size('solaris-theme-quotations-block-half-image', 960, 975, true);
@@ -53,6 +55,7 @@ function solaris_theme_setup()
   add_image_size('solaris-theme-more-stories-image', 620, 350, true);
   add_image_size('solaris-theme-header-image', 1920, 400, true);
   add_image_size('solaris-theme-tiny-thumb', 80, 80, true);
+  add_image_size('solaris-theme-tiny-tiny-thumb', 45, 45, true);
   add_image_size('solaris-theme-block-image', 500, 500, true);
 
   // remove emjoi styles & scripts
@@ -87,7 +90,7 @@ add_action('after_setup_theme', 'solaris_theme_setup');
 
 function solaris_theme_enqueue_assets() {
   
-  if ( is_post_type_archive( 'case-study' ) && get_field('pagination_type', 'option') == 'Ajax'  ) { 
+  if ( is_post_type_archive( 'case-study' )  ) { 
   
     global $wp_query; 
   
@@ -104,14 +107,6 @@ function solaris_theme_enqueue_assets() {
   
   }
   
-  elseif ( is_post_type_archive( 'case-study' ) && get_field('pagination_type', 'option') == 'Default'  ) { 
-  
-    wp_enqueue_style('uikit', '/wp-content/themes/solaris-theme/assets/css/base_lg.css');
-    wp_enqueue_style('solaris-theme', get_stylesheet_uri());
-    wp_enqueue_script('solaris-theme-js', '/wp-content/themes/solaris-theme/assets/js/globals/global_lg.js', '', '3.1.5', false);
-    wp_localize_script( 'solaris-theme-js', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
-    
-  }
   
   elseif ( is_page_template('page-templates/blank-wide-template.php') ) {
   
@@ -122,11 +117,11 @@ function solaris_theme_enqueue_assets() {
   
   }
   
-  elseif ( is_home() || is_archive() || is_search() && get_field('pagination_type', 'option') == 'Ajax'  ) {
+  elseif ( is_home() || is_archive()  ) {
     
     global $wp_query; 
   
-    wp_enqueue_style('uikit', '/wp-content/themes/solaris-theme/assets/css/base_lg.css');
+    wp_enqueue_style('uikit', '/wp-content/themes/solaris-theme/assets/css/base.css');
     wp_enqueue_style('solaris-theme', get_stylesheet_uri());
     wp_enqueue_script('solaris-theme-js', '/wp-content/themes/solaris-theme/assets/js/globals/global_load.js', '', '3.1.5', false);
     wp_localize_script( 'solaris-theme-js', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
@@ -139,18 +134,26 @@ function solaris_theme_enqueue_assets() {
     
   }
   
-  elseif ( is_home() || is_archive() || is_search() && get_field('pagination_type', 'option') == 'Default'  ) { 
+  elseif ( is_search() ) {
+    
+    global $wp_query; 
   
-    wp_enqueue_style('uikit', '/wp-content/themes/solaris-theme/assets/css/base_lg.css');
+    wp_enqueue_style('uikit', '/wp-content/themes/solaris-theme/assets/css/base.css');
     wp_enqueue_style('solaris-theme', get_stylesheet_uri());
-    wp_enqueue_script('solaris-theme-js', '/wp-content/themes/solaris-theme/assets/js/globals/global.js', '', '3.1.5', false);
+    wp_enqueue_script('solaris-theme-js', '/wp-content/themes/solaris-theme/assets/js/globals/global_load_search.js', '', '3.1.5', false);
     wp_localize_script( 'solaris-theme-js', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
-  
+  	wp_localize_script( 'solaris-theme-js', 'solaris_loadmore_search_params', array(
+  		'ajaxurl' => admin_url( 'admin-ajax.php' ),
+  		'posts' => json_encode( $wp_query->query_vars ), // everything about your loop is here
+  		'current_page' => get_query_var( 'paged' ) ? get_query_var('paged') : 1,
+  		'max_page' => $wp_query->max_num_pages
+  	) );
+    
   }
   
   else {
   
-    wp_enqueue_style('uikit', '/wp-content/themes/solaris-theme/assets/css/base_lg.css');
+    wp_enqueue_style('uikit', '/wp-content/themes/solaris-theme/assets/css/base.css');
     wp_enqueue_style('solaris-theme', get_stylesheet_uri());
     wp_enqueue_script('solaris-theme-js', '/wp-content/themes/solaris-theme/assets/js/globals/global.js', '', '3.1.5', false);
     wp_localize_script( 'solaris-theme-js', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
@@ -204,8 +207,21 @@ function rmcc_custom_uikit_widgets_init() {
 function solaris_load_search_results() {
     
     $query = $_POST['query'];
+    $context['pages'] = Timber::get_posts( array(
+        'posts_per_page' => 6,
+        'post_type' => 'page',
+        'post_status' => 'publish',
+        's' => $query
+  	) );
+    $context['studies'] = Timber::get_posts( array(
+        'posts_per_page' => 4,
+        'post_type' => 'case-study',
+        'post_status' => 'publish',
+        's' => $query
+  	) );
     $context['posts'] = Timber::get_posts( array(
-        'posts_per_page' => 5,
+        'posts_per_page' => 3,
+        'post_type' => 'post',
         'post_status' => 'publish',
         's' => $query
   	) );
@@ -224,14 +240,27 @@ function solaris_load_search_results() {
 add_action( 'wp_ajax_solaris_load_search_results', 'solaris_load_search_results' );
 add_action( 'wp_ajax_nopriv_solaris_load_search_results', 'solaris_load_search_results' );
 
+
+
+
+
+
+
+
+
+
+
+
+
 function solaris_loadmore_ajax_handler() {
-  
+
     $context = Timber::get_context();
     $postargs = json_decode( stripslashes( $_POST['query'] ), true );
   	$postargs['paged'] = $_POST['page'] + 1; // we need next page to be loaded
   	$postargs['post_status'] = 'publish';
     $context['posts'] = Timber::get_posts( $postargs );
     $context['options'] = get_fields('options');
+
     $template = 'load.twig';
 
     Timber::render( $template, $context );
@@ -241,6 +270,54 @@ function solaris_loadmore_ajax_handler() {
 }
 add_action('wp_ajax_loadmore', 'solaris_loadmore_ajax_handler'); // wp_ajax_{action}
 add_action('wp_ajax_nopriv_loadmore', 'solaris_loadmore_ajax_handler'); // wp_ajax_nopriv_{action}
+
+
+
+
+
+
+
+
+
+
+function solaris_loadmore_search_ajax_handler() {
+  
+    $context = Timber::get_context();
+    $postargs = json_decode( stripslashes( $_POST['query'] ), true );
+  	$postargs['paged'] = $_POST['page'] + 1; // we need next page to be loaded
+  	$postargs['post_status'] = 'publish';
+    $context['posts'] = Timber::get_posts( $postargs );
+    $context['options'] = get_fields('options');
+    
+    $template = 'load-search.twig';
+
+    Timber::render( $template, $context );
+
+    die();
+
+}
+add_action('wp_ajax_loadmoresearch', 'solaris_loadmore_search_ajax_handler'); // wp_ajax_{action}
+add_action('wp_ajax_nopriv_loadmoresearch', 'solaris_loadmore_search_ajax_handler'); // wp_ajax_nopriv_{action}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // posts per page based on CPT. blog obeys wp settings

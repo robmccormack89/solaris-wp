@@ -1,16 +1,69 @@
-<h4 class="uk-card-title uk-text-bold">Search Results</h4>
-
-<ul class="uk-list">
-{% for post in posts %}
-  {% include 'tease-query.twig' %}
-{% endfor %}
-</ul>
-<div>
-  <p>{{ query_string }}</p>
-  <a class="" href="{{ site.link }}/?s={{ query_string }}">View all Results</a>
+<div class="uk-card-header">
+  <h4 class="uk-card-title uk-text-bold">Search Results</h4>
 </div>
 
-{% if posts is empty %}
-  <p>Sorry, we couldn’t find any matches.</p>
-  <a href="#">View all</a>
-{% endif %}
+<div class="uk-card-body">
+  
+  <div class="uk-grid-divider" uk-grid>
+  
+    <div class="uk-width-1-4">
+      
+      <!-- <h5>Products</h5> -->
+    
+      <div class="uk-margin-remove-bottom">
+
+      {% for post in pages %}
+        {% include['tease-query.twig'] %}
+      {% endfor %}
+
+      {% if posts is empty %}
+        <p class="uk-text-emphasis">Sorry your search cannot find anything... Please Try again</p>
+      {% endif %}
+
+    </div>
+      
+    </div>
+    
+    <div class="uk-width-1-4">
+      
+      <h5>Case Studies</h5>
+      
+      <ul class="uk-list uk-margin-remove-bottom">
+
+      {% for post in studies %}
+        {% include['tease-query.twig'] %}
+      {% endfor %}
+
+      {% if posts is empty %}
+        <p class="uk-text-emphasis"><a href="">View all Case Studies</a></p>
+      {% endif %}
+
+      </ul>
+      
+    </div>
+    
+    <div class="uk-width-expand">
+      
+      <h5>Blog Posts</h5>
+      
+      <ul class="uk-list uk-margin-remove-bottom">
+
+      {% for post in posts %}
+        {% include['tease-query.twig'] %}
+      {% endfor %}
+
+      {% if posts is empty %}
+        <p class="uk-text-emphasis"><a href="">View all Case Studies</a></p>
+      {% endif %}
+
+      </ul>
+      
+    </div>
+    
+  </div>
+    
+</div>
+
+<div class="uk-card-footer">
+  <a class="uk-button uk-button-text uk-text-center" href="{{ site.url }}?s={{ query_string }}">View All</a>
+</div>

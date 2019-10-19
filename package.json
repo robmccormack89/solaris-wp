@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
+    "debounce": "^1.2.0",
     "jquery": "^3.4.1",
     "jquery.cookie": "^1.4.1",
     "lg-autoplay": "^1.0.4",

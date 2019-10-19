@@ -15,7 +15,9 @@ module.exports = {
       global: './assets/js/srcs/index.js',
       global_lg: './assets/js/srcs/index-lg.js',
       global_load: './assets/js/srcs/index-load.js',
+      global_load_search: './assets/js/srcs/index-load-search.js',
       global_lg_load: './assets/js/srcs/index-lg-load.js',
+  
     },
     output: {
       filename: '[name].js',

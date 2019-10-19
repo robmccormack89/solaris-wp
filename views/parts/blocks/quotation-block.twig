@@ -16,7 +16,7 @@
   <!-- FREE QUOTATION -->
   <div class="rmcc-box-shadow-large-light uk-position-relative uk-position-z-index uk-background-default">
     <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" uk-grid>
-      <div class="uk-background-cover uk-position-relative uk-light purple-wrap uk-visible@s uk-light" style="background-image: url('{% if post.thumbnail %}{{ post.thumbnail.src('solaris-theme-quotations-block-image') }}{% else %}{{ Image(options.site_default_image).src('solaris-theme-quotations-block-image') }}{% endif %}');height:65vh;">
+      <div class="uk-background-cover uk-position-relative uk-light purple-wrap uk-visible@s uk-light" data-src="{% if post.thumbnail %}{{ post.thumbnail.src('solaris-theme-quotations-block-image') }}{% else %}{{ Image(options.site_default_image).src('solaris-theme-quotations-block-image') }}{% endif %}"  style="height:65vh;" uk-img>
         <div class="uk-position-z-index uk-position-relative uk-position-center uk-text-center">
           <div class="uk-card uk-card-body rmcc-card-fade">
               <h2 class="uk-h1">{{ options.company_number }}</h2>
@@ -35,8 +35,8 @@
               <button class="uk-modal-close-full" type="button" uk-close></button>
               <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" uk-grid>
                 
-                <div id="ProductEnquiryModalLeft" class="uk-background-cover uk-padding-large" style="background-image: url('/wp-content/themes/solaris-theme/assets/img/map.jpg');" uk-height-viewport>
-                  <a class="uk-logo uk-float-right" title="Solaris Blinds & Curtains Logo" href="{{ site.url }}"><img src="{{ custom_logo_url }}" alt="Solaris Blinds & Curtains Logo"></a>
+                <div id="ProductEnquiryModalLeft" class="uk-background-cover uk-padding-large" data-src="/wp-content/themes/solaris-theme/assets/img/map.jpg" uk-height-viewport uk-img>
+                  <a class="uk-logo uk-float-right" title="{{ site.title }} Logo" href="{{ site.url }}"><img src="{{ custom_logo_url }}" alt="{{ site.title }} Logo"></a>
                   <h1 class="uk-text-primary uk-margin-remove-top">We're Open</h1>
                   <p class="uk-text-lead">{{ options.open_hours }}</p>
                   <div class="uk-margin-medium-top" uk-grid>
@@ -52,7 +52,7 @@
                 </div>
                 
                 <div id="ProductEnquiryModalRight" class="wrap-dark">
-                  <div class="uk-section uk-flex uk-flex-center uk-flex-middle uk-padding-large uk-padding-remove-vertical uk-light" style="background-image: url('{% if post.thumbnail %}{{ post.thumbnail.src('solaris-theme-quotations-block-half-image') }}{% else %}{{ Image(options.site_default_image).src('solaris-theme-quotations-block-half-image') }}{% endif %}');background-position:center;background-size:cover;background-repeat:no-repeat;" uk-height-viewport>
+                  <div class="uk-section uk-flex uk-flex-center uk-flex-middle uk-padding-large uk-padding-remove-vertical uk-light" data-src="{% if post.thumbnail %}{{ post.thumbnail.src('solaris-theme-quotations-block-half-image') }}{% else %}{{ Image(options.site_default_image).src('solaris-theme-quotations-block-half-image') }}{% endif %}"  style="background-position:center;background-size:cover;background-repeat:no-repeat;" uk-height-viewport uk-img>
                     <div class="blah uk-position-z-index">
                       <h1>Contact us</h1>
                       <p>Send us your queries at</p>

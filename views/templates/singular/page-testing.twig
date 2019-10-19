@@ -1,0 +1,53 @@
+{% extends "base.twig" %}
+
+{% block header_block %}
+  {% include 'top-bar.twig' %}
+
+  {% include 'header-middle.twig' %}
+
+
+  {% include 'header-mobile.twig' %}
+{% endblock %}
+
+{% block content %}
+
+<!-- MAIN CONTENT -->
+<main role="main" id="MainContent" class="uk-section uk-section-xsmall uk-section-muted rmcc-padding-bottom80">
+  <div class="uk-container uk-container-large">
+    {% include 'breads.twig' %}
+    <div uk-grid>
+      {% include 'sidebar-left.twig' %}
+      <article id="post-{{post.ID}}" class="post-type-{{post.post_type}} uk-article uk-width-3-4@s {{post.class}}">
+        <h1 class="uk-article-title">{{ post.title }}</h1>
+        <div id="AjaxSearchForm">
+          <form class="uk-search uk-search-navbar uk-width-1-1" role="search" method="post" action="{{site.url}}">
+            <input class="uk-search-input" type="text" placeholder="Search for anything..." id="Search" name="s" autocomplete="off">
+          </form>
+          <div class="uk-card uk-card-body uk-card-default uk-card-small">
+            <div id="content">
+              <!-- <div id="quicklinks">
+                <h4 class="uk-card-title uk-text-bold">Quick Links</h4>
+                <ul class="uk-list uk-margin-remove-bottom">
+                  <li><a href="/blinds">Blinds</a></li>
+                  <li><a href="/curtains">Curtains</a></li>
+                  <li><a href="/shutters">Shutters</a></li>
+                  <li><a href="/electric-blinds">Electric Blinds</a></li>
+                </ul>
+              </div> -->
+              <div>
+                <h4 class="uk-card-title uk-text-bold">Search Results</h4>
+
+                <ul id="results" class="uk-list">
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</main>
+<!-- /MAIN CONTENT -->
+
+{% endblock %}

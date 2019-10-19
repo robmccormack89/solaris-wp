@@ -61,11 +61,7 @@ jQuery(document).ready(function() {
     </div>
     
     {% if posts > 8 %}
-      {% if options.pagination_type == 'Default' %}
-        {% include "pagination.twig" %}
-      {% elseif options.pagination_type == 'Ajax' %}
-        <a class="button uk-button uk-width-1-4 uk-button-large uk-align-center uk-button-primary solaris_loadmore">load more posts</a>
-      {% endif %}
+      <a class="button uk-button uk-width-1-4 uk-button-large uk-align-center uk-button-primary solaris_loadmore">load more posts</a>
     {% endif %}
     
   </div>

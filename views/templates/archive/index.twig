@@ -1,8 +1,6 @@
 {% extends "base.twig" %}
 
 {% block content %}
-        
-{% if options.archive_layout == 'Grid' %}
 
 <!-- MAIN CONTENT -->
 <main role="main" id="MainContent" class="uk-section uk-section-xsmall uk-section-muted rmcc-padding-bottom80">
@@ -24,56 +22,10 @@
         {% endfor %}
         </div>
         <!-- end archive grid -->
-        {% if posts > 6 %}
-          {% if options.pagination_type == 'Default' %}
-            {% include "pagination.twig" %}
-          {% elseif options.pagination_type == 'Ajax' %}
-            <a class="button uk-button uk-width-1-4 uk-button-large uk-align-center uk-button-primary solaris_loadmore">load more posts</a>
-          {% endif %}
-        {% endif %}
-
-        {% if posts is empty %}
-          <p class="uk-text-emphasis">No posts found. Please publish some content via Posts > Add New</p>
-        {% endif %}
-
-      </div>
-      
-      {% include "sidebar.twig" %}
-      
-    </div>
-  </div>
-  
-</main>
-<!-- /MAIN CONTENT -->
-
-{% elseif options.archive_layout == 'List' %}
-
-<!-- MAIN CONTENT -->
-<main role="main" id="MainContent" class="uk-section uk-section-xsmall uk-section-muted rmcc-padding-bottom80">
-
-  <div class="uk-container uk-container-large">
-    {% include 'breads.twig' %}
-  <div>
-    
-  <div class="uk-container uk-container-large">
-    <div uk-grid>
-      
-      <div class="uk-width-3-4@s">
-        <h1 class="uk-article-title">{{ title }}</h1>
-
-        <div class="archive-posts">
-        <!-- archive list -->
-        {% for post in posts %}
-          {% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}
-        {% endfor %}
-        <!-- end archive list -->
-        </div>
         {% if posts > 4 %}
-          {% if options.pagination_type == 'Default' %}
-            {% include "pagination.twig" %}
-          {% elseif options.pagination_type == 'Ajax' %}
-            <a class="button uk-button uk-width-1-4 uk-button-large uk-align-center uk-button-primary solaris_loadmore">load more posts</a>
-          {% endif %}
+        <div class="uk-section">
+          <a class="button uk-button uk-align-center uk-button-large uk-button-primary solaris_loadmore uk-width-1-1@s uk-width-1-2@m uk-width-1-5@l">load more</a>
+        </div>
         {% endif %}
 
         {% if posts is empty %}
@@ -89,48 +41,5 @@
   
 </main>
 <!-- /MAIN CONTENT -->
-
-{% elseif options.archive_layout == 'Chess' %}
-
-<!-- MAIN CONTENT -->
-<main role="main" id="MainContent" class="uk-section uk-section-default">
-    
-  <div class="uk-container">
-    <div>
-      
-      <div class="">
-
-        <!-- archive chess -->
-        <section class="blog-listing chess-layout outer" id="solaris__blog__chess">
-          <div class="inner uk-grid uk-grid-collapse uk-child-width-1-3@l archive-posts" data-uk-grid="">
-            
-            {% for post in posts %}
-              {% include ['tease-chess.twig'] %}
-            {% endfor %}
-          
-          </div>
-        </section>
-        <!-- end archive chess -->
-        {% if posts > 3 %}
-          {% if options.pagination_type == 'Default' %}
-            {% include "pagination.twig" %}
-          {% elseif options.pagination_type == 'Ajax' %}
-            <a class="button uk-button uk-width-1-4 uk-button-large uk-align-center uk-button-primary solaris_loadmore">load more posts</a>
-          {% endif %}
-        {% endif %}
-
-        {% if posts is empty %}
-          <p class="uk-text-emphasis">No posts found. Please publish some content via Posts > Add New</p>
-        {% endif %}
-
-      </div>
-      
-    </div>
-  </div>
-  
-</main>
-<!-- /MAIN CONTENT -->
-
-{% endif %}
 
 {% endblock %}
