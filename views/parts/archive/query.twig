@@ -1,18 +1,18 @@
-<div class="uk-card-header">
+<!-- <div class="uk-card-header">
   <h4 class="uk-card-title uk-text-bold">Search Results</h4>
-</div>
+</div> -->
 
 <div class="uk-card-body">
   
-  <div class="uk-grid-divider" uk-grid>
+  <div class="" uk-grid>
   
-    <div class="uk-width-1-4">
+    <div class="uk-width-1-3">
       
-      <!-- <h5>Products</h5> -->
+      <p class="uk-text-bold">Products</p>
     
       <div class="uk-margin-remove-bottom">
 
-      {% for post in pages %}
+      {% for post in pages|slice(0, 6) %}
         {% include['tease-query.twig'] %}
       {% endfor %}
 
@@ -24,13 +24,13 @@
       
     </div>
     
-    <div class="uk-width-1-4">
+    <div class="uk-width-1-3">
       
-      <h5>Case Studies</h5>
+      <p class="uk-text-bold">Case Studies</p>
       
       <ul class="uk-list uk-margin-remove-bottom">
 
-      {% for post in studies %}
+      {% for post in studies|slice(0, 4) %}
         {% include['tease-query.twig'] %}
       {% endfor %}
 
@@ -42,9 +42,9 @@
       
     </div>
     
-    <div class="uk-width-expand">
+    <div class="uk-width-1-3">
       
-      <h5>Blog Posts</h5>
+      <p class="uk-text-bold">Blog Posts</p>
       
       <ul class="uk-list uk-margin-remove-bottom">
 
@@ -53,7 +53,7 @@
       {% endfor %}
 
       {% if posts is empty %}
-        <p class="uk-text-emphasis"><a href="">View all Case Studies</a></p>
+        <p class="uk-text-emphasis"><a href="">View all Posts</a></p>
       {% endif %}
 
       </ul>
@@ -65,5 +65,5 @@
 </div>
 
 <div class="uk-card-footer">
-  <a class="uk-button uk-button-text uk-text-center" href="{{ site.url }}?s={{ query_string }}">View All</a>
+  <a class="uk-text-center uk-align-center" href="{{ site.url }}?s={{ query_string }}">View All Results</a>
 </div>

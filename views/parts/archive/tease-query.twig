@@ -10,12 +10,13 @@
   
 </div> -->
 <div class="uk-card uk-card-body" style="padding:10px 0;">
-<div class="uk-flex-middle uk-margin-remove-top" uk-grid>
+<div class="uk-flex-middle uk-margin-remove-top uk-grid-small" uk-grid>
     <div class="uk-width-expand">
-        <a class="uk-link-muted" title="{{post.title}}" href="{{post.link}}">{{post.title}}</a>
+      <a class="" title="{{post.title}}" href="{{post.link}}">{{post.title}}</a>
+      <p class="uk-text-meta uk-margin-remove-top">{{ post.preview.length(6).read_more('') }}</p>
     </div>
-    <div class="uk-width-auto uk-flex-first">
-        <img data-src="{{ post.thumbnail.src('solaris-theme-tiny-tiny-thumb') }}" width="45" height="45" alt="" uk-img>
+    <div class="uk-width-1-4 uk-flex-first">
+        <img data-src="{{ post.thumbnail.src('solaris-theme-more-stories-image') }}" alt="" uk-img>
     </div>
 </div>
 </div>

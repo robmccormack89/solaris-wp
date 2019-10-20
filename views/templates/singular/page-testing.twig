@@ -1,51 +1,96 @@
 {% extends "base.twig" %}
 
-{% block header_block %}
-  {% include 'top-bar.twig' %}
-
-  {% include 'header-middle.twig' %}
-
-
-  {% include 'header-mobile.twig' %}
-{% endblock %}
-
 {% block content %}
 
 <!-- MAIN CONTENT -->
 <main role="main" id="MainContent" class="uk-section uk-section-xsmall uk-section-muted rmcc-padding-bottom80">
   <div class="uk-container uk-container-large">
     {% include 'breads.twig' %}
-    <div uk-grid>
-      {% include 'sidebar-left.twig' %}
-      <article id="post-{{post.ID}}" class="post-type-{{post.post_type}} uk-article uk-width-3-4@s {{post.class}}">
+      <article id="post-{{post.ID}}" class="post-type-{{post.post_type}} {{post.class}}">
         <h1 class="uk-article-title">{{ post.title }}</h1>
-        <div id="AjaxSearchForm">
-          <form class="uk-search uk-search-navbar uk-width-1-1" role="search" method="post" action="{{site.url}}">
-            <input class="uk-search-input" type="text" placeholder="Search for anything..." id="Search" name="s" autocomplete="off">
-          </form>
-          <div class="uk-card uk-card-body uk-card-default uk-card-small">
-            <div id="content">
-              <!-- <div id="quicklinks">
-                <h4 class="uk-card-title uk-text-bold">Quick Links</h4>
-                <ul class="uk-list uk-margin-remove-bottom">
-                  <li><a href="/blinds">Blinds</a></li>
-                  <li><a href="/curtains">Curtains</a></li>
-                  <li><a href="/shutters">Shutters</a></li>
-                  <li><a href="/electric-blinds">Electric Blinds</a></li>
-                </ul>
-              </div> -->
-              <div>
-                <h4 class="uk-card-title uk-text-bold">Search Results</h4>
 
-                <ul id="results" class="uk-list">
+        <div class="uk-child-width-1-1@s" uk-grid>
+          
+          <div>
+          <div class="uk-card uk-card-default uk-card-small">
+            
+            <!-- <div class="uk-card-header">
+              <h4 class="uk-card-title uk-text-bold">Search Results</h4>
+            </div> -->
 
-                </ul>
+            <div class="uk-card-body">
+              
+              <div class="" uk-grid>
+              
+                <div class="uk-width-1-3">
+                  
+                  <!-- <h5>Products</h5> -->
+                
+                  <div class="uk-margin-remove-bottom">
+
+                  {% for post in pages|slice(0, 6) %}
+                    {% include['tease-query.twig'] %}
+                  {% endfor %}
+
+                  {% if posts is empty %}
+                    <p class="uk-text-emphasis">Sorry your search cannot find anything... Please Try again</p>
+                  {% endif %}
+
+                </div>
+                  
+                </div>
+                
+                <div class="uk-width-1-3">
+                  
+                  <p class="uk-text-bold">Case Studies</p>
+                  
+                  <ul class="uk-list uk-margin-remove-bottom">
+
+                  {% for post in studies|slice(0, 4) %}
+                    {% include['tease-query.twig'] %}
+                  {% endfor %}
+
+                  {% if posts is empty %}
+                    <p class="uk-text-emphasis"><a href="">View all Case Studies</a></p>
+                  {% endif %}
+
+                  </ul>
+                  
+                </div>
+                
+                <div class="uk-width-1-3">
+                  
+                  <p class="uk-text-bold">Blog Posts</p>
+                  
+                  <ul class="uk-list uk-margin-remove-bottom">
+
+                  {% for post in posts %}
+                    {% include['tease-query.twig'] %}
+                  {% endfor %}
+
+                  {% if posts is empty %}
+                    <p class="uk-text-emphasis"><a href="">View all Posts</a></p>
+                  {% endif %}
+
+                  </ul>
+                  
+                </div>
+                
               </div>
+                
             </div>
+
+            <div class="uk-card-footer">
+              <a class="uk-text-center uk-align-center" href="{{ site.url }}?s={{ query_string }}">View All Results</a>
+            </div>
+            
           </div>
+          
+          </div>
+          
         </div>
+
       </article>
-    </div>
   </div>
 </main>
 <!-- /MAIN CONTENT -->
