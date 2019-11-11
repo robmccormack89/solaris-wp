@@ -6,23 +6,29 @@
  */
 #}
 
+{% if fields.content_alignment == 'Left' %}
+{% set alignment_class, shadow_class = 'rmcc-content-block-left', 'rmcc-box-shadow-right' %}
+{% elseif fields.content_alignment == 'Right' %}
+{% set alignment_class, shadow_class = 'rmcc-content-block-right', 'rmcc-box-shadow-left' %}
+{% endif %}
+
 {% if is_preview %}
 <link rel='stylesheet' id='uikit-css'  href='http://solarisblinds.wp/wp-content/themes/solaris-theme/assets/css/base.css' type='text/css' media='all' />
 <script type='text/javascript' src='http://solarisblinds.wp/wp-content/themes/solaris-theme/assets/js/bundles/bundle.js'></script>
 {% endif %}
 
-<div id="{% if fields.if_block_id == 'Yes' %}{{ fields.block_id }}{% else %}content-{{ block.id }}{% endif %}" class="uk-background-muted {{ block.className }}" {% if fields.if_content == 'Image' %}data-uk-lightbox="toggle:a.uk-position-cover"{% endif %}>
+<div id="{% if fields.if_block_id == 'Yes' %}{{ fields.block_id }}{% else %}content-{{ block.id }}{% endif %}" class="uk-background-muted {{ block.className }}" {% if fields.if_content == 'Image' %}data-uk-lightbox="toggle:a.uk-position-cover"{% elseif fields.if_content == 'Lightgallery' %}{% endif %}>
 
   <!-- {{ block.title }} -->
   <div class="uk-section uk-section-muted">
-    <div class="{% if fields.content_alignment == 'Left' %}rmcc-content-block-left{% elseif fields.content_alignment == 'Right' %}rmcc-content-block-right{% endif %} uk-position-relative">
+    <div class="{{alignment_class}} uk-position-relative">
       <div class="uk-container uk-container-large">
           <div class="uk-child-width-1-2@m uk-flex-middle uk-grid-large" uk-grid>
             
             {% if fields.if_content == 'Image' %}
             <div>
-              <div class="uk-inline-clip uk-transition-toggle uk-light">
-                <img class="uk-position-z-index rmcc-box-shadow-right uk-height-max-large rmcc-object-fit" data-src="{{ Image(fields.content_image).src('solaris-theme-content-block') }}" alt="{{ Image(fields.content_image).alt }}" uk-img>
+              <div class="uk-inline-clip uk-transition-toggle uk-light {{shadow_class}}">
+                <img class="uk-position-z-index uk-height-max-large rmcc-object-fit" data-src="{{ Image(fields.content_image).src('solaris-theme-content-block') }}" alt="{{ Image(fields.content_image).alt }}" uk-img>
                 <div class="uk-transition-fade uk-position-cover uk-overlay uk-overlay-primary uk-flex uk-flex-center uk-flex-middle">
                   <div data-uk-margin class="uk-transition-slide-bottom-small">
                     <span data-uk-icon="icon: search; ratio: 1.3"></span>
@@ -31,12 +37,66 @@
                 <a data-caption="{{ fields.content_title }}" title="Image: {{ fields.content_title }}" href="{{ Image(fields.content_image).src('solaris-theme-content-block') }}" class="uk-position-cover"></a>
               </div>        
             </div>
+            {% elseif fields.if_content == 'Lightgallery' %}
+            <div>
+              <div class="uk-inline-clip uk-transition-toggle uk-light {{shadow_class}}">
+                <img class="uk-position-z-index uk-height-max-large rmcc-object-fit" data-src="{{ Image(fields.content_lightgallery_image).src('solaris-theme-content-block') }}" alt="{{ Image(fields.content_lightgallery_image).alt }}" uk-img>
+                <div class="uk-transition-fade uk-position-cover uk-overlay uk-overlay-primary uk-flex uk-flex-center uk-flex-middle">
+                  <div data-uk-margin class="uk-transition-slide-bottom-small">
+                    <span data-uk-icon="icon: search; ratio: 1.3"></span>
+                  </div>
+                </div>
+                <script type="text/javascript">
+
+                  jQuery(document).ready(function() {
+                    jQuery('#lightGallery').lightGallery();
+                    thumbnail:true;
+                    subHtmlSelectorRelative: true;
+                        hash: true;
+                    jQuery('#launchLightGallery').click(function(){
+                        jQuery('#firstImage').trigger('click');
+                    })
+                  });
+                  
+                </script>
+                <a id="launchLightGallery" data-caption="{{ fields.content_title }}" title="Image: {{ fields.content_title }}" class="uk-position-cover"></a>
+              </div>        
+            </div>
+
+            <div id="lightGallery" hidden>
+            
+              {% for image in fields.content_lightgallery %}
+              
+                {% if loop.first %}
+                  <a id="firstImage" data-src="{{ Image(image).src('solaris-theme-lg-img') }}" data-sub-html=".caption-{{ image.id }}" title="{{ image.title }}" uk-img>
+                    <img src="{{ Image(image).src('solaris-theme-lg-thumb') }}" alt="{{ image.alt }}" />
+                    <div class="caption-{{ image.id }}">
+                      <h3 class="uk-light rmcc-white-text uk-margin-remove-bottom">{{ image.title }}</h3>
+                      <p>{{ image.caption }}</p>
+                    </div>
+                  </a>
+                
+                {% else %}
+                  
+                  <a data-src="{{ Image(image).src('solaris-theme-lg-img') }}" data-sub-html=".caption-{{ image.id }}" title="{{ image.title }}" alt="{{ image.alt }}" uk-img>
+                    <img src="{{ Image(image).src('solaris-theme-lg-thumb') }}" />
+                    <div class="caption-{{ image.id }}">
+                      <h3 class="uk-light rmcc-white-text uk-margin-remove-bottom">{{ image.title }}</h3>
+                      <p>{{ image.caption }}</p>
+                    </div>
+                  </a>
+                
+                {% endif %}
+              
+              {% endfor %}
+            
+            </div>
             {% elseif fields.if_content == 'Video' %}
             <div>
               
-              <div class="uk-inline-clip  uk-light">
+              <div class="uk-inline-clip uk-light {{shadow_class}}">
                 <a href="#modal-media-youtube" title="Video: {{ fields.content_title }}" uk-toggle>
-                <img class="uk-position-z-index rmcc-box-shadow-right uk-height-max-large rmcc-object-fit" data-src="{{ Image(fields.content_video_image).src('solaris-theme-content-block') }}" alt="{{ Image(fields.content_video_image).alt }}" uk-img>
+                <img class="uk-position-z-index {{shadow_class}} uk-height-max-large rmcc-object-fit" data-src="{{ Image(fields.content_video_image).src('solaris-theme-content-block') }}" alt="{{ Image(fields.content_video_image).alt }}" uk-img>
                 <div class="uk-position-cover  uk-flex uk-flex-center uk-flex-middle">
                   <div data-uk-margin>
                     <span class="rmcc-play-bg" data-uk-icon="icon: play; ratio: 3"></span>
@@ -55,7 +115,7 @@
             </div>
             {% elseif fields.if_content == 'Gallery' %}
             <div>
-              <div class="uk-position-relative uk-visible-toggle uk-light rmcc-box-shadow-right" tabindex="-1" uk-slider>
+              <div class="uk-position-relative uk-visible-toggle uk-light {{shadow_class}}" tabindex="-1" uk-slider>
               
                 <ul class="uk-slider-items uk-child-width-1-2">
                   
