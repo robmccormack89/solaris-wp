@@ -15,7 +15,7 @@
     "lg-video": "^1.2.2",
     "lg-zoom": "^1.1.0",
     "lightgallery": "^1.6.12",
-    "uikit": "^3.1.6"
+    "uikit": "^3.2.3"
   },
   "devDependencies": {
     "autoprefixer": "^9.6.1",

@@ -40,22 +40,25 @@ function solaris_theme_setup()
       'flex-height' => true
   ));
 
+
+
   // add custom thumbs sizes.
+  add_image_size('solaris-theme-lg-thumb', 96, 76, true); // lightgallery thumb
+  add_image_size('solaris-theme-lg-img', 800, 0, true); // lightgallery main image
+  add_image_size('solaris-theme-tiny-thumb', 80, 80, true); // gravatar type thing
+  add_image_size('solaris-theme-tiny-tiny-thumb', 45, 45, true); // smaller gravatar type thing
   add_image_size('solaris-theme-featured-image', 1920, 1200, true);
+  add_image_size('solaris-theme-header-image', 1920, 400, true); //  hero block, cta block, 
+  add_image_size('solaris-theme-content-block', 716, 450, true); // content block image
+  add_image_size('solaris-theme-content-block-gallery-image', 378, 450, true); // content block slider gallery image
+  add_image_size('solaris-theme-case-studies-image', 470, 200, true); // case studies block image
+  add_image_size('solaris-theme-quotations-block-image', 952, 634, true); // quotations block image
+  add_image_size('solaris-theme-quotations-block-half-image', 960, 975, true); // quotations block modal image
+  add_image_size('solaris-theme-reviews-block-image', 60, 60, true); // reviews block image
+  add_image_size('solaris-theme-archive-featured-image-grid', 540, 0, true); // blog archive image
   add_image_size('solaris-theme-archive-featured-image-list', 1150, 400, true);
-  add_image_size('solaris-theme-archive-featured-image-grid', 540, 0, true);
   add_image_size('solaris-theme-archive-featured-image-chess', 540, 0, true);
-  add_image_size('solaris-theme-content-block', 716, 450, true);
-  add_image_size('solaris-theme-lg-thumb', 96, 76, true);
-  add_image_size('solaris-theme-lg-img', 800, 0, true);
-  add_image_size('solaris-theme-content-block-gallery-image', 378, 450, true);
-  add_image_size('solaris-theme-quotations-block-image', 952, 634, true);
-  add_image_size('solaris-theme-quotations-block-half-image', 960, 975, true);
-  add_image_size('solaris-theme-case-studies-image', 470, 200, true);
   add_image_size('solaris-theme-more-stories-image', 620, 350, true);
-  add_image_size('solaris-theme-header-image', 1920, 400, true);
-  add_image_size('solaris-theme-tiny-thumb', 80, 80, true);
-  add_image_size('solaris-theme-tiny-tiny-thumb', 45, 45, true);
   add_image_size('solaris-theme-block-image', 500, 500, true);
 
   // remove emjoi styles & scripts

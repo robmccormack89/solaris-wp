@@ -34,7 +34,12 @@
 #HeaderMobile {
   .uk-logo {
     img {
-      max-height: 60px
+      max-height: 70px
     }
   }
+}
+
+
+#MobileNavToggle.uk-navbar-toggle {
+    padding: 0 0 0 15px;
 }

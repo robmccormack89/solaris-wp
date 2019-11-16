@@ -11,27 +11,33 @@
 <script type='text/javascript' src='http://solarisblinds.wp/wp-content/themes/solaris-theme/assets/js/bundles/bundle.js'></script>
 {% endif %}
 
+<style>
+
+
+
+</style>
+
 <div id="cover-{{ block.id }}" class="uk-background-muted {{ block.className }}">
 
   <!-- {{ block.title }} -->
   
-  <div class="uk-section uk-section-small uk-background-center-center uk-position-relative uk-background-cover uk-light uk-background-fixed purple-wrap-blur" data-src="{{ post.thumbnail.src('solaris-theme-featured-image') }}" uk-img>
+  <div id="CoverBlockCover" class="uk-section uk-section-small uk-background-center-center uk-position-relative uk-background-cover uk-light uk-background-fixed purple-wrap-blur" data-src="{{ post.thumbnail.src('solaris-theme-featured-image') }}" uk-img>
     
     <div class="uk-position-z-index uk-position-relative uk-container uk-text-center">
       
     {% if fields.cover_title %}
-      <h1 class="uk-h1">{{ fields.cover_title }}</h1>
+      <h1 id="CoverBlockTitle" class="uk-h1">{{ fields.cover_title }}</h1>
     {% else %}
-      <h1 class="uk-h1">{{ post.title }}</h1>
+      <h1 id="CoverBlockTitle" class="uk-h1">{{ post.title }}</h1>
     {% endif %}
       
       <hr class="uk-divider-small">
 
-      <p class="uk-text-lead uk-margin-medium-bottom">{{ fields.cover_description }}</p>
+      <p id="CoverBlockDescription" class="uk-text-lead uk-margin-medium-bottom">{{ fields.cover_description }}</p>
       
     {% if fields.if_button == 'Standard' %}
 
-      <a type="button" href="{{ fields.standard_button_link }}" title="Scroll to Content" class="uk-button uk-button-primary uk-button-large {% if fields.if_cover_nav == 'Yes' %}uk-margin-medium-bottom{% endif %}">{{ fields.standard_button_text }}</a>
+      <a id="CoverBlockStandardButton" type="button" href="{{ fields.standard_button_link }}" title="Scroll to Content" class="uk-button uk-button-primary uk-button-large {% if fields.if_cover_nav == 'Yes' %}uk-margin-medium-bottom{% endif %}">{{ fields.standard_button_text }}</a>
     
     {% elseif fields.if_button == 'Gallery' %}
       

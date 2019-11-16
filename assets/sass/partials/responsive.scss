@@ -2,9 +2,18 @@
 @media only screen and (max-width:479px) {
   
   .uk-text-lead {
-    font-size: $font_size_bigger_again;
+    font-size: $font_size_bigger;
   }
   
+  #CoverBlockCover {
+      padding: 20px 0;
+      #CoverBlockTitle {
+          font-size: 2.6rem;
+      }
+      #launchGallery, #CoverBlockStandardButton {
+          margin-bottom: 10px!important;
+      }
+  }
 }
 
 @media only screen and (min-device-width:480px) and (max-device-width:767px) {
