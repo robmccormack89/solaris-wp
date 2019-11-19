@@ -4,7 +4,10 @@
     
     {% for item in menu_main.get_items %}
     
-    <li class="{{ item.classes | join(' ') }}"><a class="uk-text-bold" title="{{ item.title }}" href="{{ item.get_link }}">{{ item.title }}</a>{{ item.mega_menu }}</li>
+    <li class="{{ item.classes | join(' ') }}">
+      <a class="uk-text-bold" title="{{ item.title }}" href="{{ item.get_link }}">{{ item.title }}</a>
+      {% if fields.if_mega_mneu == 'Yes' %}{{ item.mega_menu }}{% endif %}
+    </li>
       
     {% endfor %}
     
