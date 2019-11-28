@@ -37,7 +37,7 @@
       
     {% if fields.if_button == 'Standard' %}
 
-      <a id="CoverBlockStandardButton" type="button" href="{{ fields.standard_button_link }}" title="Scroll to Content" class="uk-button uk-button-primary uk-button-large {% if fields.if_cover_nav == 'Yes' %}uk-margin-medium-bottom{% endif %}">{{ fields.standard_button_text }}</a>
+      <a id="CoverBlockStandardButton" type="button" href="{{ fields.standard_button_link }}" title="Scroll to Content" class="uk-button uk-button-primary uk-button-large {% if fields.if_cover_nav == 'Yes' %}uk-margin-medium-bottom{% endif %}" uk-scroll="offset:200">{{ fields.standard_button_text }}</a>
     
     {% elseif fields.if_button == 'Gallery' %}
       
