@@ -179,7 +179,7 @@ class SolarisTheme extends TimberSite
       		'show_in_nav_menus'          => true,
       		'show_tagcloud'              => false,
       	);
-      	register_taxonomy( 'location', array( 'testimonials', 'case-study' ), $args );
+      	register_taxonomy( 'location', array( 'testimonial', 'case-study' ), $args );
       
     }
 

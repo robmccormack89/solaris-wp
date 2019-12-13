@@ -11,8 +11,9 @@
         <li>{{ item.address_line }}</li>
         {% endfor %}
       </ul>
-      <p><span class="uk-text-bold uk-text-emphasis">Freephone:</span> <a href="#" title="Freephone us on {{ options.company_number }}" class="uk-link-text">{{ options.company_number }}</a></p>
-      <p><span class="uk-text-bold uk-text-emphasis">Email:</span> <a href="#" title="Email us on {{ options.company_email }}" class="uk-link-text">{{ options.company_email }}</a></p>
+      <p><span class="uk-text-bold uk-text-emphasis">Freephone:</span> <a href="tel:{{ options.company_number }}" title="Freephone us on {{ options.company_number }}" class="uk-link-text">{{ options.company_number }}</a></p>
+      <p><span class="uk-text-bold uk-text-emphasis">Local:</span> <a href="tel:{{ options.company_number_2 }}" title="Call us on {{ options.company_number_2 }}" class="uk-link-text">{{ options.company_number_2 }}</a></p>
+      <p><span class="uk-text-bold uk-text-emphasis">Email:</span> <a href="mailto:{{ options.company_email }}" title="Email us on {{ options.company_email }}" class="uk-link-text">{{ options.company_email }}</a></p>
     </div>
   </div>
 </section>

@@ -62,21 +62,21 @@
       {% for image in fields.gallery_images %}
       
       {% if loop.first %}
-        <a id="firstImage" data-src="{{ Image(image).src('solaris-theme-lg-img') }}" data-sub-html=".caption-{{ image.id }}" title="{{ image.title }}" uk-img>
+        <a id="firstImage" data-src="{{ Image(image).src('solaris-theme-lg-img') }}" data-sub-html=".cover-caption-{{ image.id }}" title="{{ image.title }}" uk-img>
           <img src="{{ Image(image).src('solaris-theme-lg-thumb') }}" alt="{{ image.alt }}" />
-          <div class="caption-{{ image.id }}">
-            <h3 class="uk-light rmcc-white-text uk-margin-remove-bottom">{{ image.title }}</h3>
-            <p>{{ image.caption }}</p>
+          <div class="cover-caption-{{ image.id }}">
+            <h3 class="uk-light rmcc-white-text uk-margin-remove-bottom caption">{{ image.caption }}</h3>
+            <p class="title">{{ image.title }}</p>
           </div>
         </a>
       
       {% else %}
         
-        <a data-src="{{ Image(image).src('solaris-theme-lg-img') }}" data-sub-html=".caption-{{ image.id }}" title="{{ image.title }}" alt="{{ image.alt }}" uk-img>
+        <a data-src="{{ Image(image).src('solaris-theme-lg-img') }}" data-sub-html=".cover-caption-{{ image.id }}" title="{{ image.title }}" alt="{{ image.alt }}" uk-img>
           <img src="{{ Image(image).src('solaris-theme-lg-thumb') }}" />
-          <div class="caption-{{ image.id }}">
-            <h3 class="uk-light rmcc-white-text uk-margin-remove-bottom">{{ image.title }}</h3>
-            <p>{{ image.caption }}</p>
+          <div class="cover-caption-{{ image.id }}">
+            <h3 class="uk-light rmcc-white-text uk-margin-remove-bottom caption">{{ image.caption }}</h3>
+            <p class="title">{{ image.title }}</p>
           </div>
         </a>
       

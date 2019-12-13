@@ -56,7 +56,9 @@
                     jQuery('#lightGallery-{{ fields.block_id }}').lightGallery();
                     thumbnail:true;
                     subHtmlSelectorRelative: true;
-                        hash: true;
+                    hash: true;
+                    share: true;
+                    facebook: true;
                     jQuery('#launchLightGallery-{{ fields.block_id }}').click(function(){
                         jQuery('#firstImage-{{ fields.block_id }}').trigger('click');
                     })
@@ -72,21 +74,22 @@
               {% for image in fields.content_lightgallery %}
               
                 {% if loop.first %}
-                  <a id="firstImage-{{ fields.block_id }}" data-src="{{ Image(image).src('solaris-theme-lg-img') }}" data-sub-html=".caption-{{ image.id }}" title="{{ image.title }}" uk-img>
+                
+                  <a data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" data-facebook-share-url="#" data-twitter-share-url="#" data-googleplus-share-url="#" data-pinterest-share-url="#" id="firstImage-{{ fields.block_id }}" href="{{ Image(image).src('solaris-theme-lg-img') }}" data-sub-html=".content-caption-{{ image.id }}" title="{{ image.title }}">
                     <img src="{{ Image(image).src('solaris-theme-lg-thumb') }}" alt="{{ image.alt }}" />
-                    <div class="caption-{{ image.id }}">
-                      <h3 class="uk-light rmcc-white-text uk-margin-remove-bottom">{{ image.title }}</h3>
-                      <p>{{ image.caption }}</p>
+                    <div class="content-caption-{{ image.id }} uk-light">
+                      <h3 class="uk-light rmcc-white-text uk-margin-remove-bottom caption">{{ image.caption }}</h3>
+                      <p class="title ">{{ image.title }}</p>
                     </div>
                   </a>
                 
                 {% else %}
                   
-                  <a data-src="{{ Image(image).src('solaris-theme-lg-img') }}" data-sub-html=".caption-{{ image.id }}" title="{{ image.title }}" alt="{{ image.alt }}" uk-img>
+                  <a data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" data-facebook-share-url="#" data-twitter-share-url="#" data-googleplus-share-url="#" data-pinterest-share-url="#" href="{{ Image(image).src('solaris-theme-lg-img') }}" data-sub-html=".content-caption-{{ image.id }}" title="{{ image.title }}" alt="{{ image.alt }}">
                     <img src="{{ Image(image).src('solaris-theme-lg-thumb') }}" />
-                    <div class="caption-{{ image.id }}">
-                      <h3 class="uk-light rmcc-white-text uk-margin-remove-bottom">{{ image.title }}</h3>
-                      <p>{{ image.caption }}</p>
+                    <div class="content-caption-{{ image.id }} uk-light">
+                      <h3 class="uk-light rmcc-white-text uk-margin-remove-bottom caption">{{ image.caption }}</h3>
+                      <p class="title">{{ image.title }}</p>
                     </div>
                   </a>
                 

@@ -2,42 +2,6 @@
   <div id="AjaxSearchForm" class="uk-navbar-item uk-width-expand">
     <form class="uk-search uk-search-navbar uk-width-1-1" role="search" method="get" action="{{site.url}}">
       <input class="uk-search-input" type="search" placeholder="Search for anything..." id="Search" name="s" autocomplete="off">
-      <div uk-drop="mode: click;offset: -2;pos: bottom-justify">
-        <div class="uk-card uk-card-default uk-card-small">
-          <div id="content">
-            
-            <div id="quicklinks">
-              <div class="uk-card-header">
-                <h4 class="uk-card-title uk-text-bold">Quick Links</h4>
-              </div>
-              <div class="uk-card-body">
-                <ul class="uk-list uk-margin-remove-bottom">
-                  <li><a href="/blinds">Blinds</a></li>
-                  <li><a href="/curtains">Curtains</a></li>
-                  <li><a href="/shutters">Shutters</a></li>
-                  <li><a href="/electric-blinds">Electric Blinds</a></li>
-                </ul>
-              </div>
-              <div class="uk-card-footer">
-                <a class="uk-align-center uk-text-center" href="">View More</a>
-              </div>
-            </div>
-            
-            <div id="loader" class="uk-hidden">
-              <div class="uk-card-body">
-                <img data-src="/wp-content/themes/solaris-theme/assets/img/spinner.gif" width="200" height="200" alt="" uk-img>
-              </div>
-              <div class="uk-card-footer">
-                <a class="uk-align-center uk-text-center" href="">Views All</a>
-              </div>
-            </div>
-            
-            <div id="results">
-            </div>
-              
-          </div>
-        </div>
-      </div>
     </form>
   </div>
   <a class="uk-navbar-toggle" uk-close uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>

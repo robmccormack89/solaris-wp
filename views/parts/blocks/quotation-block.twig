@@ -20,14 +20,14 @@
         <div class="uk-position-z-index uk-position-relative uk-position-center uk-text-center">
           <div class="uk-card uk-card-body rmcc-card-fade">
               <h2 class="uk-h1">{{ options.company_number }}</h2>
-              <p class="uk-text-lead">{{ fields.quotation_block_short_description }}</p>
+              <p class="uk-text-lead">Find our Stores on <a href="{{ options.google_maps_url }}" target="_blank">Google Maps</a> | We're Open: <span class="uk-text-bold">{{ options.open_hours }}</span></p>
           </div>
         </div>
       </div>
       <div class="uk-padding-large uk-visible@s">
-          <h2 class="uk-h1">{{ fields.quotation_block_title }}</h2>
+          <h2 class="uk-h1">Get a Free Quotation Today</h2>
           <hr class="uk-divider-small">
-          <p>{{ fields.quotation_block_description }}</p>
+          <p>Thank you for your interest in Solaris Blinds and Curtains. To receive a FREE Quote today; you can call, email or simply enquire at our store. Give us two minutes and we'll be in touch to give you a quote based on your exact specifications. It's that easy. Then, if you like our rates (and we're pretty sure you will). We look forward to hearing from you!</p>
           <a href="#ModalFullSplit" title="Arrange a Quotation" class="uk-button uk-button-primary uk-button-large" uk-toggle>Arrange a Quotation</a>
           <div id="ModalFullSplit" class="uk-modal-full" uk-modal>
 
@@ -56,9 +56,9 @@
                     <div class="blah uk-position-z-index">
                       <h1>Contact us</h1>
                       <p>Send us your queries at</p>
-                      <a title="Email us on {{ options.company_email }}" href="">{{ options.company_email }}</a>
+                      <a title="Email us on {{ options.company_email }}" href="mailto:{{ options.company_email }}">{{ options.company_email }}</a>
                       <p>You can also Freephone us on:</p>
-                      <a title="Freephone us on {{ options.company_number }}" href="">{{ options.company_number }}</a>
+                      <a title="Freephone us on {{ options.company_number }}" href="tel:{{ options.company_number }}">{{ options.company_number }}</a>
                       <form id="ModalForm" class="uk-grid-small uk-margin-medium-top" uk-grid>
                         <div class="uk-width-1-1@s">
                           <h3 class="uk-heading-line"><span>Make an Enquiry</span></h3>
@@ -102,7 +102,7 @@
       <div class="uk-padding-large uk-hidden@s">
           <h2 class="uk-h1">Free Quotation</h2>
           <hr class="uk-divider-small">
-          <p>For a Free Quotation or Consultation, Freephone us using the Quick Call button below. You can also fill out the form on our <a href="/contact">Contact page.</a> </p>
+          <p>Thank you for your interest in Solaris Blinds and Curtains. To receive a FREE Quote today; you can call, email or simply enquire at our store. You can also fill out the form on our <a href="/contact">Contact page.</a> Give us two minutes and we'll be in touch to give you a quote based on your exact specifications. It's that easy. Then, if you like our rates (and we're pretty sure you will). We look forward to hearing from you! </p>
       </div>
     </div>
   </div>

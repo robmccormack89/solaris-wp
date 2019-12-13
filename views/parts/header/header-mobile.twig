@@ -12,35 +12,37 @@
 </section>
 <!-- OFFCANVAS -->
 <div id="offcanvas-nav" data-uk-offcanvas="flip: true; overlay: false">
-  <div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide rmcc-offcanvas-border-left">
-    <button class="uk-offcanvas-close uk-close uk-icon" type="button" data-uk-close></button>
-    <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="multiple: true">
-      <li class="uk-nav-header">Menu</li>
-      {% for item in menu_mobile.get_items %}
-        {% if item.get_children %}
-          <li class="uk-parent {{ item.classes | join(' ') }}">
-            <a href="{{ item.get_link }}">{{ item.title }}</a>
-            <ul class="uk-nav-sub">
-              {% for child in item.get_children %}
-                <li>
-                  <a href="{{ child.get_link }}">{{ child.title }}</a>
-                </li>
-              {% endfor %}
-            </ul>
-          </li>
-        {% else %}
-          <li class="{{ item.classes | join(' ') }}">
-            <a href="{{ item.get_link }}">{{ item.title }}</a>
-          </li>
-        {% endif %}
-      {% endfor %}
-      <li class="uk-nav-divider"></li>
-    </ul>
-    <div class="uk-margin">
-      <form class="uk-search uk-search-default uk-width-1-1">
-        <span class="uk-search-icon-flip" uk-search-icon></span>
-        <input class="uk-search-input" type="search" placeholder="Search...">
-      </form>
+  <div style="background-image: url({{ Image(options.site_default_image).src('solaris-theme-quotations-block-half-image') }});" class="uk-background-cover uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide uk-light uk-background-fixed purple-wrap-blur">
+    <div>
+      <button class="uk-offcanvas-close uk-close uk-icon" type="button" data-uk-close></button>
+      <ul class="uk-nav uk-nav-default uk-nav-parent-icon uk-position-z-index uk-position-relative" uk-nav="multiple: true">
+        <li class="uk-nav-header">Menu</li>
+        {% for item in menu_mobile.get_items %}
+          {% if item.get_children %}
+            <li class="uk-parent {{ item.classes | join(' ') }}">
+              <a href="{{ item.get_link }}">{{ item.title }}</a>
+              <ul class="uk-nav-sub">
+                {% for child in item.get_children %}
+                  <li>
+                    <a href="{{ child.get_link }}">{{ child.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </li>
+          {% else %}
+            <li class="{{ item.classes | join(' ') }}">
+              <a href="{{ item.get_link }}">{{ item.title }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+        <li class="uk-nav-divider"></li>
+      </ul>
+      <div class="uk-margin uk-position-z-index uk-position-relative">
+        <form class="uk-search uk-search-default uk-width-1-1">
+          <span class="uk-search-icon-flip" uk-search-icon></span>
+          <input class="uk-search-input" type="search" placeholder="Search...">
+        </form>
+      </div>
     </div>
   </div>
 </div>
