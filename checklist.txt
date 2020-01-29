@@ -14,9 +14,6 @@ Testimonials
   
   About us
     - sub-pages
-  
-  
-  
 
 Remote Control Video Page Blinds
 
@@ -26,11 +23,6 @@ Curtains Fabrics / Colours Page
 
 Shutters Styles Page
 
-
-
-
-
-  
 Home Page
 
 Quotation Block
@@ -48,9 +40,7 @@ Blinds Sub-Pages
   - Pleated
   - Wooden Venetian
   - Vertical
-  
-  
-  
+
 Gather text from:
 
 Decora.co.uk

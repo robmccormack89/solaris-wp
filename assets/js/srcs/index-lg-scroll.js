@@ -12,3 +12,6 @@ require('lg-zoom.js');
 require('lg-fullscreen.js');
 require('lg-share.js');
 require('lg-hash.js');
+
+// load infinite scroll
+var InfiniteScroll = require('infinite-scroll');

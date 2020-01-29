@@ -1,0 +1,66 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<!-- HERO -->
+<div class="uk-section uk-section-small uk-background-center-center uk-position-relative uk-background-cover uk-light uk-background-fixed purple-wrap-blur" style="background-image: url(/wp-content/themes/solaris-theme/assets/img/blinds-chairs.jpg);">
+  <div class="uk-position-z-index uk-position-relative uk-container uk-text-center">
+    <h1 class="uk-h1">Case Study Gallery</h1>
+    <hr class="uk-divider-small"></hr>
+    <p class="uk-text-lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. You can also take a look through our range of blind videos on YouTube – <a href="#">click here to visit our YouTube Channel.</a></p>
+  </div>
+</div>
+<!-- /HERO -->
+
+<style>
+.lg-sub-html h3 {
+    margin-bottom: 10px;
+}
+.lg-sub-html p {
+    font-size: 16px;
+}
+</style>
+
+<main role="main" id="MainContent" class="uk-section uk-section-small uk-section-muted">
+  <div class="uk-container uk-container-large" uk-filter="target: .js-filter">
+    <div uk-navbar>
+      <div class="uk-navbar-right">
+        <ul class="uk-navbar-nav">
+          <li>
+            <a href="#" class="uk-margin-small-bottom" style="min-height:40px;">Sorting: <span uk-icon="icon:  triangle-down"></span></a>
+            <div uk-dropdown="mode: click;">
+              <ul class="uk-nav uk-dropdown-nav">
+                <li class="uk-active" uk-filter-control="sort: data-name"><a href="#">Title: Ascending</a></li>
+                <li uk-filter-control="sort: data-name; order: desc"><a href="#">Title: Descending</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div id="lightgallery" class="uk-grid uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-4@m uk-grid-match js-filter archive-posts" data-uk-lightbox="toggle:a.uk-position-cover" data-infinite-scroll='{ "path": ".next", "append": ".case-study", "hideNav": ".pagi", "history": false }' data-uk-grid="masonry: true">
+      
+    {% for post in posts if post.post_type == 'case-study' %}
+      {% include ['tease-case-study.twig'] %}
+    {% endfor %}
+
+    {% if posts is empty %}
+      <p class="uk-text-emphasis">No posts found. Please publish some content via Posts > Add New</p>
+    {% endif %}
+      
+    </div>
+    
+    {% if posts > 8 %}
+      {% include 'pagination.twig' %}
+    {% endif %}
+    
+  </div>
+  <script type="text/javascript">
+      lightGallery(document.getElementById('lightgallery'), {
+        thumbnail: true
+      }); 
+  </script>
+</main>
+
+{% endblock %}

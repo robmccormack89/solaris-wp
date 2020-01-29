@@ -1,0 +1,82 @@
+{#
+/**
+ * Block Name: Cover block
+ *
+ * This is the template that displays the cover block.
+ */
+#}
+
+{% if is_preview %}
+<link rel='stylesheet' id='uikit-css'  href='http://solarisblinds.wp/wp-content/themes/solaris-theme/assets/css/base.css' type='text/css' media='all' />
+<script type='text/javascript' src='http://solarisblinds.wp/wp-content/themes/solaris-theme/assets/js/bundles/bundle.js'></script>
+{% endif %}
+
+<div id="cover-{{ block.id }}" class="uk-background-muted {{ block.className }}">
+
+  <!-- {{ block.title }} -->
+  
+  <div id="CoverBlockCover" class="uk-section uk-section-small uk-background-center-center uk-position-relative uk-background-cover uk-light uk-background-fixed purple-wrap-blur" data-src="{{ post.thumbnail.src('solaris-theme-featured-image') }}" uk-img>
+    
+    <div class="uk-position-z-index uk-position-relative uk-container uk-text-center">
+      
+    {% if fields.cover_title %}
+      <h1 id="CoverBlockTitle" class="uk-h1">{{ fields.cover_title }}</h1>
+    {% else %}
+      <h1 id="CoverBlockTitle" class="uk-h1">{{ post.title }}</h1>
+    {% endif %}
+      
+      <hr class="uk-divider-small">
+
+      <p id="CoverBlockDescription" class="uk-text-lead uk-margin-medium-bottom">{{ fields.cover_description }}</p>
+      
+    {% if fields.if_button == 'Standard' %}
+
+      <a id="CoverBlockStandardButton" type="button" href="{{ fields.standard_button_link }}" title="Scroll to Content" class="uk-button uk-button-primary uk-button-large {% if fields.if_cover_nav == 'Yes' %}uk-margin-medium-bottom{% endif %}" uk-scroll="offset:200">{{ fields.standard_button_text }}</a>
+    
+    {% elseif fields.if_button == 'Gallery' %}
+
+      <button id="launchGallery" type="button" title="Launch Gallery" class="uk-button uk-button-primary uk-button-large {% if fields.if_cover_nav == 'Yes' %}uk-margin-medium-bottom{% endif %}">View Gallery</button>
+      
+      <script>
+      document.getElementById('launchGallery').addEventListener('click', function() {
+          lightGallery(document.getElementById('launchGallery'), {
+              dynamic: true,
+              dynamicEl: [
+              {% for image in fields.gallery_images %}
+              {
+                  "src": '{{ Image(image).src('solaris-theme-lg-img') }}',
+                  'thumb': '{{ Image(image).src('solaris-theme-lg-thumb') }}',
+                  'subHtml': '<div class="cover-caption-{{ image.id }}"><h3 class="uk-light rmcc-white-text uk-margin-remove-bottom caption">{{ image.caption }}</h3><p class="title">{{ image.title }}</p></div>'
+              },
+              {% endfor %}
+            ]
+          })
+      });
+      </script>
+      
+    {% endif %}
+      
+    </div>
+    
+    {% if fields.if_cover_nav == 'Yes' %}
+    
+    <div class="uk-position-z-index uk-container uk-position-bottom-center uk-margin-small-bottom uk-visible@m">
+    
+      <ul class="uk-subnav uk-subnav-divider" uk-margin>
+        
+      {% for item in fields.cover_nav_links %}
+      
+        <li><a href="{{ item.cover_nav_link_url }}" title="Scroll to: {{ item.cover_nav_link_title }}" uk-scroll="offset:200">{{ item.cover_nav_link_title }}</a></li>
+      
+      {% endfor %}
+    
+      </ul>
+    
+    </div>
+    
+    {% endif %}
+    
+  </div>
+  <!-- /{{ block.title }} -->
+
+</div>

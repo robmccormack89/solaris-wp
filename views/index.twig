@@ -1,0 +1,43 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<!-- MAIN CONTENT -->
+<main role="main" id="MainContent" class="uk-section uk-section-xsmall uk-section-muted rmcc-padding-bottom80">
+
+  <div class="uk-container uk-container-large">
+    {% include 'breads.twig' %}
+  <div>
+    
+  <div class="uk-container uk-container-large">
+    <div uk-grid>
+      
+      <div class="uk-width-3-4@s">
+        <h1 class="uk-article-title">{{ title }}</h1>
+
+        <!-- archive grid  -->
+        <div class="uk-child-width-1-2@s archive-posts" data-infinite-scroll='{ "path": ".next", "append": ".post", "hideNav": ".pagi", "history": false }' uk-grid="masonry: true">
+        {% for post in posts %}
+          {% include ['tease.twig'] %}
+        {% endfor %}
+        </div>
+        <!-- end archive grid -->
+        {% if posts > 4 %}
+          {% include 'pagination.twig' %}
+        {% endif %}
+
+        {% if posts is empty %}
+          <p class="uk-text-emphasis">No posts found. Please publish some content via Posts > Add New</p>
+        {% endif %}
+
+      </div>
+      
+      {% include "sidebar.twig" %}
+      
+    </div>
+  </div>
+  
+</main>
+<!-- /MAIN CONTENT -->
+
+{% endblock %}

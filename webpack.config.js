@@ -13,59 +13,14 @@ module.exports = {
     mode: "production",
     entry: {
       global: './assets/js/srcs/index.js',
+      global_scroll: './assets/js/srcs/index-scroll.js',
       global_lg: './assets/js/srcs/index-lg.js',
-      global_load: './assets/js/srcs/index-load.js',
-      global_load_search: './assets/js/srcs/index-load-search.js',
-      global_lg_load: './assets/js/srcs/index-lg-load.js',
+      global_lg_scroll: './assets/js/srcs/index-lg-scroll.js',
   
     },
     output: {
       filename: '[name].js',
       path: __dirname + '/assets/js/globals',
     },
-
-    // mode: "production",
-    // entry: './assets/js/index-loader.js',
-    // output: {
-    //     filename: 'bundle-loader.js',
-    //     path: path.resolve(__dirname, 'assets/js')
-    // },
-    // 
-    // mode: "production",
-    // entry: './assets/js/index-lg.js',
-    // output: {
-    //     filename: 'bundle-lg.js',
-    //     path: path.resolve(__dirname, 'assets/js')
-    // },
-    
-    // we use expose-loader to set jquery globally, this is for use with anime effects in index.js
-    module: {
-      rules: [{
-              test: require.resolve('jquery'),
-              use: [{
-                  loader: 'expose-loader',
-                  options: 'jQuery'
-              }]
-          }]
-    },
-    
-    // adding extra modules globally via expose-loader. anime didnt work 
-    // module: {
-    //   rules: [{
-    //           test: require.resolve('animejs'),
-    //           use: [{
-    //               loader: 'expose-loader',
-    //               options: 'anime'
-    //           }]
-    //       }]
-    // },
-    
-    // telling webpack what directories to look for modules, anime didnt work
-    // resolve: {
-    //     modules: [
-    //       "node_modules",
-    //       path.resolve(__dirname, "assets/js")
-    //     ],
-    //   },
     
 };
