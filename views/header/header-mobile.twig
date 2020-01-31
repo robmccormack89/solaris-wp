@@ -13,6 +13,7 @@
 <!-- OFFCANVAS -->
 <div id="offcanvas-nav" data-uk-offcanvas="flip: true; overlay: false">
   <div style="background-image: url({{ Image(options.site_default_image).src('solaris-theme-quotations-block-half-image') }});" class="uk-background-cover uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide uk-light uk-background-fixed purple-wrap-blur">
+    <div class="uk-position-cover uk-overlay-primary"></div>
     <div>
       <button class="uk-offcanvas-close uk-close uk-icon" type="button" data-uk-close></button>
       <ul class="uk-nav uk-nav-default uk-nav-parent-icon uk-position-z-index uk-position-relative" uk-nav="multiple: true">
@@ -36,11 +37,17 @@
           {% endif %}
         {% endfor %}
         <li class="uk-nav-divider"></li>
+        <!-- <ul class="uk-subnav uk-margin-small-top" style="margin-left:-15px;">
+          <li><a href="#" uk-icon="icon: facebook"></a></li>
+          <li><a href="#" uk-icon="icon: twitter"></a></li>
+          <li><a href="#" uk-icon="icon: google"></a></li>
+          <li><a href="#" uk-icon="icon: location"></a></li>
+        </ul> -->
       </ul>
       <div class="uk-margin uk-position-z-index uk-position-relative">
-        <form class="uk-search uk-search-default uk-width-1-1">
+        <form class="uk-search uk-search-default uk-width-1-1" role="search" method="get" action="{{site.url}}">
           <span class="uk-search-icon-flip" uk-search-icon></span>
-          <input class="uk-search-input" type="search" placeholder="Search...">
+          <input class="uk-search-input" type="search" placeholder="Search..." id="SearchMobile" name="s" autocomplete="off">
         </form>
       </div>
     </div>

@@ -98,7 +98,7 @@ function solaris_theme_enqueue_assets() {
   
     wp_enqueue_style('uikit', '/wp-content/themes/solaris-theme/assets/css/base_lg.css');
     // wp_enqueue_style('solaris-theme', get_stylesheet_uri() );
-    wp_enqueue_script('solaris-theme-js', '/wp-content/themes/solaris-theme/assets/js/globals/global_lg.js', '', '3.1.5', false);
+    wp_enqueue_script('solaris-theme-js', '/wp-content/themes/solaris-theme/assets/js/globals/global_lg.js', '', '3.1.5', true);
   
   }
   
@@ -106,7 +106,7 @@ function solaris_theme_enqueue_assets() {
   
     wp_enqueue_style('uikit', '/wp-content/themes/solaris-theme/assets/css/base_lg.css');
     // wp_enqueue_style('solaris-theme', get_stylesheet_uri() );
-    wp_enqueue_script('solaris-theme-js', '/wp-content/themes/solaris-theme/assets/js/globals/global_lg_scroll.js', '', '3.1.5', false);
+    wp_enqueue_script('solaris-theme-js', '/wp-content/themes/solaris-theme/assets/js/globals/global_lg_scroll.js', '', '3.1.5', true);
   
   }
   
@@ -114,7 +114,7 @@ function solaris_theme_enqueue_assets() {
   
     wp_enqueue_style('uikit', '/wp-content/themes/solaris-theme/assets/css/base_lg.css');
     // wp_enqueue_style('solaris-theme', get_stylesheet_uri() );
-    wp_enqueue_script('solaris-theme-js', '/wp-content/themes/solaris-theme/assets/js/globals/global_scroll.js', '', '3.1.5', false);
+    wp_enqueue_script('solaris-theme-js', '/wp-content/themes/solaris-theme/assets/js/globals/global_scroll.js', '', '3.1.5', true);
   
   }
   
@@ -122,7 +122,7 @@ function solaris_theme_enqueue_assets() {
   
     wp_enqueue_style('uikit', '/wp-content/themes/solaris-theme/assets/css/base.css');
     // wp_enqueue_style('solaris-theme', get_stylesheet_uri());
-    wp_enqueue_script('solaris-theme-js', '/wp-content/themes/solaris-theme/assets/js/globals/global.js', '', '3.1.5', false);
+    wp_enqueue_script('solaris-theme-js', '/wp-content/themes/solaris-theme/assets/js/globals/global.js', '', '3.1.5', true);
     
   }
   
@@ -191,7 +191,15 @@ function main_menu_limit_depth( $hook ) {
 add_action( 'admin_enqueue_scripts', 'main_menu_limit_depth' );
 
 
-
+// Exclude specific posts/pages from search
+function exclude_pages_from_search($query) {
+	if ( $query->is_main_query() && is_search() ) {
+		$include_ids = array( 208, 832, 838, 835, 841, 840, 839, 1170, 1175, 465, 467 ); // Array of the ID's to exclude
+		$query->set( 'post__in', $include_ids );
+	}
+	return $query;
+}
+add_filter( 'pre_get_posts','exclude_pages_from_search' );
 
 
 function wpassist_remove_block_library_css(){
@@ -240,11 +248,9 @@ function remove_dashboard_widgets() {
 }
 add_action('wp_dashboard_setup', 'remove_dashboard_widgets');
 
-// custom admin css
-add_action('admin_head', 'rmcc_custom_admin_styles');
-function rmcc_custom_admin_styles() {
-  echo '<style> .edit-post-layout__metaboxes:not(:empty) { border-top: 1px solid #e2e4e7; bottom: 0; position: fixed; width: calc(100vw - 280px - 180px); padding: 10px 0; clear: both; } .block-editor-block-list__layout { padding-bottom: 100px; } </style>';
-}
+
+
+
 
 
 
