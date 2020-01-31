@@ -7,8 +7,6 @@
 #}
 
 {% if is_preview %}
-<link rel='stylesheet' id='uikit-css'  href='http://solarisblinds.wp/wp-content/themes/solaris-theme/assets/css/base.css' type='text/css' media='all' />
-<script type='text/javascript' src='http://solarisblinds.wp/wp-content/themes/solaris-theme/assets/js/bundles/bundle.js'></script>
 {% endif %}
 
 <div id="{% if fields.if_cta_block_id == 'Yes' %}{{ fields.cta_block_id }}{% else %}cta-{{ block.id }}{% endif %}" class="uk-background-muted rmcc-padding-topbottom8040 {{ block.className }}">
