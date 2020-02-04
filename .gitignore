@@ -6,3 +6,4 @@ compilation_cache/
 package-lock.json
 yarn.lock
 composer.lock
+.ftp-config
