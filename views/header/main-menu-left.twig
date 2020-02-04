@@ -6,7 +6,7 @@
     
     <li class="{{ item.classes | join(' ') }}">
       <a class="uk-text-bold" title="{{ item.title }}" href="{{ item.get_link }}">{{ item.title }}</a>
-      {{ item.mega_menu }}
+      {% if item.if_mega_mneu == 'Yes' %}{{ item.mega_menu }}{% endif %}
     </li>
       
     {% endfor %}

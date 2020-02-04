@@ -57,7 +57,7 @@
                       <a title="Email us on {{ options.company_email }}" href="mailto:{{ options.company_email }}">{{ options.company_email }}</a>
                       <p>You can also Freephone us on:</p>
                       <a title="Freephone us on {{ options.company_number }}" href="tel:{{ options.company_number }}">{{ options.company_number }}</a>
-                      <form id="ModalForm" class="uk-grid-small uk-margin-medium-top" uk-grid>
+                      <!-- <form id="ModalForm" class="uk-grid-small uk-margin-medium-top" uk-grid>
                         <div class="uk-width-1-1@s">
                           <h3 class="uk-heading-line"><span>Make an Enquiry</span></h3>
                         </div>
@@ -87,7 +87,10 @@
                           <button class="uk-button uk-button-default" type="reset" value="Reset">Clear</button>
                           <button class="uk-button uk-button-danger uk-float-right">Required</button>
                         </div>
-                      </form>
+                      </form> -->
+                      {% filter shortcodes %}
+                      [contact-form-7 id="1304" title="Free Quotation"]
+                      {% endfilter %}
                     </div>
                   </div>
                 </div>

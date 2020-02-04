@@ -4,7 +4,7 @@
       <h3>Contact us</h3>
     </div>
     <div class="uk-card-body">
-      <form id="ContactPageForm" class="uk-grid-small" uk-grid>
+      <!-- <form id="ContactPageForm" class="uk-grid-small" action="" method="post" uk-grid>
         <div class="uk-width-1-2@s">
           <label class="uk-form-label uk-text-bold" for="form-s-text">Name<span class="rmcc-required">*</span></label>
           <input class="uk-input uk-box-shadow-small" id="form-s-text" type="text" placeholder="Your Name..." required>
@@ -22,11 +22,14 @@
           <textarea class="uk-textarea uk-box-shadow-small" id="form-s-textarea" rows="8" placeholder="Your Message or Enquiry..." required></textarea>
         </div>
         <div class="uk-width-1-1">
-          <button class="uk-button uk-button-primary">Submit</button>
+          <button class="uk-button uk-button-primary" type="submit">Submit</button>
           <button class="uk-button uk-button-default" type="reset" value="Reset">Clear</button>
           <button class="uk-button uk-button-danger uk-float-right uk-visible@s">Required</button>
         </div>
-      </form>
+      </form> -->
+      {% filter shortcodes %}
+      [contact-form-7 id="1302" title="Contact page"]
+      {% endfilter %}
     </div>
   </div>
 </section>
