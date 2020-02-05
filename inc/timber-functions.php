@@ -89,7 +89,7 @@ class SolarisTheme extends TimberSite
           $labels = array(
         		'name'                  => _x( 'Case Studies', 'Post Type General Name', 'text_domain' ),
         		'singular_name'         => _x( 'Case Study', 'Post Type Singular Name', 'text_domain' ),
-        		'menu_name'             => __( 'Case Studies', 'text_domain' ),
+        		'menu_name'             => __( 'Case Studies (Hidden)', 'text_domain' ),
         		'name_admin_bar'        => __( 'Case Study', 'text_domain' ),
         		'archives'              => __( 'Gallery', 'text_domain' ),
         		'attributes'            => __( 'Item Attributes', 'text_domain' ),
@@ -121,7 +121,7 @@ class SolarisTheme extends TimberSite
         		'labels'                => $labels,
         		'supports'              => array( 'title', 'editor', 'thumbnail', 'comments', 'trackbacks', 'revisions', 'custom-fields', 'page-attributes', 'post-formats' ),
         		'hierarchical'          => false,
-        		'public'                => true,
+        		'public'                => false,
         		'show_ui'               => true,
         		'show_in_menu'          => true,
         		'menu_position'         => 5,
