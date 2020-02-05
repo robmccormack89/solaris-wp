@@ -16,3 +16,4 @@ notes.txt
 README.md
 style.scss
 yarn.lock
+webpack.config.js
